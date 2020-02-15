@@ -7,7 +7,7 @@
   <parent>
     <groupId>io.kestros.commons</groupId>
     <artifactId>kestros-parent</artifactId>
-    <!-- To follow strict Kestros Guidelines, use kestros-strict-parent -->
+    <!-- To follow strict Kestros guidelines, use kestros-strict-parent -->
     <!--    <artifactId>kestros-parent-strict</artifactId>-->
     <version>0.0.2-SNAPSHOT</version>
     <relativePath/>
@@ -20,13 +20,21 @@
 
   <name>${artifactName}</name>
   <description>${artifactDescription}</description>
+  <url></url>
+  <inceptionYear></inceptionYear>
 
-  <repositories>
-    <repository>
-      <id>Kestros-Public</id>
-      <url>https://repository.kestros.io/artifactory/Kestros-Public</url>
-    </repository>
-  </repositories>
+  <organization></organization>
+  <developers>
+    <developer></developer>
+  </developers>
+  <licenses>
+    <license></license>
+  </licenses>
+  <scm>
+    <connection></connection>
+    <developerConnection></developerConnection>
+    <url></url>
+  </scm>
 
 
   <modules>

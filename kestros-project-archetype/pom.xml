@@ -9,7 +9,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>io.kestros.cms.kestros-archetypes</groupId>
+  <groupId>io.kestros.cms.archetypes</groupId>
   <artifactId>kestros-project-archetype</artifactId>
 
   <name>Kestros Project Archetype</name>

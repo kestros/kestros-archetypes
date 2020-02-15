@@ -26,9 +26,9 @@
   </properties>
 
   <dependencies>
-    <!-- Kestros Depenedencies -->
+    <!-- Kestros Dependencies -->
     <dependency>
-      <groupId>io.slingware.kestros.cms</groupId>
+      <groupId>io.kestros.cms</groupId>
       <artifactId>kestros-cms-foundation-core</artifactId>
     </dependency>
   </dependencies>
