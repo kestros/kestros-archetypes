@@ -2,6 +2,8 @@
 \.target/
 \.idea/
 
+\pom.xml.versionsBackup
+
 *.iml
 target/
 
