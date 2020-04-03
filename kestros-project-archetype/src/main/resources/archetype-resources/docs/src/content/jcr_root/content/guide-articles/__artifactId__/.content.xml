@@ -4,7 +4,7 @@
   jcr:primaryType="kes:Page">
   <jcr:content
     jcr:primaryType="nt:unstructured"
-    sling:resourceType="kestros/components/site-admin/pages/site-admin-page"
+    sling:resourceType="kestros/components/site-admin/foundation/pages/site-admin-page"
     kes:theme="/etc/ui-frameworks/kestros-site-admin/themes/default">
   </jcr:content>
 </jcr:root>
