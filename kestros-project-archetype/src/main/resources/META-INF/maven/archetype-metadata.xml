@@ -16,6 +16,13 @@
     </fileSet>
 
     <fileSet filtered="true" packaged="false">
+      <directory/>
+      <includes>
+        <include>gulpfile.js</include>
+      </includes>
+    </fileSet>
+
+    <fileSet filtered="true" packaged="false">
       <directory>core</directory>
       <includes>
         <include>pom.xml</include>
