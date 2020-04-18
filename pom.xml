@@ -19,6 +19,13 @@
   <description></description>
   <packaging>pom</packaging>
 
+  <licenses>
+    <license>
+      <name>GPL-v3.0</name>
+      <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+    </license>
+  </licenses>
+
   <modules>
     <module>kestros-project-archetype</module>
   </modules>
