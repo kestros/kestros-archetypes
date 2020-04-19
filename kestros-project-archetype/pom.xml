@@ -6,7 +6,7 @@
   <parent>
     <groupId>io.kestros.cms</groupId>
     <artifactId>kestros-archetypes</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
   </parent>
 
   <groupId>io.kestros.cms.archetypes</groupId>
