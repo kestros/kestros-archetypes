@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+  xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:kes="http://kestros.io/kes/1.0"
+  jcr:primaryType="kes:Page">
+  <jcr:content
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="${artifactId}/components/pages/${artifactId}-base-page"
+    jcr:title="Sample Component">
+    <main jcr:primaryType="nt:unstructured">
+      <container
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="kestros/commons/components/structure/container">
+        <content
+          jcr:primaryType="nt:unstructured"
+          sling:resourceType="kestros/commons/components/content-area">
+          <sample-component
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="${artifactId}/components/content/sample-component"
+            sampleProperty="This Sample Component has been configured without any variations."/>
+          <sample-component-underline
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="${artifactId}/components/content/sample-component"
+            sampleProperty="This Sample Component has been configured with the underline variation."
+            variations="[underline]"/>
+          <sample-component-bold
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="${artifactId}/components/content/sample-component"
+            sampleProperty="This Sample Component has been configured with the bold variation."
+            variations="[bold]"/>
+          <sample-component-bold-underline
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="${artifactId}/components/content/sample-component"
+            sampleProperty="This Sample Component has been configured with the underline and bold variations."
+            variations="[bold,underline]"/>
+        </content>
+      </container>
+    </main>
+  </jcr:content>
+</jcr:root>
+
