@@ -1,0 +1,76 @@
+<archetype-descriptor name="single-project-archetype"
+  xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype/1.0.0 http://maven.apache.org/xsd/archetype-1.0.0.xsd">
+
+  <id>kestros-project-archetype</id>
+
+  <allowPartial>true</allowPartial>
+
+  <fileSets>
+    <fileSet filtered="true" packaged="false">
+      <directory/>
+      <includes>
+        <include>.gitignore</include>
+      </includes>
+    </fileSet>
+
+    <fileSet filtered="true" packaged="false">
+      <directory/>
+      <includes>
+        <include>gulpfile.js</include>
+      </includes>
+    </fileSet>
+
+    <fileSet filtered="true" packaged="false">
+      <directory>core</directory>
+      <includes>
+        <include>pom.xml</include>
+      </includes>
+    </fileSet>
+
+    <fileSet filtered="true" packaged="true">
+      <directory>core/src/main/java</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" packaged="true">
+      <directory>core/src/test/java</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" packaged="false">
+      <directory>frontend</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" packaged="false">
+      <directory>content</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" packaged="false">
+      <directory>docs</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+
+  <requiredProperties>
+    <requiredProperty key="artifactDescription">
+      <defaultValue></defaultValue>
+    </requiredProperty>
+    <requiredProperty key="artifactName">
+      <defaultValue>${artifactId}</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="artifactIdNoSpecialCharacters">
+      <defaultValue>${artifactId}</defaultValue>
+    </requiredProperty>
+  </requiredProperties>
+
+</archetype-descriptor>

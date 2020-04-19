@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>${groupId}</groupId>
+    <artifactId>${artifactId}</artifactId>
+    <version>${version}</version>
+  </parent>
+
+  <groupId>${groupId}.${artifactId}</groupId>
+  <artifactId>${artifactId}-core</artifactId>
+
+  <version>${version}</version>
+
+  <name>${artifactName} - Core Bundle</name>
+
+  <packaging>bundle</packaging>
+
+  <properties>
+    <rootPackage>${groupId}.${artifactIdNoSpecialCharacters}</rootPackage>
+    <bundleCategory></bundleCategory>
+  </properties>
+
+  <dependencies>
+    <!-- Kestros Dependencies -->
+    <dependency>
+      <groupId>io.kestros.cms</groupId>
+      <artifactId>kestros-cms-foundation-core</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <sourceDirectory>src/main/java</sourceDirectory>
+    <testSourceDirectory>src/test/java</testSourceDirectory>
+  </build>
+
+
+</project>
