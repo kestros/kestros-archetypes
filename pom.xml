@@ -26,6 +26,14 @@
     </license>
   </licenses>
 
+  <scm>
+    <connection>scm:git:git://github.com/kestros/kestros-archetypes.git</connection>
+    <developerConnection>scm:git:ssh://github.com:kestros/kestros-archetypes.git
+    </developerConnection>
+    <url>https://github.com/kestros/kestros-archetypes/tree/master</url>
+  </scm>
+
+
   <modules>
     <module>kestros-project-archetype</module>
   </modules>
