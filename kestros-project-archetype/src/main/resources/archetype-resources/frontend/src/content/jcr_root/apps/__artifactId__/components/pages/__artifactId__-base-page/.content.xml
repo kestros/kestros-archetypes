@@ -2,5 +2,5 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
   jcr:primaryType="kes:ComponentType"
   jcr:title="${artifactName} Base Page"
-  componentGroup=".hidden"
+  componentGroup="${artifactName} Page Types"
   sling:resourceSuperType="kestros/commons/components/kestros-base-page"/>
