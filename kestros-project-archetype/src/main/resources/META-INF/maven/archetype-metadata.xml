@@ -53,12 +53,12 @@
         <include>**/*</include>
       </includes>
     </fileSet>
-    <fileSet filtered="true" packaged="false">
-      <directory>docs</directory>
-      <includes>
-        <include>**/*</include>
-      </includes>
-    </fileSet>
+<!--    <fileSet filtered="true" packaged="false">-->
+<!--      <directory>docs</directory>-->
+<!--      <includes>-->
+<!--        <include>**/*</include>-->
+<!--      </includes>-->
+<!--    </fileSet>-->
   </fileSets>
 
   <requiredProperties>

@@ -10,7 +10,7 @@ docker run -p 8080:8080 --name kestros-platform-beta -v /tmp/kestros/logs:/opt/s
 mvn archetype:generate                                  \
   -DarchetypeGroupId=io.kestros.cms.archetypes   \
   -DarchetypeArtifactId=kestros-project-archetype       \
-  -DarchetypeVersion=0.0.1-SNAPSHOT
+  -DarchetypeVersion=0.1.0-SNAPSHOT
 ```
 
 ## Installing Your Site
