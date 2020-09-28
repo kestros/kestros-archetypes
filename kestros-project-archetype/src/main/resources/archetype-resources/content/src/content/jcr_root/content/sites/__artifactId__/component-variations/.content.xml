@@ -9,33 +9,33 @@
     <main jcr:primaryType="nt:unstructured">
       <container
         jcr:primaryType="nt:unstructured"
-        sling:resourceType="kestros/commons/components/structure/container">
+        sling:resourceType="/libs/kestros/commons/components/structure/container">
         <content
           jcr:primaryType="nt:unstructured"
           sling:resourceType="kestros/commons/components/content-area">
           <button-plain
             jcr:primaryType="nt:unstructured"
-            sling:resourceType="kestros/commons/components/content/button"
+            sling:resourceType="/libs/kestros/commons/components/content/button"
             text="Leave me as a plain button"
             link="#"/>
           <button-full-width
             jcr:primaryType="nt:unstructured"
-            sling:resourceType="kestros/commons/components/content/button"
+            sling:resourceType="/libs/kestros/commons/components/content/button"
             text="Add a full width variation"
             link="#"/>
           <button-background-color
             jcr:primaryType="nt:unstructured"
-            sling:resourceType="kestros/commons/components/content/button"
+            sling:resourceType="/libs/kestros/commons/components/content/button"
             text="Add a background color variation"
             link="#"/>
           <button-inline-variation
             jcr:primaryType="nt:unstructured"
-            sling:resourceType="kestros/commons/components/content/button"
+            sling:resourceType="/libs/kestros/commons/components/content/button"
             text="Add an inline variation"
             link="#"/>
           <button-multiple-variations
             jcr:primaryType="nt:unstructured"
-            sling:resourceType="kestros/commons/components/content/button"
+            sling:resourceType="/libs/kestros/commons/components/content/button"
             text="Add multiple variations"
             link="#"/>
         </content>

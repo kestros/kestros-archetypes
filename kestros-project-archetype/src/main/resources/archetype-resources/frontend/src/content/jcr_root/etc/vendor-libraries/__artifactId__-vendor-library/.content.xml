@@ -3,4 +3,4 @@
   xmlns:jcr="http://www.jcp.org/jcr/1.0"
   jcr:primaryType="kes:VendorLibrary"
   jcr:title="${artifactName} Library"
-  description="${artifactName} baseline library."/>
+  jcr:description="${artifactName} baseline library."/>
