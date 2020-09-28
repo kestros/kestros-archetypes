@@ -9,7 +9,7 @@
     <main jcr:primaryType="nt:unstructured">
       <container
         jcr:primaryType="nt:unstructured"
-        sling:resourceType="kestros/commons/components/structure/container">
+        sling:resourceType="/libs/kestros/commons/components/structure/container">
         <content
           jcr:primaryType="nt:unstructured"
           sling:resourceType="kestros/commons/components/content-area">
