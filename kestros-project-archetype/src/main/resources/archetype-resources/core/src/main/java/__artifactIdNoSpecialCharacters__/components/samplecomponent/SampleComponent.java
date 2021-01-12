@@ -1,6 +1,6 @@
 package ${groupId}.${artifactIdNoSpecialCharacters}.components.samplecomponent;
 
-import io.kestros.cms.foundation.content.BaseComponent;
+import io.kestros.cms.sitebuilding.api.models.BaseComponent;
 import io.kestros.commons.structuredslingmodels.annotation.KestrosModel;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
