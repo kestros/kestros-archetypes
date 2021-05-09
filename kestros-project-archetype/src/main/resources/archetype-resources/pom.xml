@@ -9,7 +9,7 @@
     <artifactId>kestros-parent</artifactId>
     <!-- To follow strict Kestros guidelines, use kestros-strict-parent -->
     <!--    <artifactId>kestros-parent-strict</artifactId>-->
-    <version>0.1.3-SNAPSHOT</version>
+    <version>0.2.0</version>
     <relativePath/>
   </parent>
 
@@ -38,9 +38,13 @@
 
 
   <modules>
+    <module>api</module>
     <module>core</module>
-    <module>frontend</module>
+    <module>application</module>
     <module>content</module>
+    <!--    <module>frontend</module>-->
+    <!--    <module>application</module>-->
+    <!--    <module>content</module>-->
   </modules>
 
   <dependencyManagement>
@@ -48,10 +52,12 @@
       <dependency>
         <groupId>io.kestros.cms</groupId>
         <artifactId>kestros-component-types-api</artifactId>
+        <version>0.0.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>io.kestros.cms</groupId>
         <artifactId>kestros-site-building-api</artifactId>
+        <version>0.0.2-SNAPSHOT</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

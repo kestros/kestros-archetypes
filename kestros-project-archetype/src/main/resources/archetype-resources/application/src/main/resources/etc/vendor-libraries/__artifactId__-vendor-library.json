@@ -1,0 +1,5 @@
+{
+  "jcr:primaryType": "kes:VendorLibrary",
+  "jcr:title": "${artifactName} Library",
+  "jcr:description": "${artifactName} baseline library."
+}

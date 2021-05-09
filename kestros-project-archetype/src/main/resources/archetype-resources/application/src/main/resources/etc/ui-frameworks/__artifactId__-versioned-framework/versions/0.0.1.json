@@ -1,0 +1,9 @@
+{
+  "jcr:primaryType": "kes:UiFramework",
+  "jcr:title": "${artifactName} Framework 0.0.1",
+  "jcr:description": "",
+  "kes:uiFrameworkCode": "${artifactId}-versioned-ui",
+  "kes:vendorLibraries": [
+    "${artifactId}-versioned-vendor-library/0.0.1"
+  ]
+}

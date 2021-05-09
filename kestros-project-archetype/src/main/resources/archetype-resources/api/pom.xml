@@ -12,11 +12,11 @@
   </parent>
 
   <groupId>${groupId}.${artifactId}</groupId>
-  <artifactId>${artifactId}-core</artifactId>
+  <artifactId>${artifactId}-api</artifactId>
 
   <version>${version}</version>
 
-  <name>${artifactName} - Core Bundle</name>
+  <name>${artifactName} - API Bundle</name>
 
   <packaging>bundle</packaging>
 
@@ -34,20 +34,6 @@
     <dependency>
       <groupId>io.kestros.cms</groupId>
       <artifactId>kestros-site-building-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>${groupId}.${artifactId}</groupId>
-      <artifactId>${artifactId}-api</artifactId>
-      <version>${version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.apache.felix.healthcheck.api</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.apache.felix.healthcheck.annotation</artifactId>
     </dependency>
   </dependencies>
 

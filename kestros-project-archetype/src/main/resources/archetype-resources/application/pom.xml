@@ -10,12 +10,12 @@
   </parent>
 
   <groupId>${groupId}.${artifactId}</groupId>
-  <artifactId>${artifactId}-content</artifactId>
+  <artifactId>${artifactId}-application</artifactId>
 
 
   <version>${version}</version>
 
-  <name>${artifactName} - Content Bundle</name>
+  <name>${artifactName} - Application Bundle</name>
 
   <packaging>bundle</packaging>
 
@@ -25,6 +25,21 @@
   </properties>
 
   <dependencies>
+
+    <!-- Kestros Dependencies -->
+    <dependency>
+      <groupId>io.kestros.cms</groupId>
+      <artifactId>kestros-component-types-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.kestros.cms</groupId>
+      <artifactId>kestros-site-building-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${groupId}.${artifactId}</groupId>
+      <artifactId>${artifactId}-api</artifactId>
+      <version>${version}</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -70,7 +85,9 @@
         <configuration>
           <instructions>
             <Sling-Initial-Content>
-              /content/sites;overwrite:=true;path:=/content/sites
+              /apps/${artifactId};overwrite:=true;path:=/apps/${artifactId},
+              /etc/ui-frameworks;overwrite:=true;path:=/etc/ui-frameworks,
+              /etc/vendor-libraries;overwrite:=true;path:=/etc/vendor-libraries
             </Sling-Initial-Content>
           </instructions>
         </configuration>
