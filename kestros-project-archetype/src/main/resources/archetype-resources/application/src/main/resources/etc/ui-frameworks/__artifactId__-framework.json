@@ -2,5 +2,7 @@
   "jcr:primaryType": "kes:UiFramework",
   "jcr:title": "${artifactName} Framework",
   "kes:uiFrameworkCode": "${artifactId}-ui",
-  "kes:vendorLibraries": "[${artifactId}-vendor-library]"
+  "kes:vendorLibraries": [
+    "${artifactId}-vendor-library"
+  ]
 }
