@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -11,11 +12,11 @@
   </parent>
 
   <groupId>${groupId}.${artifactId}</groupId>
-  <artifactId>${artifactId}-core</artifactId>
+  <artifactId>${artifactId}-api</artifactId>
 
   <version>${version}</version>
 
-  <name>${artifactName} - Core Bundle</name>
+  <name>${artifactName} - API Bundle</name>
 
   <packaging>bundle</packaging>
 
@@ -33,20 +34,6 @@
     <dependency>
       <groupId>io.kestros.cms</groupId>
       <artifactId>kestros-site-building-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>${groupId}.${artifactId}</groupId>
-      <artifactId>${artifactId}-api</artifactId>
-      <version>${version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.apache.felix.healthcheck.api</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.apache.felix.healthcheck.annotation</artifactId>
     </dependency>
   </dependencies>
 

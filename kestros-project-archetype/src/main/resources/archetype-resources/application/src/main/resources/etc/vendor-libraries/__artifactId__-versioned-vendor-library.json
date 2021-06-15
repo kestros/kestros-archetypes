@@ -1,0 +1,5 @@
+{
+  "jcr:primaryType": "kes:ManagedVendorLibrary",
+  "jcr:title": "${artifactName} Versioned Library",
+  "jcr:description": "${artifactName} baseline library."
+}
