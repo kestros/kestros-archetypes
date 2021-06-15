@@ -13,7 +13,7 @@
 
   <groupId>io.kestros.cms</groupId>
   <artifactId>kestros-archetypes</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
 
   <name>Kestros CMS Archetypes</name>
   <description></description>
