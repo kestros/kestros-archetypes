@@ -22,7 +22,7 @@
 
   <properties>
     <rootPackage>${groupId}.${artifactIdNoSpecialCharacters}</rootPackage>
-    <bundleCategory></bundleCategory>
+    <bundleCategory>${organization.name}</bundleCategory>
   </properties>
 
   <dependencies>

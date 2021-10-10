@@ -1,0 +1,5 @@
+{
+  "jcr:primaryType": "kes:ComponentVariationGroup",
+  "jcr:title": "Color/Theme",
+  "mutuallyExclusive": true
+}

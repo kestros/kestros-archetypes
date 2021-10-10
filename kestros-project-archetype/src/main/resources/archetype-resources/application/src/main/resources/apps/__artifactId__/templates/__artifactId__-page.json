@@ -1,0 +1,9 @@
+{
+  "jcr:description": "Baseline empty page.",
+  "jcr:primaryType": "kes:PageTemplate",
+  "jcr:title": "${artifactName} Page",
+  "jcr:content": {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "kestros/commons/components/kestros-base-page"
+  }
+}

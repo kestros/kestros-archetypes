@@ -131,6 +131,9 @@
     <requiredProperty key="artifactIdNoSpecialCharacters">
       <defaultValue>${artifactId}</defaultValue>
     </requiredProperty>
+    <requiredProperty key="organizationName">
+      <defaultValue></defaultValue>
+    </requiredProperty>
   </requiredProperties>
 
 </archetype-descriptor>
