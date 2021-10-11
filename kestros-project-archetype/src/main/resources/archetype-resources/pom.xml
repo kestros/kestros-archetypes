@@ -9,7 +9,7 @@
         <artifactId>kestros-site-parent</artifactId>
         <!-- To follow strict Kestros guidelines, use kestros-site-parent-strict -->
         <!--    <artifactId>kestros-site-parent-strict</artifactId>-->
-        <version>0.0.3-SNAPSHOT</version>
+        <version>0.0.3</version>
         <relativePath/>
     </parent>
 

@@ -11,7 +11,7 @@
 
   <groupId>io.kestros.cms.archetypes</groupId>
   <artifactId>kestros-project-archetype</artifactId>
-  <version>0.2.3-SNAPSHOT</version>
+  <version>0.3.0</version>
 
   <name>Kestros Project Archetype</name>
 
