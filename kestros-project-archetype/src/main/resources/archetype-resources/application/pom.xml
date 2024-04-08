@@ -77,8 +77,8 @@
           <instructions>
             <Sling-Initial-Content>
               /apps/${artifactId};overwrite:=true;path:=/apps/${artifactId},
-              /etc/ui-frameworks;overwrite:=true;path:=/etc/ui-frameworks,
-              /etc/vendor-libraries;overwrite:=true;path:=/etc/vendor-libraries
+              /etc/ui-frameworks;overwriteProperties:=true;path:=/etc/ui-frameworks,
+              /etc/vendor-libraries;overwriteProperties:=true;path:=/etc/vendor-libraries
             </Sling-Initial-Content>
           </instructions>
         </configuration>
