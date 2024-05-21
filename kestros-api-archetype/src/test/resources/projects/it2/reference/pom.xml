@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.kestros.cms</groupId>
+        <artifactId>kestros-site-parent</artifactId>
+        <version>0.1.0</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.test2</groupId>
+    <artifactId>build-integration-test2-api</artifactId>
+
+    <version>1.0.0-SNAPSHOT</version>
+
+    <name>Build Integration Test2 - API</name>
+
+    <packaging>bundle</packaging>
+
+    <properties>
+        <rootPackage>com.test2.buildintegrationtest2</rootPackage>
+        <bundleCategory>Test Organization2</bundleCategory>
+    </properties>
+
+    <dependencies>
+        <!-- Kestros Dependencies -->
+        <dependency>
+            <groupId>io.kestros.cms</groupId>
+            <artifactId>kestros-component-types-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.kestros.cms</groupId>
+            <artifactId>kestros-site-building-api</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
+    </build>
+
+</project>
