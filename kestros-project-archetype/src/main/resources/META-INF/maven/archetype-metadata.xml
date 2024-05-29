@@ -12,99 +12,95 @@
       <directory/>
       <includes>
         <include>.gitignore</include>
-      </includes>
-    </fileSet>
-
-    <fileSet filtered="true" packaged="false">
-      <directory/>
-      <includes>
-        <include>gulpfile.js</include>
-      </includes>
-    </fileSet>
-
-    <fileSet filtered="true" packaged="false">
-      <directory>api</directory>
-      <includes>
+        <include>README.md</include>
         <include>pom.xml</include>
+        <include>pom-with-modules.xml</include>
       </includes>
     </fileSet>
 
-    <fileSet filtered="true" packaged="true">
-      <directory>api/src/main/java</directory>
-      <includes>
-        <include>**/*</include>
-      </includes>
-    </fileSet>
+<!--    <fileSet filtered="true" packaged="false">-->
+<!--      <directory>api</directory>-->
+<!--      <includes>-->
+<!--        <include>pom.xml</include>-->
+<!--      </includes>-->
+<!--    </fileSet>-->
 
-    <fileSet filtered="true" packaged="true">
-      <directory>api/src/test/java</directory>
-      <includes>
-        <include>**/*</include>
-      </includes>
-    </fileSet>
+<!--    <fileSet filtered="true" packaged="true">-->
+<!--      <directory>api/src/main/java</directory>-->
+<!--      <includes>-->
+<!--        <include>**/*</include>-->
+<!--      </includes>-->
+<!--    </fileSet>-->
 
-    <fileSet filtered="true" packaged="false">
-      <directory>core</directory>
-      <includes>
-        <include>pom.xml</include>
-      </includes>
-    </fileSet>
+<!--    <fileSet filtered="true" packaged="true">-->
+<!--      <directory>api/src/test/java</directory>-->
+<!--      <includes>-->
+<!--        <include>**/*</include>-->
+<!--      </includes>-->
+<!--    </fileSet>-->
 
-    <fileSet filtered="true" packaged="true">
-      <directory>core/src/main/java</directory>
-      <includes>
-        <include>**/*</include>
-      </includes>
-    </fileSet>
+<!--    <fileSet filtered="true" packaged="false">-->
+<!--      <directory>core</directory>-->
+<!--      <includes>-->
+<!--        <include>pom.xml</include>-->
+<!--      </includes>-->
+<!--    </fileSet>-->
 
-    <fileSet filtered="true" packaged="true">
-      <directory>core/src/test/java</directory>
-      <includes>
-        <include>**/*</include>
-      </includes>
-    </fileSet>
+<!--    <fileSet filtered="true" packaged="true">-->
+<!--      <directory>core/src/main/java</directory>-->
+<!--      <includes>-->
+<!--        <include>**/*</include>-->
+<!--      </includes>-->
+<!--    </fileSet>-->
 
-    <fileSet filtered="true" packaged="false">
-      <directory>application</directory>
-      <includes>
-        <include>pom.xml</include>
-      </includes>
-    </fileSet>
+<!--    <fileSet filtered="true" packaged="true">-->
+<!--      <directory>core/src/test/java</directory>-->
+<!--      <includes>-->
+<!--        <include>**/*</include>-->
+<!--      </includes>-->
+<!--    </fileSet>-->
 
-    <fileSet filtered="true" packaged="true">
-      <directory>application/src/main/java</directory>
-      <includes>
-        <include>**/*</include>
-      </includes>
-    </fileSet>
+<!--    <fileSet filtered="true" packaged="false">-->
+<!--      <directory>application</directory>-->
+<!--      <includes>-->
+<!--        <include>pom.xml</include>-->
+<!--      </includes>-->
+<!--    </fileSet>-->
 
-    <fileSet filtered="true" packaged="true">
-      <directory>application/src/test/java</directory>
-      <includes>
-        <include>**/*</include>
-      </includes>
-    </fileSet>
+<!--    <fileSet filtered="true" packaged="true">-->
+<!--      <directory>application/src/main/java</directory>-->
+<!--      <includes>-->
+<!--        <include>**/*</include>-->
+<!--      </includes>-->
+<!--    </fileSet>-->
 
-    <fileSet filtered="true" packaged="false">
-      <directory>application/src/main/resources</directory>
-      <includes>
-        <include>**/*</include>
-      </includes>
-    </fileSet>
+<!--    <fileSet filtered="true" packaged="true">-->
+<!--      <directory>application/src/test/java</directory>-->
+<!--      <includes>-->
+<!--        <include>**/*</include>-->
+<!--      </includes>-->
+<!--    </fileSet>-->
 
-    <fileSet filtered="true" packaged="false">
-      <directory>content</directory>
-      <includes>
-        <include>pom.xml</include>
-      </includes>
-    </fileSet>
+<!--    <fileSet filtered="true" packaged="false">-->
+<!--      <directory>application/src/main/resources</directory>-->
+<!--      <includes>-->
+<!--        <include>**/*</include>-->
+<!--      </includes>-->
+<!--    </fileSet>-->
 
-    <fileSet filtered="true" packaged="false">
-      <directory>content/src/main/resources</directory>
-      <includes>
-        <include>**/*</include>
-      </includes>
-    </fileSet>
+<!--    <fileSet filtered="true" packaged="false">-->
+<!--      <directory>content</directory>-->
+<!--      <includes>-->
+<!--        <include>pom.xml</include>-->
+<!--      </includes>-->
+<!--    </fileSet>-->
+
+<!--    <fileSet filtered="true" packaged="false">-->
+<!--      <directory>content/src/main/resources</directory>-->
+<!--      <includes>-->
+<!--        <include>**/*</include>-->
+<!--      </includes>-->
+<!--    </fileSet>-->
 
 
     <!--    <fileSet filtered="true" packaged="false">-->
@@ -133,6 +129,12 @@
     </requiredProperty>
     <requiredProperty key="organizationName">
       <defaultValue></defaultValue>
+    </requiredProperty>
+    <requiredProperty key="hasParentProject">
+      <defaultValue>false</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="hashSymbol">
+      <defaultValue>#</defaultValue>
     </requiredProperty>
   </requiredProperties>
 
