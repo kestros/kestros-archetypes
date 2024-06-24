@@ -13,6 +13,14 @@ import org.apache.sling.api.resource.ResourceResolver;
 public interface SampleService extends ManagedService {
 
   /**
+   * A sample value to be used by the service.
+   *
+   * @return Sample value.
+   */
+  @Nonnull
+  String getMyServiceValue();
+
+  /**
    * Retrieves all Sample Models.
    *
    * @param resourceResolver ResourceResolver to use for retrieving Sample Models.

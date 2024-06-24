@@ -15,7 +15,7 @@
     <groupId>com.test2</groupId>
     <artifactId>build-integration-test2-api</artifactId>
 
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
 
     <name>Build Integration Test2 - API</name>
 

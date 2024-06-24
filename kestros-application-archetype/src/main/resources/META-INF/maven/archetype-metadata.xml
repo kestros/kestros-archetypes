@@ -11,9 +11,8 @@
     <fileSet filtered="true" packaged="false">
       <directory/>
       <includes>
-        <include>.gitignore</include>
+        <include>gitignore</include>
       </includes>
-      <condition>${hasParentProject} == false</condition>
     </fileSet>
 
     <fileSet filtered="true" packaged="false">

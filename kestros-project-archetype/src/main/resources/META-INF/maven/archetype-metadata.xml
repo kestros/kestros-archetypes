@@ -11,7 +11,7 @@
     <fileSet filtered="true" packaged="false">
       <directory/>
       <includes>
-        <include>.gitignore</include>
+        <include>gitignore</include>
         <include>README.md</include>
         <include>pom.xml</include>
         <include>pom-with-modules.xml</include>

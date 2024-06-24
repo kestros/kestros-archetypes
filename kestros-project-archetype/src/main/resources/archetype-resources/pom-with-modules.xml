@@ -40,6 +40,8 @@
     <modules>
         <module>api</module>
         <module>core</module>
+        <module>application</module>
+        <module>content</module>
     </modules>
 
 </project>

@@ -16,7 +16,7 @@
 
     <name>Kestros Application Module Archetype</name>
 
-    <packaging>jar</packaging>
+    <packaging>maven-archetype</packaging>
 
     <build>
         <plugins>
