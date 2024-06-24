@@ -16,6 +16,6 @@
 
     <name>Kestros API Module Archetype</name>
 
-    <packaging>jar</packaging>
+    <packaging>maven-archetype</packaging>
 
 </project>

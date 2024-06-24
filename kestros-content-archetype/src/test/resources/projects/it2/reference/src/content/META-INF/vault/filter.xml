@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+
+  <filter root="/content/sites/build-integration-test2-beginner-tutorial"/>
+  <filter root="/content/sites/build-integration-test2-intermediate-tutorial"/>
+  <filter root="/content/sites/build-integration-test2-advanced-tutorial"/>
+
+</workspaceFilter>

@@ -12,7 +12,7 @@
     <relativePath/>
   </parent>
 
-  <groupId>com.test.build-integration-test</groupId>
+  <groupId>com.test</groupId>
   <artifactId>build-integration-test-core</artifactId>
 
   <version>0.0.1-SNAPSHOT</version>
@@ -35,6 +35,11 @@
     <dependency>
       <groupId>io.kestros.cms</groupId>
       <artifactId>kestros-site-building-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.test</groupId>
+      <artifactId>build-integration-test-api</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
     </dependency>
   </dependencies>
 

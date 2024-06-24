@@ -5,7 +5,7 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-#if ($hasParentProject == "true")
+#if ($hasParentProject == 'true')
   <parent>
     <groupId>${groupId}</groupId>
     <artifactId>${artifactId}</artifactId>
@@ -32,7 +32,7 @@
 
   <properties>
     <rootPackage>${groupId}.${artifactIdNoSpecialCharacters}</rootPackage>
-#if ($hasParentProject == "true")
+#if ($hasParentProject == 'true')
     <bundleCategory>${organization.name}</bundleCategory>
 #else
     <bundleCategory>${organizationName}</bundleCategory>

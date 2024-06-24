@@ -1,14 +1,14 @@
-# Build Integration Test API
+${hashSymbol} Build Integration Test Core
 
-This module contains the API for the Build Integration Test Project. It contains object models,
-service models, and exceptions. Implementation logic should be added to the core module.
+This module contains the Core service logic for the Build Integration Test Project. It contains
+implemented object models, and OSGI services, but no usage of the services. Usage of the services,
+such as components, jobs, or servlets, should be added to the application module.
 
 ${hashSymbol}${hashSymbol} Included
 
-* Sample Model
-* Sample Service
-* Sample Exception
-* Sample Unit Test
+* Sample Model Implementation
+* Sample Service Implementation
+* Sample Unit Tests
 
 ${hashSymbol}${hashSymbol} Building and Installing
 
