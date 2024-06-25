@@ -8,7 +8,7 @@
 mvn archetype:generate                                  \
   -DarchetypeGroupId=io.kestros.cms.archetypes   \
   -DarchetypeArtifactId=kestros-project-archetype       \
-  -DarchetypeVersion=0.2.3
+  -DarchetypeVersion=0.4.0-SNAPSHOT
 ```
 
 ## Installing Your Site
