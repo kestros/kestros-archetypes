@@ -1,4 +1,4 @@
-package com.test.buildintegrationtest.application.components;
+package ${groupId}.${artifactIdNoSpecialCharacters}.application.components;
 
 import com.test.buildintegrationtest.api.services.SampleService;
 import io.kestros.cms.sitebuilding.api.models.BaseComponent;

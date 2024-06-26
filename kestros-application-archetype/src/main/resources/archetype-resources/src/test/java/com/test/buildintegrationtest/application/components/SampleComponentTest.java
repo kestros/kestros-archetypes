@@ -1,4 +1,4 @@
-package com.test.buildintegrationtest.application.components;
+package ${groupId}.${artifactIdNoSpecialCharacters}.application.components;
 
 import static org.junit.Assert.assertEquals;
 
