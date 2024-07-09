@@ -136,6 +136,9 @@
     <requiredProperty key="hashSymbol">
       <defaultValue>#</defaultValue>
     </requiredProperty>
+    <requiredProperty key="artifactIdShorthand">
+      <defaultValue></defaultValue>
+    </requiredProperty>
   </requiredProperties>
 
 </archetype-descriptor>

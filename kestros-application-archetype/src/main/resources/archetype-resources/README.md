@@ -1,6 +1,6 @@
-${hashSymbol} Build Integration Test Application
+${hashSymbol} ${artifactName} Application
 
-This module contains the Core service logic for the Build Integration Test Project. It contains
+This module contains the Core service logic for the ${artifactId} Project. It contains
 implemented object models, and OSGI services, but no usage of the services. Usage of the services,
 such as components, jobs, or servlets, should be added to the application module.
 

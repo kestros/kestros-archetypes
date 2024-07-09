@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
-          xmlns:kes="http://kestros.io/kes/1.0"
-          jcr:primaryType="kes:UiFramework"
-          jcr:title="Build Integration Test Versioned Framework 0.0.1"
-          jcr:description="This is the initial version of the Build Integration Test Framework. Additional versions can be added by creating a new folder and naming it to the desired version number."
-          kes:uiFrameworkCode="bit-versioned-ui"
-          kes:vendorLibraries="[build-integration-test-versioned-library/0.0.1]"
-/>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
 
-  <filter root="/apps/build-integration-test"/>
+  <filter root="/apps/${artifactId}"/>
 
-  <filter root="/apps/build-integration-test/install" mode="update">
-    <include pattern=".*build-integration-test-application.*\.jar"/>
+  <filter root="/apps/${artifactId}/install" mode="update">
+    <include pattern=".*${artifactId}-application.*\.jar"/>
   </filter>
 
   <filter root="/etc/ui-frameworks/tutorial-step-1-framework"/>
@@ -18,14 +18,14 @@
   <filter root="/etc/ui-frameworks/tutorial-step-9-framework"/>
   <filter root="/etc/ui-frameworks/tutorial-step-10-framework"/>
   <filter root="/etc/ui-frameworks/tutorial-step-11-framework"/>
-  <filter root="/etc/ui-frameworks/build-integration-test-framework"/>
-  <filter root="/etc/ui-frameworks/build-integration-test-versioned-framework"/>
+  <filter root="/etc/ui-frameworks/${artifactId}-framework"/>
+  <filter root="/etc/ui-frameworks/${artifactId}-versioned-framework"/>
 
   <filter root="/etc/vendor-libraries/tutorial-step-2-basic-library"/>
   <filter root="/etc/vendor-libraries/tutorial-step-3-cards"/>
   <filter root="/etc/vendor-libraries/tutorial-step-4-versioned-library"/>
 
-  <filter root="/etc/vendor-libraries/build-integration-test-library"/>
-  <filter root="/etc/vendor-libraries/build-integration-test-versioned-library"/>
+  <filter root="/etc/vendor-libraries/${artifactId}-library"/>
+  <filter root="/etc/vendor-libraries/${artifactId}-versioned-library"/>
 
 </workspaceFilter>
