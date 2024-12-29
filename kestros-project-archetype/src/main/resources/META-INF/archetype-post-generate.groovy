@@ -85,8 +85,12 @@ def archetypeGenerate(generatedProjectDirectory, directoryName, archetype, arche
 //    println "hasParentProject: $hasParentProject"
 
     // update/download dependency using dependency plugin
+    println "Running: mvn dependency:get -Dartifact=io.kestros.archetypes:$archetype:$archetypeVersion"
     def dependencyCommand = """mvn dependency:get -Dartifact=io.kestros.archetypes:$archetype:$archetypeVersion"""
     def dependencyResult = dependencyCommand.execute(null, new File(generatedProjectDirectory)).text
+
+    // print the result
+    println dependencyResult
 
     // check that the dependency was downloaded
     if (dependencyResult.contains("BUILD SUCCESS")) {
@@ -97,9 +101,16 @@ def archetypeGenerate(generatedProjectDirectory, directoryName, archetype, arche
     }
 
 
+    println "Generating archetype: $archetype"
     def command = """mvn archetype:generate -DarchetypeGroupId=io.kestros.archetypes -DarchetypeArtifactId=$archetype -DarchetypeVersion=$archetypeVersion -DgroupId=$groupId -DartifactId=$artifactId -Dversion=$version -Dpackage=$packageValue -DartifactIdNoSpecialCharacters=$artifactIdNoSpecialCharacters -DartifactIdShorthand=$artifactIdShorthand -DartifactDescription=$artifactDescription -DorganizationName=$organizationName -DartifactName="$artifactName" -DhasParentProject=$hasParentProject -DinteractiveMode=false"""
     // run command from the generated project directory
     def result = command.execute(null, new File(generatedProjectDirectory)).text
+    if(result.contains("BUILD SUCCESS")) {
+        println "Archetype generated: $archetype"
+    } else {
+        println "Error generating archetype: $archetype"
+        throw new Exception("Error generating archetype: $archetype")
+    }
 
 
     // look for folder matching the new generated project, rename to the directory name
