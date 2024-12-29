@@ -84,6 +84,11 @@ def archetypeGenerate(generatedProjectDirectory, directoryName, archetype, arche
 //    println "organizationName: $organizationName"
 //    println "hasParentProject: $hasParentProject"
 
+    // update/download dependency using dependency plugin
+    def dependencyCommand = """mvn dependency:get -Dartifact=io.kestros.archetypes:$archetype:$archetypeVersion"""
+    def dependencyResult = dependencyCommand.execute(null, new File(generatedProjectDirectory)).text
+
+
     def command = """mvn archetype:generate -DarchetypeGroupId=io.kestros.archetypes -DarchetypeArtifactId=$archetype -DarchetypeVersion=$archetypeVersion -DgroupId=$groupId -DartifactId=$artifactId -Dversion=$version -Dpackage=$packageValue -DartifactIdNoSpecialCharacters=$artifactIdNoSpecialCharacters -DartifactIdShorthand=$artifactIdShorthand -DartifactDescription=$artifactDescription -DorganizationName=$organizationName -DartifactName="$artifactName" -DhasParentProject=$hasParentProject -DinteractiveMode=false"""
     // run command from the generated project directory
     def result = command.execute(null, new File(generatedProjectDirectory)).text
