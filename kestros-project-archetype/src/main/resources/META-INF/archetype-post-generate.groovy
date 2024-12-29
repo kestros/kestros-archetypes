@@ -94,10 +94,21 @@ def archetypeGenerate(generatedProjectDirectory, directoryName, archetype, arche
     if (newProjectDirectory.exists()) {
         newProjectDirectory.renameTo(new File(generatedProjectDirectory + "/" + directoryName))
     }
+    checkArchetypeWasBuilt(generatedProjectDirectory, directoryName)
     // do an ls -la command
     return result
 }
 
+def checkArchetypeWasBuilt(generatedProjectDirectory, directoryName) {
+    def newProjectDirectory = new File(generatedProjectDirectory + "/" + directoryName)
+    if (newProjectDirectory.exists()) {
+        println "Finished building archetype: $directoryName"
+    } else {
+        // throw an error
+        println "Error building archetype: $directoryName"
+        throw new Exception("Error building archetype: $directoryName")
+    }
+}
 
 def checkForGitIgnoreAndRemove(generatedProjectDirectory, artifactId) {
     def artifactDirectory = new File(generatedProjectDirectory + "/" + artifactId)
