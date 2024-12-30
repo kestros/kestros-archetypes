@@ -85,8 +85,8 @@ def archetypeGenerate(generatedProjectDirectory, directoryName, archetype, arche
 //    println "hasParentProject: $hasParentProject"
 
     // update/download dependency using dependency plugin
-    println "Running: mvn dependency:get -Dartifact=io.kestros.archetypes:$archetype:$archetypeVersion"
     def dependencyCommand = """mvn dependency:get -Dartifact=io.kestros.archetypes:$archetype:$archetypeVersion"""
+    println dependencyCommand
     def dependencyResult = dependencyCommand.execute(null, new File(generatedProjectDirectory)).text
 
     // print the result
@@ -100,20 +100,26 @@ def archetypeGenerate(generatedProjectDirectory, directoryName, archetype, arche
         throw new Exception("Error downloading dependency: io.kestros.archetypes:$archetype:$archetypeVersion")
     }
 
+    // strip spaces from description, artifactName, and organizationName
+    artifactDescription = artifactDescription.replaceAll("\\s", "")
+    artifactName = artifactName.replaceAll("\\s", "")
+    organizationName = organizationName.replaceAll("\\s", "")
 
     println "Generating archetype: $archetype"
-    def command = """mvn archetype:generate -DarchetypeGroupId=io.kestros.archetypes -DarchetypeArtifactId=$archetype -DarchetypeVersion=$archetypeVersion -DgroupId=$groupId -DartifactId=$artifactId -Dversion=$version -Dpackage=$packageValue -DartifactIdNoSpecialCharacters=$artifactIdNoSpecialCharacters -DartifactIdShorthand=$artifactIdShorthand -DartifactDescription=$artifactDescription -DorganizationName=$organizationName -DartifactName="$artifactName" -DhasParentProject=$hasParentProject -DinteractiveMode=false"""
+    def command = "mvn archetype:generate -DarchetypeGroupId=io.kestros.archetypes -DarchetypeArtifactId=$archetype -DarchetypeVersion=$archetypeVersion -DgroupId=$groupId -DartifactId=$artifactId -Dversion=$version -Dpackage=$packageValue -DartifactIdNoSpecialCharacters=$artifactIdNoSpecialCharacters -DartifactIdShorthand=$artifactIdShorthand -DartifactDescription=$artifactDescription -DorganizationName=$organizationName -DartifactName=$artifactName -DhasParentProject=$hasParentProject -DinteractiveMode=false"
+    println command
     // run command from the generated project directory
     def result = command.execute(null, new File(generatedProjectDirectory)).text
-    if(result.contains("BUILD SUCCESS")) {
+    if (result.contains("BUILD SUCCESS")) {
         println "Archetype generated: $archetype"
     } else {
-        println "Error generating archetype: $archetype"
+        println result
         throw new Exception("Error generating archetype: $archetype")
     }
 
 
     // look for folder matching the new generated project, rename to the directory name
+    println "Renaming $generatedProjectDirectory/$artifactId to $generatedProjectDirectory/$directoryName"
     def newProjectDirectory = new File(generatedProjectDirectory + "/" + artifactId)
     if (newProjectDirectory.exists()) {
         newProjectDirectory.renameTo(new File(generatedProjectDirectory + "/" + directoryName))
