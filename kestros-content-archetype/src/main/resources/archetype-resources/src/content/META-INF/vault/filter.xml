@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
 
-  <filter root="/content/sites/${artifactId}-beginner-tutorial"/>
-  <filter root="/content/sites/${artifactId}-intermediate-tutorial"/>
-  <filter root="/content/sites/${artifactId}-advanced-tutorial"/>
+  <filter root="/content/sites/${artifactId}"/>
 
 </workspaceFilter>
