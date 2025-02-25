@@ -45,7 +45,7 @@ if (pomFile.exists() && originalPomFile.exists()) {
 // generate kestros-api-archetype
 generatedProjectDirectory = request.outputDirectory + "/" + request.artifactId
 
-println "building api module"
+println "building api module 123"
 def result = archetypeGenerate(generatedProjectDirectory, 'api', "kestros-api-archetype", '0.0.1-SNAPSHOT', groupId, artifactId, version, packageValue, artifactIdNoSpecialCharacters, artifactIdShorthand, artifactDescription, organizationName, artifactName, hasParentProject)
 generatedProjectDirectory = request.outputDirectory + "/" + request.artifactId
 checkForGitIgnoreAndRemove(generatedProjectDirectory, 'api')
@@ -85,7 +85,7 @@ def archetypeGenerate(generatedProjectDirectory, directoryName, archetype, arche
 //    println "hasParentProject: $hasParentProject"
 
     // update/download dependency using dependency plugin
-    def dependencyCommand = """mvn dependency:get -Dartifact=io.kestros.archetypes:$archetype:$archetypeVersion"""
+    def dependencyCommand = """mvn dependency:get -Dartifact=io.kestros.archetypes:$archetype:$archetypeVersion -Dtransative=false -U"""
     println dependencyCommand
     def dependencyResult = dependencyCommand.execute(null, new File(generatedProjectDirectory)).text
 
