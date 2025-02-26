@@ -45,7 +45,7 @@ if (pomFile.exists() && originalPomFile.exists()) {
 // generate kestros-api-archetype
 generatedProjectDirectory = request.outputDirectory + "/" + request.artifactId
 
-println "building api module 123"
+println "building api module"
 def result = archetypeGenerate(generatedProjectDirectory, 'api', "kestros-api-archetype", '0.0.1-SNAPSHOT', groupId, artifactId, version, packageValue, artifactIdNoSpecialCharacters, artifactIdShorthand, artifactDescription, organizationName, artifactName, hasParentProject)
 generatedProjectDirectory = request.outputDirectory + "/" + request.artifactId
 checkForGitIgnoreAndRemove(generatedProjectDirectory, 'api')
