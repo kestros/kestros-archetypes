@@ -1,1 +1,0 @@
-console.log('Hello World! I am JavaScript provide by a library. I can be reused on any number of different UI Frameworks.');
