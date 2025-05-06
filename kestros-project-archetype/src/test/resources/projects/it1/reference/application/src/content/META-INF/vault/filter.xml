@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+
+  <filter root="/apps/build-integration-test"/>
+
+  <filter root="/apps/build-integration-test/install" mode="update">
+    <include pattern=".*build-integration-test-application.*\.jar"/>
+  </filter>
+
+  <filter root="/etc/ui-frameworks/build-integration-test-framework"/>
+  <filter root="/etc/ui-frameworks/build-integration-test-versioned-framework"/>
+
+  <filter root="/etc/vendor-libraries/build-integration-test-library"/>
+  <filter root="/etc/vendor-libraries/build-integration-test-versioned-library"/>
+
+</workspaceFilter>
