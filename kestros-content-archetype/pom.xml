@@ -12,7 +12,7 @@
 
     <groupId>io.kestros.archetypes</groupId>
     <artifactId>kestros-content-archetype</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.0</version>
 
     <name>Kestros Content Module Archetype</name>
 
