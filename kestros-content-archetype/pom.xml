@@ -6,13 +6,13 @@
     <parent>
         <groupId>io.kestros.cms</groupId>
         <artifactId>kestros-archetypes</artifactId>
-        <version>0.2.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <version>0.2.0</version>
+        <relativePath />
     </parent>
 
     <groupId>io.kestros.archetypes</groupId>
     <artifactId>kestros-content-archetype</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
 
     <name>Kestros Content Module Archetype</name>
 

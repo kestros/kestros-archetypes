@@ -46,7 +46,7 @@ if (pomFile.exists() && originalPomFile.exists()) {
 generatedProjectDirectory = request.outputDirectory + "/" + request.artifactId
 
 println "building api module"
-def result = archetypeGenerate(generatedProjectDirectory, 'api', "kestros-api-archetype", '0.1.0', groupId, artifactId, version, packageValue, artifactIdNoSpecialCharacters, artifactIdShorthand, artifactDescription, organizationName, artifactName, hasParentProject)
+def result = archetypeGenerate(generatedProjectDirectory, 'api', "kestros-api-archetype", '0.1.1', groupId, artifactId, version, packageValue, artifactIdNoSpecialCharacters, artifactIdShorthand, artifactDescription, organizationName, artifactName, hasParentProject)
 generatedProjectDirectory = request.outputDirectory + "/" + request.artifactId
 checkForGitIgnoreAndRemove(generatedProjectDirectory, 'api')
 resetPomFile(generatedProjectDirectory)
@@ -54,19 +54,19 @@ resetPomFile(generatedProjectDirectory)
 
 println "building core module"
 generatedProjectDirectory = request.outputDirectory + "/" + request.artifactId
-result = archetypeGenerate(generatedProjectDirectory, 'core', "kestros-core-archetype", '0.1.0', groupId, artifactId, version, packageValue, artifactIdNoSpecialCharacters, artifactIdShorthand, artifactDescription, organizationName, artifactName, hasParentProject)
+result = archetypeGenerate(generatedProjectDirectory, 'core', "kestros-core-archetype", '0.1.1', groupId, artifactId, version, packageValue, artifactIdNoSpecialCharacters, artifactIdShorthand, artifactDescription, organizationName, artifactName, hasParentProject)
 checkForGitIgnoreAndRemove(generatedProjectDirectory, 'core')
 resetPomFile(generatedProjectDirectory)
 
 println "building content module"
 generatedProjectDirectory = request.outputDirectory + "/" + request.artifactId
-result = archetypeGenerate(generatedProjectDirectory, 'content', "kestros-content-archetype", '0.1.0', groupId, artifactId, version, packageValue, artifactIdNoSpecialCharacters, artifactIdShorthand, artifactDescription, organizationName, artifactName, hasParentProject)
+result = archetypeGenerate(generatedProjectDirectory, 'content', "kestros-content-archetype", '0.1.1', groupId, artifactId, version, packageValue, artifactIdNoSpecialCharacters, artifactIdShorthand, artifactDescription, organizationName, artifactName, hasParentProject)
 checkForGitIgnoreAndRemove(generatedProjectDirectory, 'content')
 resetPomFile(generatedProjectDirectory)
 
 println "building application module"
 generatedProjectDirectory = request.outputDirectory + "/" + request.artifactId
-result = archetypeGenerate(generatedProjectDirectory, 'application', "kestros-application-archetype", '0.1.0', groupId, artifactId, version, packageValue, artifactIdNoSpecialCharacters, artifactIdShorthand, artifactDescription, organizationName, artifactName, hasParentProject)
+result = archetypeGenerate(generatedProjectDirectory, 'application', "kestros-application-archetype", '0.1.1', groupId, artifactId, version, packageValue, artifactIdNoSpecialCharacters, artifactIdShorthand, artifactDescription, organizationName, artifactName, hasParentProject)
 checkForGitIgnoreAndRemove(generatedProjectDirectory, 'application')
 replacePomFile(generatedProjectDirectory)
 
