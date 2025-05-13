@@ -9,7 +9,7 @@
     <version>0.2.0</version>
 
     <name>Kestros CMS Archetypes</name>
-    <description></description>
+    <description>Archetype for generating out a new project for Kestros.</description>
 
     <url>https://www.kestros.io</url>
 
