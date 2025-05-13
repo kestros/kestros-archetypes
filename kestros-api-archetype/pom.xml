@@ -87,7 +87,7 @@
                             <goal>jar</goal>
                         </goals>
                         <configuration>
-                            <classifier>sources</classifier>
+                            <classifier>sources-alt</classifier>
                         </configuration>
                     </execution>
                 </executions>
