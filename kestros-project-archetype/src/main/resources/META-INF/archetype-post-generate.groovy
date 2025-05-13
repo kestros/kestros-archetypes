@@ -46,7 +46,7 @@ if (pomFile.exists() && originalPomFile.exists()) {
 generatedProjectDirectory = request.outputDirectory + "/" + request.artifactId
 
 println "building api module"
-def result = archetypeGenerate(generatedProjectDirectory, 'api', "kestros-api-archetype", '0.1.1', groupId, artifactId, version, packageValue, artifactIdNoSpecialCharacters, artifactIdShorthand, artifactDescription, organizationName, artifactName, hasParentProject)
+def result = archetypeGenerate(generatedProjectDirectory, 'api', "kestros-api-archetype", '0.1.2', groupId, artifactId, version, packageValue, artifactIdNoSpecialCharacters, artifactIdShorthand, artifactDescription, organizationName, artifactName, hasParentProject)
 generatedProjectDirectory = request.outputDirectory + "/" + request.artifactId
 checkForGitIgnoreAndRemove(generatedProjectDirectory, 'api')
 resetPomFile(generatedProjectDirectory)
@@ -54,19 +54,19 @@ resetPomFile(generatedProjectDirectory)
 
 println "building core module"
 generatedProjectDirectory = request.outputDirectory + "/" + request.artifactId
-result = archetypeGenerate(generatedProjectDirectory, 'core', "kestros-core-archetype", '0.1.1', groupId, artifactId, version, packageValue, artifactIdNoSpecialCharacters, artifactIdShorthand, artifactDescription, organizationName, artifactName, hasParentProject)
+result = archetypeGenerate(generatedProjectDirectory, 'core', "kestros-core-archetype", '0.1.2', groupId, artifactId, version, packageValue, artifactIdNoSpecialCharacters, artifactIdShorthand, artifactDescription, organizationName, artifactName, hasParentProject)
 checkForGitIgnoreAndRemove(generatedProjectDirectory, 'core')
 resetPomFile(generatedProjectDirectory)
 
 println "building content module"
 generatedProjectDirectory = request.outputDirectory + "/" + request.artifactId
-result = archetypeGenerate(generatedProjectDirectory, 'content', "kestros-content-archetype", '0.1.1', groupId, artifactId, version, packageValue, artifactIdNoSpecialCharacters, artifactIdShorthand, artifactDescription, organizationName, artifactName, hasParentProject)
+result = archetypeGenerate(generatedProjectDirectory, 'content', "kestros-content-archetype", '0.1.2', groupId, artifactId, version, packageValue, artifactIdNoSpecialCharacters, artifactIdShorthand, artifactDescription, organizationName, artifactName, hasParentProject)
 checkForGitIgnoreAndRemove(generatedProjectDirectory, 'content')
 resetPomFile(generatedProjectDirectory)
 
 println "building application module"
 generatedProjectDirectory = request.outputDirectory + "/" + request.artifactId
-result = archetypeGenerate(generatedProjectDirectory, 'application', "kestros-application-archetype", '0.1.1', groupId, artifactId, version, packageValue, artifactIdNoSpecialCharacters, artifactIdShorthand, artifactDescription, organizationName, artifactName, hasParentProject)
+result = archetypeGenerate(generatedProjectDirectory, 'application', "kestros-application-archetype", '0.1.2', groupId, artifactId, version, packageValue, artifactIdNoSpecialCharacters, artifactIdShorthand, artifactDescription, organizationName, artifactName, hasParentProject)
 checkForGitIgnoreAndRemove(generatedProjectDirectory, 'application')
 replacePomFile(generatedProjectDirectory)
 
@@ -85,7 +85,7 @@ def archetypeGenerate(generatedProjectDirectory, directoryName, archetype, arche
 //    println "hasParentProject: $hasParentProject"
 
     // update/download dependency using dependency plugin
-    def dependencyCommand = """mvn dependency:get -Dartifact=io.kestros.archetypes:$archetype:$archetypeVersion -Dtransative=false -U"""
+    def dependencyCommand = """mvn dependency:get -Dartifact=io.kestros.cms:$archetype:$archetypeVersion -Dtransative=false -U"""
     println dependencyCommand
     def dependencyResult = dependencyCommand.execute(null, new File(generatedProjectDirectory)).text
 
@@ -94,10 +94,10 @@ def archetypeGenerate(generatedProjectDirectory, directoryName, archetype, arche
 
     // check that the dependency was downloaded
     if (dependencyResult.contains("BUILD SUCCESS")) {
-        println "Dependency downloaded: io.kestros.archetypes:$archetype:$archetypeVersion"
+        println "Dependency downloaded: io.kestros.cms:$archetype:$archetypeVersion"
     } else {
-        println "Error downloading dependency: io.kestros.archetypes:$archetype:$archetypeVersion"
-        throw new Exception("Error downloading dependency: io.kestros.archetypes:$archetype:$archetypeVersion")
+        println "Error downloading dependency: io.kestros.cms:$archetype:$archetypeVersion"
+        throw new Exception("Error downloading dependency: io.kestros.cms:$archetype:$archetypeVersion")
     }
 
     // strip spaces from description, artifactName, and organizationName
@@ -106,7 +106,7 @@ def archetypeGenerate(generatedProjectDirectory, directoryName, archetype, arche
     organizationName = organizationName.replaceAll("\\s", "")
 
     println "Generating archetype: $archetype"
-    def command = "mvn archetype:generate -DarchetypeGroupId=io.kestros.archetypes -DarchetypeArtifactId=$archetype -DarchetypeVersion=$archetypeVersion -DgroupId=$groupId -DartifactId=$artifactId -Dversion=$version -Dpackage=$packageValue -DartifactIdNoSpecialCharacters=$artifactIdNoSpecialCharacters -DartifactIdShorthand=$artifactIdShorthand -DartifactDescription=$artifactDescription -DorganizationName=$organizationName -DartifactName=$artifactName -DhasParentProject=$hasParentProject -DinteractiveMode=false"
+    def command = "mvn archetype:generate -DarchetypeGroupId=io.kestros.cms -DarchetypeArtifactId=$archetype -DarchetypeVersion=$archetypeVersion -DgroupId=$groupId -DartifactId=$artifactId -Dversion=$version -Dpackage=$packageValue -DartifactIdNoSpecialCharacters=$artifactIdNoSpecialCharacters -DartifactIdShorthand=$artifactIdShorthand -DartifactDescription=$artifactDescription -DorganizationName=$organizationName -DartifactName=$artifactName -DhasParentProject=$hasParentProject -DinteractiveMode=false"
     println command
     // run command from the generated project directory
     def result = command.execute(null, new File(generatedProjectDirectory)).text
