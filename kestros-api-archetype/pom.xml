@@ -10,9 +10,9 @@
 <!--        <relativePath/>-->
 <!--    </parent>-->
 
-    <groupId>io.kestros.archetypes</groupId>
+    <groupId>io.kestros.cms</groupId>
     <artifactId>kestros-api-archetype</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
 
     <name>Kestros API Module Archetype</name>
 
