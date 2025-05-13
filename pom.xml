@@ -10,7 +10,41 @@
 
     <name>Kestros CMS Archetypes</name>
     <description></description>
+
+    <url>https://www.kestros.io</url>
+
     <packaging>pom</packaging>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <inceptionYear>2020</inceptionYear>
+
+    <organization>
+        <name>Kestros, Inc.</name>
+        <url>https://www.kestros.io</url>
+    </organization>
+
+    <scm>
+        <connection>scm:git:git://github.com/kestros/kestros-archetypes.git</connection>
+        <developerConnection>scm:git:ssh://github.com:kestros/kestros-archetypes.git
+        </developerConnection>
+        <url>https://github.com/kestros/kestros-archetypes/tree/main</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Danny Moulton</name>
+            <email>danny.moulton@kestros.io</email>
+            <organization>Kestros, Inc.</organization>
+            <organizationUrl>https://www.kestros.io</organizationUrl>
+        </developer>
+    </developers>
 
 
     <modules>
