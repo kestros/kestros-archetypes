@@ -3,12 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>io.kestros.cms</groupId>
-        <artifactId>kestros-archetypes</artifactId>
-        <version>0.2.1</version>
-        <relativePath/>
-    </parent>
+<!--    <parent>-->
+<!--        <groupId>io.kestros.cms</groupId>-->
+<!--        <artifactId>kestros-archetypes</artifactId>-->
+<!--        <version>0.2.1</version>-->
+<!--        <relativePath/>-->
+<!--    </parent>-->
 
     <groupId>io.kestros.archetypes</groupId>
     <artifactId>kestros-api-archetype</artifactId>
@@ -18,8 +18,42 @@
 
     <packaging>maven-archetype</packaging>
 
-    <build>
+    <description>Archetype for generating out a new project for Kestros.</description>
 
+    <url>https://www.kestros.io</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <inceptionYear>2020</inceptionYear>
+
+    <organization>
+        <name>Kestros, Inc.</name>
+        <url>https://www.kestros.io</url>
+    </organization>
+
+    <scm>
+        <connection>scm:git:git://github.com/kestros/kestros-archetypes.git</connection>
+        <developerConnection>scm:git:ssh://github.com:kestros/kestros-archetypes.git
+        </developerConnection>
+        <url>https://github.com/kestros/kestros-archetypes/tree/main</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Danny Moulton</name>
+            <email>danny.moulton@kestros.io</email>
+            <organization>Kestros, Inc.</organization>
+            <organizationUrl>https://www.kestros.io</organizationUrl>
+        </developer>
+    </developers>
+
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -39,5 +73,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
