@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.kestros.cms</groupId>
         <artifactId>kestros-archetypes</artifactId>
-        <version>0.2.0</version>
+        <version>0.2.1</version>
         <relativePath />
     </parent>
 
@@ -17,23 +17,5 @@
     <name>Kestros API Module Archetype</name>
 
     <packaging>maven-archetype</packaging>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.3.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
