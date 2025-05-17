@@ -12,9 +12,9 @@
 
   <groupId>io.kestros.cms</groupId>
   <artifactId>kestros-project-archetype</artifactId>
-  <version>0.1.2</version>
+  <version>0.5.1</version>
 
-  <name>Kestros API Module Archetype</name>
+  <name>Kestros Project Archetype</name>
 
   <packaging>maven-archetype</packaging>
 
