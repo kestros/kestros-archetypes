@@ -5,7 +5,7 @@
           sling:resourceType="kestros/cms/dialog">
     <contentArea
             jcr:primaryType="nt:unstructured">
-        <text
+        <sample-property
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="kestros/cms/fields/textfield"
                 label="Sample Property"
