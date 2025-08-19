@@ -12,8 +12,8 @@
                        sling:resourceType="/libs/kestros/commons/components/structure/container">
                 <content jcr:primaryType="nt:unstructured"
                          sling:resourceType="kestros/commons/components/content-area">
-                    <top-navigation jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="/libs/kestros/commons/components/structure/top-navigation"/>
+                    <navigation jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="/libs/kestros/commons/components/structure/navigation"/>
                 </content>
             </container>
         </header>

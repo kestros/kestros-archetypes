@@ -1,6 +1,6 @@
-# Build Integration Test API
+# BuildIntegrationTest API
 
-This module contains the API for the Build Integration Test Project. It contains object models,
+This module contains the API for the BuildIntegrationTest Project. It contains object models,
 service models, and exceptions. Implementation logic should be added to the core module.
 
 ## Included

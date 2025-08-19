@@ -16,17 +16,17 @@
 
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>Build Integration Test - Application</name>
+    <name>BuildIntegrationTest - Application</name>
 
     <packaging>bundle</packaging>
 
     <properties>
-        <rootPackage>com.test.buildintegrationtest</rootPackage>
+        <rootPackage>com.test.buildintegrationtest.application</rootPackage>
         <bundleCategory>${organization.name}</bundleCategory>
     </properties>
 
     <dependencies>
-        <!-- Build Integration Test Dependencies -->
+        <!-- BuildIntegrationTest Dependencies -->
         <dependency>
             <groupId>com.test</groupId>
             <artifactId>build-integration-test-api</artifactId>
@@ -108,32 +108,30 @@
                             <archive>
                                 <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
                             </archive>
-                            <outputDirectory>
-                                src/content/jcr_root/apps/build-integration-test/install
-                            </outputDirectory>
+                            <outputDirectory>src/content/jcr_root/apps/build-integration-test/install</outputDirectory>
                             <excludes>
-                            <exclude>apps/**</exclude>
-                            <exclude>etc/**</exclude>
-                            <exclude>libs/**</exclude>
-                            <exclude>content/**</exclude>
-                            <exclude>META-INF/**</exclude>
-                        </excludes>
+                                <exclude>apps/**</exclude>
+                                <exclude>etc/**</exclude>
+                                <exclude>libs/**</exclude>
+                                <exclude>content/**</exclude>
+                                <exclude>META-INF/**</exclude>
+                            </excludes>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
             <plugin>
-            <groupId>org.apache.felix</groupId>
-            <artifactId>maven-bundle-plugin</artifactId>
-            <executions>
-                <execution>
-                    <id>bundle-manifest</id>
-                    <phase>process-classes</phase>
-                    <goals>
-                        <goal>manifest</goal>
-                    </goals>
-                </execution>
-            </executions>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>bundle-manifest</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>manifest</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
         </plugins>

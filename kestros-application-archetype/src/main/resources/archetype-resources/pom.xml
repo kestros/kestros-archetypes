@@ -15,7 +15,7 @@
     <parent>
         <groupId>io.kestros.cms</groupId>
         <artifactId>kestros-site-parent</artifactId>
-        <version>0.1.2-SNAPSHOT</version>
+        <version>0.1.2</version>
         <relativePath/>
     </parent>
 #end
@@ -30,7 +30,7 @@
     <packaging>bundle</packaging>
 
     <properties>
-        <rootPackage>${groupId}.${artifactIdNoSpecialCharacters}</rootPackage>
+        <rootPackage>${groupId}.${artifactIdNoSpecialCharacters}.application</rootPackage>
 #if ($hasParentProject == "true")
         <bundleCategory>${organization.name}</bundleCategory>
 #else

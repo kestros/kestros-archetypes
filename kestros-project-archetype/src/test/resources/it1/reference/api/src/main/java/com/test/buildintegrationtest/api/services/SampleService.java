@@ -39,10 +39,8 @@ public interface SampleService extends ManagedService {
    * @param resourceResolver ResourceResolver to use for retrieving the Sample Model.
    *
    * @return Sample Model with the provided ID.
-   * @throws SampleModelRetrievalException Thrown when an error occurs retrieving the Sample Model.
    */
   @Nonnull
-  SampleModel getSampleModel(@Nonnull String modelId,
-          @Nonnull ResourceResolver resourceResolver) throws SampleModelRetrievalException;
+  SampleModel getSampleModel(@Nonnull String modelId, @Nonnull ResourceResolver resourceResolver);
 
 }

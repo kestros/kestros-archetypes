@@ -1,53 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.test</groupId>
-        <artifactId>build-integration-test</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
-
+  <parent>
     <groupId>com.test</groupId>
-    <artifactId>build-integration-test-core</artifactId>
-
+    <artifactId>build-integration-test</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
 
-    <name>Build Integration Test - Core</name>
+  <groupId>com.test</groupId>
+  <artifactId>build-integration-test-core</artifactId>
 
-    <packaging>bundle</packaging>
+  <version>0.0.1-SNAPSHOT</version>
 
-    <properties>
-        <rootPackage>com.test.buildintegrationtest</rootPackage>
-        <bundleCategory>${organization.name}</bundleCategory>
-    </properties>
+  <name>BuildIntegrationTest - Core</name>
 
-    <dependencies>
-        <!-- Build Integration Test Dependencies -->
-        <dependency>
-            <groupId>com.test</groupId>
-            <artifactId>build-integration-test-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <!-- Kestros Dependencies -->
-        <dependency>
-            <groupId>io.kestros.cms</groupId>
-            <artifactId>kestros-component-types-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.kestros.cms</groupId>
-            <artifactId>kestros-site-building-api</artifactId>
-        </dependency>
-    </dependencies>
+  <packaging>bundle</packaging>
 
-    <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
-        <testSourceDirectory>src/test/java</testSourceDirectory>
-    </build>
+  <properties>
+    <rootPackage>com.test.buildintegrationtest.core</rootPackage>
+    <bundleCategory>${organization.name}</bundleCategory>
+  </properties>
+
+  <dependencies>
+    <!-- Kestros Dependencies -->
+    <dependency>
+      <groupId>io.kestros.cms</groupId>
+      <artifactId>kestros-component-types-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.kestros.cms</groupId>
+      <artifactId>kestros-site-building-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.test</groupId>
+      <artifactId>build-integration-test-api</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <sourceDirectory>src/main/java</sourceDirectory>
+    <testSourceDirectory>src/test/java</testSourceDirectory>
+  </build>
 
 
 </project>

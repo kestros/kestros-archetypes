@@ -1,6 +1,6 @@
-# Build Integration Test API
+# BuildIntegrationTest Core
 
-This module contains the Core service logic for the Build Integration Test Project. It contains
+This module contains the Core service logic for the BuildIntegrationTest Project. It contains
 implemented object models, and OSGI services, but no usage of the services. Usage of the services,
 such as components, jobs, or servlets, should be added to the application module.
 
@@ -21,17 +21,6 @@ such as components, jobs, or servlets, should be added to the application module
 mvn clean install
 ```
 
-### Mutation Testing
-
-* Runs PIT Mutation Testing
-
-```
-mvn clean install -P,mutationTest
-```
-
-For more information regarding PIT Mutation Testing
-see: [PIT Mutation Testing](hhttps://pitest.org/quickstart/maven/)
-
 ### Strict Build
 
 * Runs Checkstyle
@@ -39,15 +28,8 @@ see: [PIT Mutation Testing](hhttps://pitest.org/quickstart/maven/)
 * Checks coverage
 * Runs SpotBugs
 
-For more information on customizing these configurations see:
-
-* [Checkstyle Configuration](https://maven.apache.org/plugins/maven-checkstyle-plugin/)
-* [JaCoCo Configuration](https://www.eclemma.org/jacoco/trunk/doc/maven.html)
-* [SpotBugs Configuration](https://spotbugs.github.io/spotbugs-maven-plugin/index.html)
-
 ```
 mvn clean install -P,strict
-
 ```
 
 ### Skipping Tests
@@ -58,66 +40,8 @@ mvn clean install -P,strict
 
 ### Skipping License Checks (Strict Build Only)
 
-Since files are not generated with license headers, this will need to be skipped during the initial
-build. It is recommended to add license headers to all files, or update the maven plugin to skip the
-check.
-
-Inline
-
 ```
 -Drat.skip
-```
-
-pom.xml
-
-```
-<plugin>
-    <groupId>org.apache.rat</groupId>
-    <artifactId>apache-rat-plugin</artifactId>
-    <configuration>
-        <skip>true</skip>
-    </configuration>
-</plugin>
-```
-
-### Skipping Checkstyle (Strict Build Only)
-
-inline
-
-```
--Dcheckstyle.skip
-```
-
-pom.xml
-
-```
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-checkstyle-plugin</artifactId>
-    <configuration>
-        <skip>true</skip>
-    </configuration>
-</plugin>
-```
-
-### Skipping SpotBugs (Strict Build Only)
-
-inline
-
-```
--Dspotbugs.skip=true
-```
-
-pom.xml
-
-```
-<plugin>
-    <groupId>com.github.spotbugs</groupId>
-    <artifactId>spotbugs-maven-plugin</artifactId>
-    <configuration>
-        <skip>true</skip>
-    </configuration>
-</plugin>
 ```
 
 ### Install to Kestros
@@ -135,3 +59,5 @@ The following connection properties can be overwritten:
 | sling.protocol | http          |
 | sling.user     | admin         |
 | sling.password | admin         |
+
+

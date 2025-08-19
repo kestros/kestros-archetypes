@@ -27,7 +27,7 @@ public class SampleComponentTest {
 
   @Before
   public void setup() {
-    context.addModelsForPackage("${groupId}");
+    context.addModelsForPackage("${groupId}.${artifactIdNoSpecialCharacters}");
     sampleService = new SampleServiceImpl();
   }
 

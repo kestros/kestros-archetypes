@@ -16,7 +16,7 @@
 
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>Build Integration Test - Content</name>
+    <name>BuildIntegrationTest - Content</name>
 
     <packaging>bundle</packaging>
 
