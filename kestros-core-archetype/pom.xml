@@ -14,7 +14,7 @@
     <artifactId>kestros-core-archetype</artifactId>
     <version>0.1.2</version>
 
-    <name>Kestros API Module Archetype</name>
+    <name>Kestros Core Module Archetype</name>
 
     <packaging>maven-archetype</packaging>
 
