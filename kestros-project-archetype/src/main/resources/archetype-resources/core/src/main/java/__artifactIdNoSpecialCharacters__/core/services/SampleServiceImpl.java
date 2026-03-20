@@ -1,15 +1,20 @@
 package ${groupId}.${artifactIdNoSpecialCharacters}.core.services;
 
 import ${groupId}.${artifactIdNoSpecialCharacters}.api.services.SampleService;
-import org.apache.commons.lang3.StringUtils;
-import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
-import org.apache.felix.hc.api.FormattingResultLog;
+import org.osgi.service.component.annotations.Deactivate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-
-@Component(immediate = true,
-           service = SampleService.class)
+/**
+ * Default implementation of the SampleService.
+ */
+@Component(service = SampleService.class,
+           immediate = true)
 public class SampleServiceImpl implements SampleService {
+
+  private static final Logger LOG = LoggerFactory.getLogger(SampleServiceImpl.class);
 
   @Override
   public String getMyServiceValue() {
@@ -17,25 +22,18 @@ public class SampleServiceImpl implements SampleService {
   }
 
   @Override
-  public void activate(ComponentContext componentContext) {
-
-  }
-
-  @Override
-  public void deactivate(ComponentContext componentContext) {
-
-  }
-
-  @Override
   public String getDisplayName() {
-    return "My Sample Service";
+    return "Sample Service";
   }
 
-  @Override
-  public void runAdditionalHealthChecks(FormattingResultLog log) {
-    if (StringUtils.isEmpty(getMyServiceValue())) {
-      log.critical("My Service Value is empty.");
-    }
+  @Activate
+  protected void activate() {
+    LOG.info("SampleService activated.");
+  }
+
+  @Deactivate
+  protected void deactivate() {
+    LOG.info("SampleService deactivated.");
   }
 
 }
