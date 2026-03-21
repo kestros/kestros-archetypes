@@ -16,16 +16,24 @@ public class SampleComponent extends BaseComponent {
 
   @OSGiService
   @Optional
-  private SampleService sampleServive;
+  private SampleService sampleService;
 
   public String getMyServiceValue() {
-    if(sampleServive != null) {
-      return sampleServive.getMyServiceValue();
+    if (sampleService != null) {
+      return sampleService.getMyServiceValue();
     }
     return StringUtils.EMPTY;
   }
 
   public String getSampleProperty() {
     return getProperty("sampleProperty", StringUtils.EMPTY);
+  }
+
+  public String getDisplayStyle() {
+    return getProperty("displayStyle", "default");
+  }
+
+  public boolean isShowIcon() {
+    return getProperty("showIcon", false);
   }
 }

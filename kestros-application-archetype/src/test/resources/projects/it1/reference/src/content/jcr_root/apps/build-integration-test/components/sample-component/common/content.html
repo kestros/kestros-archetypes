@@ -1,2 +1,7 @@
-<p>Sample Component Common View. This will render if the active UI Framework is unable to resolve a UI Framework View
-    for this Component Type.</p>
+<div class="sample-component sample-component--${model.displayStyle}" data-sly-use.model="'com.test.buildintegrationtest.application.components.SampleComponent'">
+    <sly data-sly-test="${model.showIcon}">
+        <span class="sample-component__icon">&#9733;</span>
+    </sly>
+    <p class="sample-component__title">${model.sampleProperty}</p>
+    <p class="sample-component__service-value">${model.myServiceValue}</p>
+</div>

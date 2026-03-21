@@ -1,6 +1,8 @@
 package ${groupId}.${artifactIdNoSpecialCharacters}.application.components.samplecomponent;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,6 +55,44 @@ public class SampleComponentTest {
     sampleComponent = resource.adaptTo(SampleComponent.class);
 
     assertEquals("", sampleComponent.getSampleProperty());
+  }
+
+  @Test
+  public void testGetDisplayStyleDefault() {
+    resource = context.create().resource("/sample-component", properties);
+
+    sampleComponent = resource.adaptTo(SampleComponent.class);
+
+    assertEquals("default", sampleComponent.getDisplayStyle());
+  }
+
+  @Test
+  public void testGetDisplayStyleWhenSet() {
+    properties.put("displayStyle", "highlight");
+    resource = context.create().resource("/sample-component", properties);
+
+    sampleComponent = resource.adaptTo(SampleComponent.class);
+
+    assertEquals("highlight", sampleComponent.getDisplayStyle());
+  }
+
+  @Test
+  public void testIsShowIconDefault() {
+    resource = context.create().resource("/sample-component", properties);
+
+    sampleComponent = resource.adaptTo(SampleComponent.class);
+
+    assertFalse(sampleComponent.isShowIcon());
+  }
+
+  @Test
+  public void testIsShowIconWhenTrue() {
+    properties.put("showIcon", true);
+    resource = context.create().resource("/sample-component", properties);
+
+    sampleComponent = resource.adaptTo(SampleComponent.class);
+
+    assertTrue(sampleComponent.isShowIcon());
   }
 
 }

@@ -20,7 +20,7 @@ public class SampleComponent extends BaseComponent {
 
   @OSGiService
   @Optional
-  private SampleService sampleServive;
+  private SampleService sampleService;
 
   /**
    * Retrieves a value from the SampleService.
@@ -28,8 +28,8 @@ public class SampleComponent extends BaseComponent {
    * @return Value from the SampleService.
    */
   public String getMyServiceValue() {
-    if (sampleServive != null) {
-      return sampleServive.getMyServiceValue();
+    if (sampleService != null) {
+      return sampleService.getMyServiceValue();
     }
     return StringUtils.EMPTY;
   }
@@ -50,5 +50,33 @@ public class SampleComponent extends BaseComponent {
           sampleValue = "Hello World!")
   public String getSampleProperty() {
     return getProperty("sampleProperty", StringUtils.EMPTY);
+  }
+
+  /**
+   * Returns the display style for this component.
+   *
+   * @return Display style value, defaults to "default".
+   */
+  @KestrosProperty(jcrPropertyName = "displayStyle",
+          defaultValue = "default",
+          description = "Controls the visual style of the component.",
+          configurable = true,
+          sampleValue = "highlight")
+  public String getDisplayStyle() {
+    return getProperty("displayStyle", "default");
+  }
+
+  /**
+   * Whether the icon should be displayed.
+   *
+   * @return true if the icon should be shown.
+   */
+  @KestrosProperty(jcrPropertyName = "showIcon",
+          defaultValue = "false",
+          description = "Toggles icon visibility.",
+          configurable = true,
+          sampleValue = "true")
+  public boolean isShowIcon() {
+    return getProperty("showIcon", false);
   }
 }
