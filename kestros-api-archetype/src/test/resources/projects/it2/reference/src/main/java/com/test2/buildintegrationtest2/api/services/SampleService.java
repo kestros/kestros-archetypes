@@ -1,46 +1,26 @@
 package com.test2.buildintegrationtest2.api.services;
 
-import com.test2.buildintegrationtest2.api.exceptions.SampleModelRetrievalException;
-import com.test2.buildintegrationtest2.api.models.SampleModel;
-import io.kestros.commons.osgiserviceutils.services.ManagedService;
-import java.util.List;
 import javax.annotation.Nonnull;
-import org.apache.sling.api.resource.ResourceResolver;
 
 /**
- * Sample Service for retrieving Sample Models.
+ * Sample Service interface demonstrating a basic OSGi service contract.
  */
-public interface SampleService extends ManagedService {
+public interface SampleService {
 
   /**
-   * A sample value to be used by the service.
+   * Returns the display name of the service.
+   *
+   * @return Display name.
+   */
+  @Nonnull
+  String getDisplayName();
+
+  /**
+   * A sample value provided by the service.
    *
    * @return Sample value.
    */
   @Nonnull
   String getMyServiceValue();
-
-  /**
-   * Retrieves all Sample Models.
-   *
-   * @param resourceResolver ResourceResolver to use for retrieving Sample Models.
-   *
-   * @return List of Sample Models.
-   * @throws SampleModelRetrievalException Thrown when an error occurs retrieving Sample Models.
-   */
-  @Nonnull
-  List<SampleModel> getSampleModels(@Nonnull ResourceResolver resourceResolver) throws
-          SampleModelRetrievalException;
-
-  /**
-   * Retrieves a Sample Model by its ID.
-   *
-   * @param modelId ID of the Sample Model to retrieve.
-   * @param resourceResolver ResourceResolver to use for retrieving the Sample Model.
-   *
-   * @return Sample Model with the provided ID.
-   */
-  @Nonnull
-  SampleModel getSampleModel(@Nonnull String modelId, @Nonnull ResourceResolver resourceResolver);
 
 }

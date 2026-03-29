@@ -1,71 +1,42 @@
 package com.test2.buildintegrationtest2.core.services;
 
-import com.test2.buildintegrationtest2.api.exceptions.SampleModelRetrievalException;
-import com.test2.buildintegrationtest2.api.models.SampleModel;
 import com.test2.buildintegrationtest2.api.services.SampleService;
-import com.test2.buildintegrationtest2.core.models.SampleModelImpl;
-import java.util.Arrays;
-import java.util.List;
 import javax.annotation.Nonnull;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.felix.hc.api.FormattingResultLog;
-import org.apache.sling.api.resource.ResourceResolver;
-import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * OSGI Component Implementation for SampleService.
+ * Default implementation of the SampleService.
  */
-@Component(immediate = true,
-           service = SampleService.class)
+@Component(service = SampleService.class,
+           immediate = true)
 public class SampleServiceImpl implements SampleService {
 
   private static final Logger LOG = LoggerFactory.getLogger(SampleServiceImpl.class);
 
-  @Override
-  public void activate(ComponentContext componentContext) {
-    LOG.info("Activating Sample Service");
-  }
-
-  @Override
-  public void deactivate(ComponentContext componentContext) {
-    LOG.info("Deactivating Sample Service");
-  }
-
+  @Nonnull
   @Override
   public String getDisplayName() {
-    return "My Sample Service";
-  }
-
-  @Override
-  public void runAdditionalHealthChecks(FormattingResultLog log) {
-    // In the current version there is a bug where no logs added will result in a WARN status.
-    log.debug("Running additional health checks.");
-    if (StringUtils.isEmpty(getMyServiceValue())) {
-      log.critical("My Service Value is empty.");
-    }
+    return "Sample Service";
   }
 
   @Nonnull
   @Override
   public String getMyServiceValue() {
-    return "Hello World!";
+    return "My Service Value.";
   }
 
-  @Nonnull
-  @Override
-  public List<SampleModel> getSampleModels(@Nonnull ResourceResolver resourceResolver) throws
-          SampleModelRetrievalException {
-    return Arrays.asList(new SampleModelImpl("1", "Sample Model 1"),
-                         new SampleModelImpl("2", "Sample Model 2"));
+  @Activate
+  protected void activate() {
+    LOG.info("SampleService activated.");
   }
 
-  @Nonnull
-  @Override
-  public SampleModel getSampleModel(@Nonnull String modelId,
-          @Nonnull ResourceResolver resourceResolver) {
-    return new SampleModelImpl(modelId, "Sample Model " + modelId);
+  @Deactivate
+  protected void deactivate() {
+    LOG.info("SampleService deactivated.");
   }
+
 }

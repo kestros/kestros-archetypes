@@ -6,7 +6,7 @@
 
     <groupId>io.kestros.cms</groupId>
     <artifactId>kestros-archetypes</artifactId>
-    <version>0.2.1</version>
+    <version>0.2.2-SNAPSHOT</version>
 
     <name>Kestros CMS Archetypes</name>
     <description>Archetype for generating out a new project for Kestros.</description>
@@ -48,12 +48,11 @@
 
 
     <modules>
-<!--        <module>kestros-api-archetype</module>-->
-<!--        <module>kestros-core-archetype</module>-->
-<!--        <module>kestros-content-archetype</module>-->
-<!--        <module>kestros-application-archetype</module>-->
-<!--        <module>kestros-tutorial-application-archetype</module>-->
-<!--        <module>kestros-project-archetype</module>-->
+        <module>kestros-api-archetype</module>
+        <module>kestros-core-archetype</module>
+        <module>kestros-content-archetype</module>
+        <module>kestros-application-archetype</module>
+        <module>kestros-project-archetype</module>
     </modules>
 
 

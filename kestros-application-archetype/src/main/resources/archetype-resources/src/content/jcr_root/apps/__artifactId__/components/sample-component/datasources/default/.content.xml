@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Static Content"
+          group="${artifactName}"
+          classPath="${groupId}.${artifactIdNoSpecialCharacters}.application.components.SampleComponentStaticDataSource">
+    <create
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="kestros/cms2/dialog"
+            defaultErrorMessage="Failed to create child resource.">
+        <content
+                jcr:primaryType="nt:unstructured">
+            <component-type
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="kestros/cms2/fields/kestros/component-picker"
+                    label="Component"
+                    name="sling:resourceType"/>
+        </content>
+    </create>
+</jcr:root>
