@@ -14,7 +14,25 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="kestros/cms2/fields/general/selectfield"
                 label="Display Style"
-                name="displayStyle"/>
+                name="displayStyle">
+            <options jcr:primaryType="nt:unstructured">
+                <default
+                        jcr:primaryType="nt:unstructured"
+                        text="Default"
+                        value="default"
+                        selected="{Boolean}true"/>
+                <highlight
+                        jcr:primaryType="nt:unstructured"
+                        text="Highlight"
+                        value="highlight"
+                        selected="{Boolean}false"/>
+                <subtle
+                        jcr:primaryType="nt:unstructured"
+                        text="Subtle"
+                        value="subtle"
+                        selected="{Boolean}false"/>
+            </options>
+        </style>
         <show-icon
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="kestros/cms2/fields/general/checkbox"

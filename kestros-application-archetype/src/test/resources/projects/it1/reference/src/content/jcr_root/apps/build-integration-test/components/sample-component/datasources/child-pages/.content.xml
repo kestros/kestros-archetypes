@@ -3,7 +3,7 @@
           jcr:primaryType="nt:unstructured"
           jcr:title="Child Pages"
           group="Build Integration Test"
-          classPath="com.test.buildintegrationtest.application.components.samplecomponent.SampleComponentChildPagesDataSource"
+          classPath="com.test.buildintegrationtest.application.components.SampleComponentChildPagesDataSource"
           container="true">
     <edit
             jcr:primaryType="nt:unstructured"

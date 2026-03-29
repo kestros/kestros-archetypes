@@ -3,7 +3,7 @@
           jcr:primaryType="nt:unstructured"
           jcr:title="Child Pages"
           group="${artifactName}"
-          classPath="${groupId}.${artifactIdNoSpecialCharacters}.application.components.samplecomponent.SampleComponentChildPagesDataSource"
+          classPath="${groupId}.${artifactIdNoSpecialCharacters}.application.components.SampleComponentChildPagesDataSource"
           container="true">
     <edit
             jcr:primaryType="nt:unstructured"

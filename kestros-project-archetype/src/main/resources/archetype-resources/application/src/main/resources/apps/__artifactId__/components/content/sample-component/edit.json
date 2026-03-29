@@ -15,11 +15,26 @@
       "sling:resourceType": "kestros/cms2/fields/general/selectfield",
       "label": "Display Style",
       "name": "displayStyle",
-      "options": [
-        { "value": "default", "text": "Default", "selected": true },
-        { "value": "highlight", "text": "Highlight" },
-        { "value": "subtle", "text": "Subtle" }
-      ]
+      "options": {
+        "default": {
+          "jcr:primaryType": "nt:unstructured",
+          "text": "Default",
+          "value": "default",
+          "selected": true
+        },
+        "highlight": {
+          "jcr:primaryType": "nt:unstructured",
+          "text": "Highlight",
+          "value": "highlight",
+          "selected": false
+        },
+        "subtle": {
+          "jcr:primaryType": "nt:unstructured",
+          "text": "Subtle",
+          "value": "subtle",
+          "selected": false
+        }
+      }
     },
     "show-icon": {
       "jcr:primaryType": "nt:unstructured",

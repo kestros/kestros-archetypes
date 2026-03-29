@@ -21,6 +21,8 @@ You will be prompted for:
 | `artifactName` | Display name for the project |
 | `artifactDescription` | Short description |
 | `organizationName` | Your organization name |
+| `artifactIdShorthand` | Short abbreviation used for framework prefixes (e.g. `ms` for `my-site`) |
+| `artifactIdNoSpecialCharacters` | Artifact ID without hyphens, used for Java packages (e.g. `mysite`) |
 
 ## What's Included
 

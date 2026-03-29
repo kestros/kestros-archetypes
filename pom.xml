@@ -48,12 +48,11 @@
 
 
     <modules>
-<!--        <module>kestros-api-archetype</module>-->
-<!--        <module>kestros-core-archetype</module>-->
-<!--        <module>kestros-content-archetype</module>-->
-<!--        <module>kestros-application-archetype</module>-->
-<!--        <module>kestros-tutorial-application-archetype</module>-->
-<!--        <module>kestros-project-archetype</module>-->
+        <module>kestros-api-archetype</module>
+        <module>kestros-core-archetype</module>
+        <module>kestros-content-archetype</module>
+        <module>kestros-application-archetype</module>
+        <module>kestros-project-archetype</module>
     </modules>
 
 

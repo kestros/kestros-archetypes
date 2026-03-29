@@ -1,15 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
-          xmlns:kes="http://kestros.io/kes/1.0"
           jcr:primaryType="nt:unstructured"
-          sling:resourceType="kestros/cms/dialog">
-    <contentArea
+          sling:resourceType="kestros/cms2/dialog">
+    <content
             jcr:primaryType="nt:unstructured">
-        <text
+        <title
                 jcr:primaryType="nt:unstructured"
-                sling:resourceType="kestros/cms/fields/textfield"
-                label="Sample Property"
-                propertyName="sampleProperty"
+                sling:resourceType="kestros/cms2/fields/general/textfield"
+                label="Title"
+                name="sampleProperty"
                 autofocus="true"/>
-    </contentArea>
+        <style
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="kestros/cms2/fields/general/selectfield"
+                label="Display Style"
+                name="displayStyle">
+            <options jcr:primaryType="nt:unstructured">
+                <default
+                        jcr:primaryType="nt:unstructured"
+                        text="Default"
+                        value="default"
+                        selected="{Boolean}true"/>
+                <highlight
+                        jcr:primaryType="nt:unstructured"
+                        text="Highlight"
+                        value="highlight"
+                        selected="{Boolean}false"/>
+                <subtle
+                        jcr:primaryType="nt:unstructured"
+                        text="Subtle"
+                        value="subtle"
+                        selected="{Boolean}false"/>
+            </options>
+        </style>
+        <show-icon
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="kestros/cms2/fields/general/checkbox"
+                label="Show Icon"
+                name="showIcon"/>
+    </content>
 </jcr:root>
