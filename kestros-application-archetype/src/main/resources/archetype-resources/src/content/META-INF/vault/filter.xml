@@ -13,4 +13,12 @@
   <filter root="/etc/vendor-libraries/${artifactId}-library"/>
   <filter root="/etc/vendor-libraries/${artifactId}-versioned-library"/>
 
+  <!-- Project-provided additions to the Kestros Card List component: the sample datasource
+       registration and the versioned-framework view that overrides it. Only the project's own
+       nodes are covered; everything else under the component stays untouched. -->
+  <filter root="/apps/kestros/commons/components">
+    <include pattern="^/apps/kestros/commons/components/lists/card-list/datasources/${artifactId}-sample-cards(/.*)?$"/>
+    <include pattern="^/apps/kestros/commons/components/lists/card-list/${artifactIdShorthand}-versioned-ui(/.*)?$"/>
+  </filter>
+
 </workspaceFilter>
