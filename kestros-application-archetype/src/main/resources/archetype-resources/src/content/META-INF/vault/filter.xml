@@ -15,8 +15,14 @@
 
   <!-- Project-provided additions to the Kestros Card List component: the sample datasource
        registration and the versioned-framework view that overrides it. Only the project's own
-       nodes are covered; everything else under the component stays untouched. -->
+       nodes are covered; everything else under the component stays untouched.
+       The intermediate lists/card-list/datasources nodes must be matched too (with sling:Folder
+       .content.xml docviews shipped alongside), or FileVault silently skips creating them on a
+       fresh instance and the included leaves never install. -->
   <filter root="/apps/kestros/commons/components">
+    <include pattern="^/apps/kestros/commons/components/lists$"/>
+    <include pattern="^/apps/kestros/commons/components/lists/card-list$"/>
+    <include pattern="^/apps/kestros/commons/components/lists/card-list/datasources$"/>
     <include pattern="^/apps/kestros/commons/components/lists/card-list/datasources/${artifactId}-sample-cards(/.*)?$"/>
     <include pattern="^/apps/kestros/commons/components/lists/card-list/${artifactIdShorthand}-versioned-ui(/.*)?$"/>
   </filter>

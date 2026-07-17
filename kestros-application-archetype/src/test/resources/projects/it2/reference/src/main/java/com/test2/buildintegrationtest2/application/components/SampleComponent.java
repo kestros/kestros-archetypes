@@ -15,7 +15,7 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
  */
 @KestrosModel()
 @Model(adaptables = Resource.class,
-        resourceType = "build-integration-test2/components/content/sample-component")
+        resourceType = "build-integration-test2/components/sample-component")
 public class SampleComponent extends BaseComponent {
 
   @OSGiService

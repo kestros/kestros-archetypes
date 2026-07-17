@@ -25,10 +25,10 @@
                          sling:resourceType="kestros/commons/components/content-area">
                     <heading jcr:primaryType="nt:unstructured"
                              sling:resourceType="/libs/kestros/commons/components/content/heading"
-                             text="Welcome to Kestros!" level="h1"/>
+                             headingText="Welcome to Kestros!" headingType="h1"/>
                     <sample-cards-heading jcr:primaryType="nt:unstructured"
                              sling:resourceType="/libs/kestros/commons/components/content/heading"
-                             text="Sample cards from a datasource" level="h2"/>
+                             headingText="Sample cards from a datasource" headingType="h2"/>
                     <sample-cards jcr:primaryType="nt:unstructured"
                              sling:resourceType="/libs/kestros/commons/components/lists/card-list"
                              kes:datasource="${artifactId}-sample-cards"/>
