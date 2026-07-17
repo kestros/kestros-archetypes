@@ -11,6 +11,14 @@ organizationName = request.properties['organizationName']
 artifactName = request.properties['artifactName']
 hasParentProject = "true"
 
+// The submodule Java package is driven by ${package}. When the user does not pass -Dpackage
+// (Maven then defaults request.package to the groupId), derive the conventional default
+// groupId.artifactIdNoSpecialCharacters so the generated layout is unchanged. A user-supplied
+// -Dpackage (anything other than the bare groupId) is honored verbatim.
+if (packageValue == null || packageValue.trim().isEmpty() || packageValue == groupId) {
+    packageValue = "${groupId}.${artifactIdNoSpecialCharacters}"
+}
+
 
 // rename gitignore file to .gitignore
 def gitIgnoreFile = new File(generatedProjectDirectory + "/gitignore")
