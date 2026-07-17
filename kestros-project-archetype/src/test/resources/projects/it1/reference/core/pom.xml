@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.test</groupId>
+    <artifactId>build-integration-test</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <groupId>com.test</groupId>
+  <artifactId>build-integration-test-core</artifactId>
+
+  <version>0.0.1-SNAPSHOT</version>
+
+  <name>Build Integration Test - Core</name>
+
+  <packaging>bundle</packaging>
+
+  <properties>
+    <rootPackage>com.test.buildintegrationtest.core</rootPackage>
+    <bundleCategory>${organization.name}</bundleCategory>
+  </properties>
+
+  <dependencies>
+    <!-- Kestros Dependencies -->
+    <dependency>
+      <groupId>io.kestros.cms</groupId>
+      <artifactId>kestros-component-types-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.kestros.cms</groupId>
+      <artifactId>kestros-site-building-api</artifactId>
+    </dependency>
+    <dependency>
+      <!-- Base classes and card/heading elements used by the sample Card List datasource. -->
+      <groupId>io.kestros.cms</groupId>
+      <artifactId>kestros-basic-components</artifactId>
+      <version>[0.3.0,0.3.99]</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.test</groupId>
+      <artifactId>build-integration-test-api</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <sourceDirectory>src/main/java</sourceDirectory>
+    <testSourceDirectory>src/test/java</testSourceDirectory>
+  </build>
+
+
+</project>

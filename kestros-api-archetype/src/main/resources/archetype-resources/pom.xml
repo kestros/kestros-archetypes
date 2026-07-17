@@ -31,7 +31,7 @@
     <packaging>bundle</packaging>
 
     <properties>
-        <rootPackage>${groupId}.${artifactIdNoSpecialCharacters}.api</rootPackage>
+        <rootPackage>${package}.api</rootPackage>
 #if ($hasParentProject == 'true')
         <bundleCategory>${organization.name}</bundleCategory>
 #else

@@ -11,6 +11,14 @@ organizationName = request.properties['organizationName']
 artifactName = request.properties['artifactName']
 hasParentProject = "true"
 
+// The submodule Java package is driven by ${package}. When the user does not pass -Dpackage
+// (Maven then defaults request.package to the groupId), derive the conventional default
+// groupId.artifactIdNoSpecialCharacters so the generated layout is unchanged. A user-supplied
+// -Dpackage (anything other than the bare groupId) is honored verbatim.
+if (packageValue == null || packageValue.trim().isEmpty() || packageValue == groupId) {
+    packageValue = "${groupId}.${artifactIdNoSpecialCharacters}"
+}
+
 
 // rename gitignore file to .gitignore
 def gitIgnoreFile = new File(generatedProjectDirectory + "/gitignore")
@@ -100,14 +108,27 @@ def archetypeGenerate(generatedProjectDirectory, directoryName, archetype, arche
         throw new Exception("Error downloading dependency: io.kestros.cms:$archetype:$archetypeVersion")
     }
 
-    // strip spaces from description, artifactName, and organizationName
-    artifactDescription = artifactDescription.replaceAll("\\s", "")
-    artifactName = artifactName.replaceAll("\\s", "")
-    organizationName = organizationName.replaceAll("\\s", "")
-
     println "Generating archetype: $archetype"
-    def command = "mvn archetype:generate -DarchetypeGroupId=io.kestros.cms -DarchetypeArtifactId=$archetype -DarchetypeVersion=$archetypeVersion -DgroupId=$groupId -DartifactId=$artifactId -Dversion=$version -Dpackage=$packageValue -DartifactIdNoSpecialCharacters=$artifactIdNoSpecialCharacters -DartifactIdShorthand=$artifactIdShorthand -DartifactDescription=$artifactDescription -DorganizationName=$organizationName -DartifactName=$artifactName -DhasParentProject=$hasParentProject -DinteractiveMode=false"
-    println command
+    // Pass each argument as its own list element so metadata values that contain spaces
+    // (artifactName / artifactDescription / organizationName) survive intact. The old
+    // single-string form was tokenized on whitespace by String.execute(), which forced a
+    // replaceAll("\\s","") strip that deleted spaces from the generated jcr:title values.
+    def command = ["mvn", "archetype:generate",
+                   "-DarchetypeGroupId=io.kestros.cms",
+                   "-DarchetypeArtifactId=${archetype}".toString(),
+                   "-DarchetypeVersion=${archetypeVersion}".toString(),
+                   "-DgroupId=${groupId}".toString(),
+                   "-DartifactId=${artifactId}".toString(),
+                   "-Dversion=${version}".toString(),
+                   "-Dpackage=${packageValue}".toString(),
+                   "-DartifactIdNoSpecialCharacters=${artifactIdNoSpecialCharacters}".toString(),
+                   "-DartifactIdShorthand=${artifactIdShorthand}".toString(),
+                   "-DartifactDescription=${artifactDescription}".toString(),
+                   "-DorganizationName=${organizationName}".toString(),
+                   "-DartifactName=${artifactName}".toString(),
+                   "-DhasParentProject=${hasParentProject}".toString(),
+                   "-DinteractiveMode=false"]
+    println command.join(" ")
     // run command from the generated project directory
     def result = command.execute(null, new File(generatedProjectDirectory)).text
     if (result.contains("BUILD SUCCESS")) {

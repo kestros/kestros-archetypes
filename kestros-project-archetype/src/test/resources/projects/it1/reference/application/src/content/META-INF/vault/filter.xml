@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+
+  <filter root="/apps/build-integration-test"/>
+
+  <filter root="/apps/build-integration-test/install" mode="update">
+    <include pattern=".*build-integration-test-application.*\.jar"/>
+  </filter>
+
+  <filter root="/etc/ui-frameworks/build-integration-test-framework"/>
+  <filter root="/etc/ui-frameworks/build-integration-test-versioned-framework"/>
+
+  <filter root="/etc/vendor-libraries/build-integration-test-library"/>
+  <filter root="/etc/vendor-libraries/build-integration-test-versioned-library"/>
+
+  <!-- Project-provided additions to the Kestros Card List component: the sample datasource
+       registration and the versioned-framework view that overrides it. Only the project's own
+       nodes are covered; everything else under the component stays untouched.
+       The intermediate lists/card-list/datasources nodes must be matched too (with sling:Folder
+       .content.xml docviews shipped alongside), or FileVault silently skips creating them on a
+       fresh instance and the included leaves never install. -->
+  <filter root="/apps/kestros/commons/components">
+    <include pattern="^/apps/kestros/commons/components/lists$"/>
+    <include pattern="^/apps/kestros/commons/components/lists/card-list$"/>
+    <include pattern="^/apps/kestros/commons/components/lists/card-list/datasources$"/>
+    <include pattern="^/apps/kestros/commons/components/lists/card-list/datasources/build-integration-test-sample-cards(/.*)?$"/>
+    <include pattern="^/apps/kestros/commons/components/lists/card-list/bit-versioned-ui(/.*)?$"/>
+  </filter>
+
+</workspaceFilter>
