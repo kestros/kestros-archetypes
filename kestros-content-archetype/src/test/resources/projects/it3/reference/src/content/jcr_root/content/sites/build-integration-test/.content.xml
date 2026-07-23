@@ -32,10 +32,77 @@
                     <sample-cards jcr:primaryType="nt:unstructured"
                              sling:resourceType="/libs/kestros/commons/components/lists/card-list"
                              kes:datasource="build-integration-test-sample-cards"/>
+
+                    <sample-table-heading jcr:primaryType="nt:unstructured"
+                             sling:resourceType="/libs/kestros/commons/components/content/heading"
+                             headingText="Sample table from a datasource" headingType="h2"/>
+                    <sample-table jcr:primaryType="nt:unstructured"
+                             sling:resourceType="/libs/kestros/commons/components/content/table"
+                             kes:datasource="build-integration-test-sample-table"/>
+
+                    <sample-card-heading jcr:primaryType="nt:unstructured"
+                             sling:resourceType="/libs/kestros/commons/components/content/heading"
+                             headingText="Sample single card from a datasource" headingType="h2"/>
+                    <sample-card jcr:primaryType="nt:unstructured"
+                             sling:resourceType="/libs/kestros/commons/components/content/card"
+                             kes:datasource="build-integration-test-sample-card"/>
+
+                    <sample-button-heading jcr:primaryType="nt:unstructured"
+                             sling:resourceType="/libs/kestros/commons/components/content/heading"
+                             headingText="Sample button from a datasource" headingType="h2"/>
+                    <sample-button jcr:primaryType="nt:unstructured"
+                             sling:resourceType="/libs/kestros/commons/components/content/button"
+                             kes:datasource="build-integration-test-sample-button"/>
+
+                    <sample-text-heading jcr:primaryType="nt:unstructured"
+                             sling:resourceType="/libs/kestros/commons/components/content/heading"
+                             headingText="Sample text from a datasource" headingType="h2"/>
+                    <sample-text jcr:primaryType="nt:unstructured"
+                             sling:resourceType="/libs/kestros/commons/components/content/text"
+                             kes:datasource="build-integration-test-sample-text"/>
                 </content>
             </container>
         </main>
         <footer jcr:primaryType="nt:unstructured"
                 sling:resourceType="kestros/commons/components/inherited-content-area"/>
+
+        <!-- Dynamic routing: an incoming request to /content/sites/build-integration-test/items/{id}.html
+             (where items/{id} does not exist as a node) is matched by the DynamicPageRoutingFilter
+             against these routes and rendered by the target page (the sibling "item" page node
+             below). The route's regex named group {id} is exposed to the target page's dynamic
+             context via the parameter mapping "item:id". -->
+        <dynamic-routes jcr:primaryType="kes:DynamicRoutes">
+            <item-route jcr:primaryType="kes:DynamicRoute"
+                        pattern="items/{id}"
+                        targetPage="item"
+                        parameters="[item:id]"/>
+        </dynamic-routes>
     </jcr:content>
+
+    <!-- Target page for the "items/{id}" dynamic route. Resolved by the routing filter as
+         {site}/item, then dispatched as {site}/item/jcr:content. Its jcr:content uses the
+         kestros-dynamic-page component type so title/description can be overridden from the
+         dynamic route context. -->
+    <item jcr:primaryType="kes:Page">
+        <jcr:content jcr:primaryType="nt:unstructured"
+                     sling:resourceType="kestros/commons/components/kestros-dynamic-page"
+                     kes:theme="/etc/ui-frameworks/build-integration-test-framework/themes/default"
+                     jcr:title="Item">
+            <main jcr:primaryType="nt:unstructured"
+                  sling:resourceType="kestros/commons/components/content-area">
+                <container jcr:primaryType="nt:unstructured"
+                           sling:resourceType="/libs/kestros/commons/components/structure/container">
+                    <content jcr:primaryType="nt:unstructured"
+                             sling:resourceType="kestros/commons/components/content-area">
+                        <heading jcr:primaryType="nt:unstructured"
+                                 sling:resourceType="/libs/kestros/commons/components/content/heading"
+                                 headingText="Dynamic Item Page" headingType="h1"/>
+                        <intro jcr:primaryType="nt:unstructured"
+                               sling:resourceType="/libs/kestros/commons/components/content/text"
+                               text="This page was rendered by the kestros-dynamic-page target for the items/{id} route."/>
+                    </content>
+                </container>
+            </main>
+        </jcr:content>
+    </item>
 </jcr:root>
