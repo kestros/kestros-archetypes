@@ -1,15 +1,13 @@
 #set( $sign = '$' )
-<!--/* Card List view provided by version 0.0.1 of the ${artifactName} Versioned Framework
+<!--/* Card List view for version 0.0.1 of the ${artifactName} Versioned Framework
     (${artifactIdShorthand}-versioned-ui).
 
-    This view OVERRIDES the component's datasource resolution: the common view of Card List uses the
-    generic CardListDataSourceComponent, which resolves whichever datasource the author selected
-    (the kes:datasource property on the component instance). This view is instead wired directly to
-    this project's SampleCardListDataSource, so every Card List rendered by this UI Framework shows
-    the sample cards. Compare with the sample site page, which uses the UNVERSIONED framework and
-    selects the datasource by property. Delete this file to fall back to the common view and
-    author-selected datasources. */-->
-<sly data-sly-use.cardList="${sign}{'${package}.core.datasources.SampleCardListDataSource'}"/>
+    This is the same Card List component as the common view, rendered with this framework version's
+    own markup (note the card-list--sample class). Like every component view it binds the generic
+    CardListDataSourceComponent, which renders whichever datasource the author selected via the
+    kes:datasource property on the component instance. A datasource is never referenced directly
+    from a view; only the markup differs between framework views. */-->
+<sly data-sly-use.cardList="${sign}{'io.kestros.cms.components.basic.core.lists.cardlist.CardListDataSourceComponent'}"/>
 
 <div class="card-list card-list--sample" data-sly-list.card="${sign}{cardList.cards}">
     <sly data-sly-resource="${sign}{card}"/>
