@@ -1,4 +1,4 @@
-package com.test.buildintegrationtest.core.datasources;
+package com.test2.buildintegrationtest2.application.datasources;
 
 import io.kestros.cms.components.basic.api.content.AnchorTarget;
 import io.kestros.cms.components.basic.api.content.KestrosButton;
@@ -17,7 +17,7 @@ import org.apache.sling.models.annotations.Model;
  * and title in code rather than from authored properties.</p>
  *
  * <p>It is registered to the Button component by the application module, via the
- * {@code apps/kestros/commons/components/content/button/datasources/build-integration-test-sample-button} node (see
+ * {@code apps/kestros/commons/components/content/button/datasources/build-integration-test2-sample-button} node (see
  * the {@code classPath} property on that node). Authors select it on a Button component instance,
  * which stores the datasource name in the {@code kes:datasource} property. The component's common
  * view resolves the selected datasource through {@code ButtonDataSourceComponent}.</p>

@@ -4,5 +4,5 @@
           jcr:title="Build Integration Test Sample Button"
           jcr:description="A button's text, href and title built programmatically by this project's SampleButtonDataSource. Select this datasource on a Button component (stored on the component instance as the kes:datasource property)."
           group="Build Integration Test"
-          classPath="com.test.buildintegrationtest.core.datasources.SampleButtonDataSource"
+          classPath="com.test.buildintegrationtest.application.datasources.SampleButtonDataSource"
           container="{Boolean}false"/>

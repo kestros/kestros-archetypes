@@ -1,4 +1,4 @@
-package com.test.buildintegrationtest.core.datasources;
+package com.test.buildintegrationtest.application.datasources;
 
 import io.kestros.cms.components.basic.api.content.KestrosText;
 import io.kestros.cms.components.basic.core.BaseSlingModelDataSource;

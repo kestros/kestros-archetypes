@@ -1,4 +1,4 @@
-package ${package}.core.datasources;
+package ${package}.application.datasources;
 
 import io.kestros.cms.components.basic.api.content.KestrosButtonGroup;
 import io.kestros.cms.components.basic.api.content.KestrosCard;

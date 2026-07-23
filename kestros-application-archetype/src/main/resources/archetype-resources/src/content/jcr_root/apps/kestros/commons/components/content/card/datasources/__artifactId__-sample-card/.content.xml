@@ -4,5 +4,5 @@
           jcr:title="${artifactName} Sample Card"
           jcr:description="A single card's title and description built programmatically by this project's SampleCardDataSource. Select this datasource on a Card component (stored on the component instance as the kes:datasource property)."
           group="${artifactName}"
-          classPath="${package}.core.datasources.SampleCardDataSource"
+          classPath="${package}.application.datasources.SampleCardDataSource"
           container="{Boolean}true"/>

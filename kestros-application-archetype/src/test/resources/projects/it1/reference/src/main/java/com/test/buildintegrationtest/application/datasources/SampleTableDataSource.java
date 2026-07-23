@@ -1,4 +1,4 @@
-package com.test.buildintegrationtest.core.datasources;
+package com.test.buildintegrationtest.application.datasources;
 
 import io.kestros.cms.components.basic.api.exceptions.ComponentConfigurationException;
 import io.kestros.cms.components.basic.api.table.KestrosTable;

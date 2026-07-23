@@ -1,4 +1,4 @@
-package ${package}.core.datasources;
+package com.test2.buildintegrationtest2.application.datasources;
 
 import io.kestros.cms.components.basic.api.exceptions.ComponentConfigurationException;
 import io.kestros.cms.components.basic.api.table.KestrosTable;
@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
  * child resources, this datasource builds them in code: a header row plus two data rows.</p>
  *
  * <p>It is registered to the Table component by the application module, via the
- * {@code apps/kestros/commons/components/content/table/datasources/${artifactId}-sample-table} node (see
+ * {@code apps/kestros/commons/components/content/table/datasources/build-integration-test2-sample-table} node (see
  * the {@code classPath} property on that node). Authors select it on a Table component instance,
  * which stores the datasource name in the {@code kes:datasource} property. The component's common
  * view resolves the selected datasource through {@code TableDataSourceComponent}.</p>

@@ -4,5 +4,5 @@
           jcr:title="Build Integration Test2 Sample Card"
           jcr:description="A single card's title and description built programmatically by this project's SampleCardDataSource. Select this datasource on a Card component (stored on the component instance as the kes:datasource property)."
           group="Build Integration Test2"
-          classPath="com.test2.buildintegrationtest2.core.datasources.SampleCardDataSource"
+          classPath="com.test2.buildintegrationtest2.application.datasources.SampleCardDataSource"
           container="{Boolean}true"/>

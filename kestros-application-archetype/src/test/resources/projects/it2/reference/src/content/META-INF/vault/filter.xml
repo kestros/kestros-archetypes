@@ -23,12 +23,17 @@
     <include pattern="^/apps/kestros/commons/components/lists/card-list/datasources$"/>
     <include pattern="^/apps/kestros/commons/components/lists/card-list/datasources/build-integration-test2-sample-cards(/.*)?$"/>
     <include pattern="^/apps/kestros/commons/components/lists/card-list/bit2-versioned-ui(/.*)?$"/>
+    <include pattern="^/apps/kestros/commons/components/content$"/>
+    <include pattern="^/apps/kestros/commons/components/content/table$"/>
     <include pattern="^/apps/kestros/commons/components/content/table/datasources$"/>
     <include pattern="^/apps/kestros/commons/components/content/table/datasources/build-integration-test2-sample-table(/.*)?$"/>
+    <include pattern="^/apps/kestros/commons/components/content/card$"/>
     <include pattern="^/apps/kestros/commons/components/content/card/datasources$"/>
     <include pattern="^/apps/kestros/commons/components/content/card/datasources/build-integration-test2-sample-card(/.*)?$"/>
+    <include pattern="^/apps/kestros/commons/components/content/button$"/>
     <include pattern="^/apps/kestros/commons/components/content/button/datasources$"/>
     <include pattern="^/apps/kestros/commons/components/content/button/datasources/build-integration-test2-sample-button(/.*)?$"/>
+    <include pattern="^/apps/kestros/commons/components/content/text$"/>
     <include pattern="^/apps/kestros/commons/components/content/text/datasources$"/>
     <include pattern="^/apps/kestros/commons/components/content/text/datasources/build-integration-test2-sample-text(/.*)?$"/>
   </filter>

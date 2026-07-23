@@ -4,5 +4,5 @@
           jcr:title="${artifactName} Sample Text"
           jcr:description="Paragraph text built programmatically by this project's SampleTextDataSource. Select this datasource on a Text component (stored on the component instance as the kes:datasource property)."
           group="${artifactName}"
-          classPath="${package}.core.datasources.SampleTextDataSource"
+          classPath="${package}.application.datasources.SampleTextDataSource"
           container="{Boolean}false"/>

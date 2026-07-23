@@ -4,5 +4,5 @@
           jcr:title="${artifactName} Sample Table"
           jcr:description="Table rows and headers built programmatically by this project's SampleTableDataSource. Select this datasource on a Table component (stored on the component instance as the kes:datasource property)."
           group="${artifactName}"
-          classPath="${package}.core.datasources.SampleTableDataSource"
+          classPath="${package}.application.datasources.SampleTableDataSource"
           container="{Boolean}true"/>
