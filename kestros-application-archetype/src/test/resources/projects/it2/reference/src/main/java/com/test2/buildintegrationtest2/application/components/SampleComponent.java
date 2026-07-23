@@ -20,7 +20,7 @@ public class SampleComponent extends BaseComponent {
 
   @OSGiService
   @Optional
-  private SampleService sampleServive;
+  private SampleService sampleService;
 
   /**
    * Retrieves a value from the SampleService.
@@ -28,8 +28,8 @@ public class SampleComponent extends BaseComponent {
    * @return Value from the SampleService.
    */
   public String getMyServiceValue() {
-    if (sampleServive != null) {
-      return sampleServive.getMyServiceValue();
+    if (sampleService != null) {
+      return sampleService.getMyServiceValue();
     }
     return StringUtils.EMPTY;
   }

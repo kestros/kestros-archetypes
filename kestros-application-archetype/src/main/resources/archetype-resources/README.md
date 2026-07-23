@@ -1,8 +1,8 @@
 ${hashSymbol} ${artifactName} Application
 
-This module contains the Core service logic for the ${artifactName} Project. It contains
-implemented object models, and OSGI services, but no usage of the services. Usage of the services,
-such as components, jobs, or servlets, should be added to the application module.
+This module contains the application layer for the ${artifactName} Project. It ties the interfaces from the api module and the services from the core module into a running site,
+adding the sample UI Libraries and UI Frameworks, the sample component (its Sling Model, edit dialog,
+and views), and the page and site templates.
 
 ${hashSymbol}${hashSymbol} Included
 
