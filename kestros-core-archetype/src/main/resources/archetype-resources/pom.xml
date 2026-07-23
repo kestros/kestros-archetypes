@@ -50,13 +50,6 @@
       <artifactId>kestros-site-building-api</artifactId>
     </dependency>
     <dependency>
-      <!-- Base classes and card/heading elements used by the sample Card List datasource. -->
-      <groupId>io.kestros.cms</groupId>
-      <artifactId>kestros-basic-components</artifactId>
-      <version>[0.3.0,0.3.99]</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>${groupId}</groupId>
       <artifactId>${artifactId}-api</artifactId>
       <version>${version}</version>

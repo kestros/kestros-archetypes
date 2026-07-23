@@ -1,4 +1,4 @@
-package com.test.buildintegrationtest.core.datasources;
+package com.test.buildintegrationtest.application.datasources;
 
 import com.test.buildintegrationtest.api.exceptions.SampleModelRetrievalException;
 import com.test.buildintegrationtest.api.models.SampleModel;

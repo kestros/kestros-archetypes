@@ -42,8 +42,7 @@
             <artifactId>kestros-site-building-api</artifactId>
         </dependency>
         <dependency>
-            <!-- Required at test time: the core module's SampleCardListDataSource is discovered by
-                 the Sling Models package scan and must be loadable on this module's classpath. -->
+            <!-- Base classes and card/heading elements used by the sample Card List datasource. -->
             <groupId>io.kestros.cms</groupId>
             <artifactId>kestros-basic-components</artifactId>
             <version>[0.3.0,0.3.99]</version>

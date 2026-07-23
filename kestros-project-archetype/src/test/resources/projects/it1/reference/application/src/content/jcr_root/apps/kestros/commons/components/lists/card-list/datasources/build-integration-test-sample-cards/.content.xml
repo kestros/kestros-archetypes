@@ -4,5 +4,5 @@
           jcr:title="Build Integration Test Sample Cards"
           jcr:description="Cards built from the Sample Models provided by this project's SampleService OSGi service. Select this datasource on a Card List component (stored on the component instance as the kes:datasource property)."
           group="Build Integration Test"
-          classPath="com.test.buildintegrationtest.core.datasources.SampleCardListDataSource"
+          classPath="com.test.buildintegrationtest.application.datasources.SampleCardListDataSource"
           container="{Boolean}true"/>

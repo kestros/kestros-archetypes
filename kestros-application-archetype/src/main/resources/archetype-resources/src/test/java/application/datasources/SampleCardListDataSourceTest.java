@@ -1,4 +1,4 @@
-package ${package}.core.datasources;
+package ${package}.application.datasources;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
