@@ -1,8 +1,8 @@
-package com.test.buildintegrationtest.core.datasources;
+package com.test2.buildintegrationtest2.application.datasources;
 
-import com.test.buildintegrationtest.api.exceptions.SampleModelRetrievalException;
-import com.test.buildintegrationtest.api.models.SampleModel;
-import com.test.buildintegrationtest.api.services.SampleService;
+import com.test2.buildintegrationtest2.api.exceptions.SampleModelRetrievalException;
+import com.test2.buildintegrationtest2.api.models.SampleModel;
+import com.test2.buildintegrationtest2.api.services.SampleService;
 import io.kestros.cms.components.basic.api.content.KestrosCard;
 import io.kestros.cms.components.basic.api.lists.KestrosCardList;
 import io.kestros.cms.components.basic.core.BaseContainerSlingModelDataSource;
@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
  * ({@code /libs/kestros/commons/components/lists/card-list}).</p>
  *
  * <p>It is registered to the Card List component by the application module, via the
- * {@code apps/kestros/commons/components/lists/card-list/datasources/build-integration-test-sample-cards}
+ * {@code apps/kestros/commons/components/lists/card-list/datasources/build-integration-test2-sample-cards}
  * node (see the {@code classPath} property on that node). Authors select it on a Card List
  * component instance, which stores the datasource name in the {@code kes:datasource} property.</p>
  */

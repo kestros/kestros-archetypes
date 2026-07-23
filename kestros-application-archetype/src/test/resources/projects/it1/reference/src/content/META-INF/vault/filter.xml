@@ -20,6 +20,8 @@
        .content.xml docviews shipped alongside), or FileVault silently skips creating them on a
        fresh instance and the included leaves never install. -->
   <filter root="/apps/kestros/commons/components">
+    <include pattern="^/apps/kestros/commons/components/lists$"/>
+    <include pattern="^/apps/kestros/commons/components/lists/card-list$"/>
     <include pattern="^/apps/kestros/commons/components/lists/card-list/datasources$"/>
     <include pattern="^/apps/kestros/commons/components/lists/card-list/datasources/build-integration-test-sample-cards(/.*)?$"/>
     <include pattern="^/apps/kestros/commons/components/lists/card-list/bit-versioned-ui(/.*)?$"/>

@@ -1,4 +1,4 @@
-package com.test.buildintegrationtest.core.datasources;
+package com.test.buildintegrationtest.application.datasources;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

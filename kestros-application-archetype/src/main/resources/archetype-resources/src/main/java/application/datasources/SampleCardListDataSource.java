@@ -1,4 +1,4 @@
-package ${package}.core.datasources;
+package ${package}.application.datasources;
 
 import ${package}.api.exceptions.SampleModelRetrievalException;
 import ${package}.api.models.SampleModel;

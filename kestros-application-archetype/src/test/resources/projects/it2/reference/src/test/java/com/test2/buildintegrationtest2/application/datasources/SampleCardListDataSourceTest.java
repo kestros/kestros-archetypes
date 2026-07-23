@@ -1,4 +1,4 @@
-package com.test.buildintegrationtest.core.datasources;
+package com.test2.buildintegrationtest2.application.datasources;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -6,8 +6,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import com.test.buildintegrationtest.api.services.SampleService;
-import com.test.buildintegrationtest.core.services.SampleServiceImpl;
+import com.test2.buildintegrationtest2.api.services.SampleService;
+import com.test2.buildintegrationtest2.core.services.SampleServiceImpl;
 import io.kestros.cms.componenttypes.api.services.ComponentUiFrameworkViewRetrievalService;
 import io.kestros.cms.componenttypes.api.services.ComponentVariationRetrievalService;
 import io.kestros.cms.sitebuilding.api.services.ThemeProviderService;
