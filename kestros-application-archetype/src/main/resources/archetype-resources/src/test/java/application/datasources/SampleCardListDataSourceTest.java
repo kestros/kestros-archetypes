@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 
 import ${package}.api.services.SampleService;
 import ${package}.core.services.SampleServiceImpl;
+import io.kestros.cms.components.basic.testing.BaseDataSourceTest;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.sling.api.resource.Resource;
