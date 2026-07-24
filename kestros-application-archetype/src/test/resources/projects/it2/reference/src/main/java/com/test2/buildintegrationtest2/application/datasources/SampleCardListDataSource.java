@@ -14,6 +14,7 @@ import javax.annotation.Nonnull;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Optional;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +39,7 @@ public class SampleCardListDataSource extends BaseContainerSlingModelDataSource
   private static final Logger LOG = LoggerFactory.getLogger(SampleCardListDataSource.class);
 
   @OSGiService
-  @org.apache.sling.models.annotations.Optional
+  @Optional
   private SampleService sampleService;
 
   /**
