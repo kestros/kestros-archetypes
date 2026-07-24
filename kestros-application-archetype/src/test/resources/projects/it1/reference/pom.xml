@@ -41,6 +41,13 @@
             <groupId>io.kestros.cms</groupId>
             <artifactId>kestros-site-building-api</artifactId>
         </dependency>
+        <dependency>
+            <!-- Base classes and card/heading elements used by the sample Card List datasource. -->
+            <groupId>io.kestros.cms</groupId>
+            <artifactId>kestros-basic-components</artifactId>
+            <version>[0.3.0,0.3.99]</version>
+            <scope>provided</scope>
+        </dependency>
         <!-- Test Dependencies -->
         <dependency>
             <groupId>com.test</groupId>
@@ -48,6 +55,13 @@
             <version>0.0.1-SNAPSHOT</version>
             <scope>test</scope>
             <!-- Scope test can be removed if the dependency is needed for main code -->
+        </dependency>
+        <dependency>
+            <!-- Shared JUnit base classes for datasource tests (see SampleCardListDataSourceTest). -->
+            <groupId>io.kestros.cms</groupId>
+            <artifactId>kestros-basic-components-testing</artifactId>
+            <version>[0.3.0,0.3.99]</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

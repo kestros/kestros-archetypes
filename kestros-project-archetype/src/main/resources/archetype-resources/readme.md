@@ -13,6 +13,23 @@ ${hashSymbol}${hashSymbol} Modules
 | application | Code that handles user interactions and requests, invoking core services and models as needed to fulfill application-specific functionality. This includes, components, servlets, and jobs, as well as page templates, frontend libraries and frameworks. |
 | content     | Initial content installation. Generally creates site resources, but not specific pages.                                                                                                                                                                   |
 
+${hashSymbol}${hashSymbol} What this project demonstrates
+
+The generated project is a working tour of the Kestros building blocks. Each example is intentionally
+small — find it, change it, redeploy.
+
+| Example | Where |
+|---------|-------|
+| Custom component (definition, edit dialog, Sling Model, common view) | `application`: `apps/${artifactId}/components/sample-component`, `SampleComponent.java` |
+| Component views per UI Framework, layouts, and variations | `application`: `sample-component/${artifactIdShorthand}-ui` (layouts + variations) and `${artifactIdShorthand}-versioned-ui` |
+| UI Library (unversioned + versioned) | `application`: `etc/vendor-libraries/${artifactId}-library` and `${artifactId}-versioned-library` |
+| UI Framework (unversioned + versioned, with themes) | `application`: `etc/ui-frameworks/${artifactId}-framework` and `${artifactId}-versioned-framework` |
+| OSGi service consumed by models and datasources | `api`: `SampleService` — `core`: `SampleServiceImpl` |
+| Datasource feeding a list component | `core`: `SampleCardListDataSource` — registered on the Card List component by `application`: `apps/kestros/commons/components/lists/card-list/datasources/${artifactId}-sample-cards`, selected on the sample site page via the `kes:datasource` property (`content` module) |
+| Component view that OVERRIDES a datasource | `application`: `apps/kestros/commons/components/lists/card-list/${artifactIdShorthand}-versioned-ui` — switch the site's theme to the versioned framework to see it take over |
+| Page templates | `application`: `apps/${artifactId}/templates` |
+| Sample site content wiring it all together | `content`: `content/sites/${artifactId}` |
+
 ${hashSymbol}${hashSymbol} Building and Installing
 
 For more information regarding build profiles available to each module, see their respective

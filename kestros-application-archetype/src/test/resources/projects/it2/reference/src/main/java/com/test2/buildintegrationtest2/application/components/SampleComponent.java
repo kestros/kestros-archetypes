@@ -15,12 +15,12 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
  */
 @KestrosModel()
 @Model(adaptables = Resource.class,
-        resourceType = "build-integration-test2/components/content/sample-component")
+        resourceType = "build-integration-test2/components/sample-component")
 public class SampleComponent extends BaseComponent {
 
   @OSGiService
   @Optional
-  private SampleService sampleServive;
+  private SampleService sampleService;
 
   /**
    * Retrieves a value from the SampleService.
@@ -28,8 +28,8 @@ public class SampleComponent extends BaseComponent {
    * @return Value from the SampleService.
    */
   public String getMyServiceValue() {
-    if (sampleServive != null) {
-      return sampleServive.getMyServiceValue();
+    if (sampleService != null) {
+      return sampleService.getMyServiceValue();
     }
     return StringUtils.EMPTY;
   }

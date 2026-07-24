@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:kes="http://kestros.io/kes/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Build Integration Test2 Sample Cards"
+          jcr:description="Cards built from the Sample Models provided by this project's SampleService OSGi service. Select this datasource on a Card List component (stored on the component instance as the kes:datasource property)."
+          group="Build Integration Test2"
+          classPath="com.test2.buildintegrationtest2.application.datasources.SampleCardListDataSource"
+          container="{Boolean}true"/>
