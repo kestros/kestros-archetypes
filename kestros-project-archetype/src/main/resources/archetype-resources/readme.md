@@ -16,7 +16,7 @@ ${hashSymbol}${hashSymbol} Modules
 ${hashSymbol}${hashSymbol} What this project demonstrates
 
 The generated project is a working tour of the Kestros building blocks. Each example is intentionally
-small — find it, change it, redeploy.
+small: find it, change it, redeploy.
 
 | Example | Where |
 |---------|-------|
@@ -24,9 +24,11 @@ small — find it, change it, redeploy.
 | Component views per UI Framework, layouts, and variations | `application`: `sample-component/${artifactIdShorthand}-ui` (layouts + variations) and `${artifactIdShorthand}-versioned-ui` |
 | UI Library (unversioned + versioned) | `application`: `etc/vendor-libraries/${artifactId}-library` and `${artifactId}-versioned-library` |
 | UI Framework (unversioned + versioned, with themes) | `application`: `etc/ui-frameworks/${artifactId}-framework` and `${artifactId}-versioned-framework` |
-| OSGi service consumed by models and datasources | `api`: `SampleService` — `core`: `SampleServiceImpl` |
-| Datasource feeding a list component | `core`: `SampleCardListDataSource` — registered on the Card List component by `application`: `apps/kestros/commons/components/lists/card-list/datasources/${artifactId}-sample-cards`, selected on the sample site page via the `kes:datasource` property (`content` module) |
-| Component view that OVERRIDES a datasource | `application`: `apps/kestros/commons/components/lists/card-list/${artifactIdShorthand}-versioned-ui` — switch the site's theme to the versioned framework to see it take over |
+| OSGi service consumed by models and datasources | `api`: `SampleService`, `core`: `SampleServiceImpl` |
+| Datasource feeding a list component | `application`: `SampleCardListDataSource`, registered on the Card List component by `apps/kestros/commons/components/lists/card-list/datasources/${artifactId}-sample-cards`, selected on the sample site page via the `kes:datasource` property (`content` module) |
+| Datasources for other component types (Table, single Card, Button, Text) | `application`: `SampleTableDataSource`, `SampleCardDataSource`, `SampleButtonDataSource`, `SampleTextDataSource` in `datasources/`, each registered on its component and selected via `kes:datasource` |
+| Component view that OVERRIDES a datasource | `application`: `apps/kestros/commons/components/lists/card-list/${artifactIdShorthand}-versioned-ui`; switch the site's theme to the versioned framework to see it take over |
+| Dynamic page routing (one page, many URLs) | `content`: the `items/{id}` route under `content/sites/${artifactId}/dynamic-routes`, rendered by the `item` page; visit `/content/sites/${artifactId}/items/1.html` |
 | Page templates | `application`: `apps/${artifactId}/templates` |
 | Sample site content wiring it all together | `content`: `content/sites/${artifactId}` |
 
