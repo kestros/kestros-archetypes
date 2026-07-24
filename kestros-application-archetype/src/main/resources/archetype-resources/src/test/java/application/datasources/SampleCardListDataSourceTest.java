@@ -2,49 +2,25 @@ package ${package}.application.datasources;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 import ${package}.api.services.SampleService;
 import ${package}.core.services.SampleServiceImpl;
-import io.kestros.cms.componenttypes.api.services.ComponentUiFrameworkViewRetrievalService;
-import io.kestros.cms.componenttypes.api.services.ComponentVariationRetrievalService;
-import io.kestros.cms.sitebuilding.api.services.ThemeProviderService;
-import io.kestros.cms.uiframeworks.api.models.Theme;
-import io.kestros.cms.uiframeworks.api.models.UiFramework;
-import io.kestros.cms.uiframeworks.api.services.ThemeRetrievalService;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.testing.mock.sling.junit.SlingContext;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 
-public class SampleCardListDataSourceTest {
-
-  @Rule
-  public SlingContext context = new SlingContext();
+/**
+ * Tests the sample Card List datasource. Extends {@link BaseDataSourceTest} for the shared service
+ * setup and adds only this datasource's model and resource.
+ */
+public class SampleCardListDataSourceTest extends BaseDataSourceTest {
 
   private Resource resource;
 
   @Before
-  public void setUp() throws Exception {
-    context.registerService(ComponentVariationRetrievalService.class,
-        mock(ComponentVariationRetrievalService.class));
-    context.registerService(ComponentUiFrameworkViewRetrievalService.class,
-        mock(ComponentUiFrameworkViewRetrievalService.class));
-    context.registerService(ThemeRetrievalService.class, mock(ThemeRetrievalService.class));
-
-    // Cards resolve the containing page's theme and UI Framework while they are constructed.
-    Theme theme = mock(Theme.class);
-    when(theme.getUiFramework()).thenReturn(mock(UiFramework.class));
-    ThemeProviderService themeProviderService = mock(ThemeProviderService.class);
-    when(themeProviderService.getThemeForPage(any())).thenReturn(theme);
-    when(themeProviderService.getThemeForComponent(any())).thenReturn(theme);
-    context.registerService(ThemeProviderService.class, themeProviderService);
-
+  public void setUp() {
     context.addModelsForClasses(SampleCardListDataSource.class);
 
     // Cards resolve their containing page, so the datasource resource must live under a page.
