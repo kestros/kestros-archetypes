@@ -99,7 +99,7 @@
                                  headingText="Dynamic Item Page" headingType="h1"/>
                         <intro jcr:primaryType="nt:unstructured"
                                sling:resourceType="/libs/kestros/commons/components/content/text"
-                               text="This page was rendered by the kestros-dynamic-page target for the items/{id} route."/>
+                               text="This page was rendered by the kestros-dynamic-page target for the items/{id} route. The matched id is available as the item:id route parameter; this static sample shows the routing, and a component can read item:id to render per-id content."/>
                     </content>
                 </container>
             </main>

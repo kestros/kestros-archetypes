@@ -4,6 +4,7 @@ import com.test.buildintegrationtest.api.exceptions.SampleModelRetrievalExceptio
 import com.test.buildintegrationtest.api.models.SampleModel;
 import com.test.buildintegrationtest.api.services.SampleService;
 import io.kestros.cms.components.basic.api.content.KestrosCard;
+import io.kestros.cms.components.basic.api.exceptions.ComponentConfigurationException;
 import io.kestros.cms.components.basic.api.lists.KestrosCardList;
 import io.kestros.cms.components.basic.core.BaseContainerSlingModelDataSource;
 import io.kestros.cms.components.basic.core.content.card.KestrosCardImpl;
@@ -67,10 +68,10 @@ public class SampleCardListDataSource extends BaseContainerSlingModelDataSource
     for (final SampleModel sampleModel : sampleModels) {
       try {
         cards.add(new KestrosCardImpl(sampleModel.getDescription(),
-            new KestrosHeadingImpl(sampleModel.getTitle(), "h3", this, "title", "titleElement"),
+            new KestrosHeadingImpl(sampleModel.getTitle(), "h3", this, "title", "title-" + index),
             null, null, this, "card", "sample-card-" + index));
         index++;
-      } catch (final Exception e) {
+      } catch (final ComponentConfigurationException e) {
         LOG.error("Failed to build card for Sample Model {}. {}", sampleModel.getTitle(),
             e.getMessage());
       }
