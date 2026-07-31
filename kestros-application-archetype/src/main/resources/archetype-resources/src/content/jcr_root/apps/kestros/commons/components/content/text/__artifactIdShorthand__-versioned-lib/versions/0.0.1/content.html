@@ -1,0 +1,17 @@
+#set( $sign = '$' )
+<!--/* Text view supplied by version 0.0.1 of the ${artifactName} Versioned Library
+    (library code ${artifactIdShorthand}-versioned-lib).
+
+    This is the VENDOR-LIBRARY-scoped form of a component view, and it is the counterpart to the
+    framework-scoped views elsewhere in this project (for example the Card List view under
+    ${artifactIdShorthand}-versioned-ui). Both forms are valid; the difference is who owns the view.
+
+    A framework-scoped view belongs to the UI framework's own look. A library-scoped view travels with
+    a vendor library, so any framework that includes that library picks the view up. This one is
+    attached to the core Kestros Text component, which ships no view for this project's framework or
+    library, so without this file it falls back to its 'common' view.
+
+    Resolution is framework-first: if this component also had a view under this project's framework
+    code, that one would win and this file would never render. It renders here precisely because no
+    framework-scoped Text view exists in this project. */-->
+<p class="text text--${artifactIdShorthand}-library">${sign}{properties.text}</p>
