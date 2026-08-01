@@ -29,13 +29,14 @@
       </includes>
     </fileSet>
 
-    <!-- The whole tutorial content package: eleven tutorial-step UI frameworks, three vendor
+    <!-- The whole tutorial content package (at src/content, matching the sibling archetypes and the
+         filevault plugin's filterSource in the generated pom): eleven tutorial-step UI frameworks, three vendor
          libraries and the component views that go with them. Every file here is text (xml, less,
          html, js) and some carry ${...} placeholders, so the whole tree is filtered. There are no
          binaries in this module - if any are ever added they need their own unfiltered fileSet,
          because filtering corrupts them. -->
     <fileSet filtered="true" packaged="false">
-      <directory>content</directory>
+      <directory>src/content</directory>
       <includes>
         <include>**/*</include>
       </includes>
