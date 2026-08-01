@@ -10,9 +10,9 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>io.kestros.archetypes</groupId>
+    <groupId>io.kestros.cms</groupId>
     <artifactId>kestros-tutorial-application-archetype</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.9.0</version>
 
     <name>Kestros Tutorial Application Module Archetype</name>
 

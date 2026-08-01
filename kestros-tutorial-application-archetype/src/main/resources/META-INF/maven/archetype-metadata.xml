@@ -1,0 +1,69 @@
+<archetype-descriptor name="tutorial-application-archetype"
+  xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype/1.0.0 http://maven.apache.org/xsd/archetype-1.0.0.xsd">
+
+  <id>kestros-tutorial-application-archetype</id>
+
+  <allowPartial>true</allowPartial>
+
+  <fileSets>
+    <fileSet filtered="true" packaged="false">
+      <directory/>
+      <includes>
+        <include>gitignore</include>
+      </includes>
+    </fileSet>
+
+    <fileSet filtered="true" packaged="false">
+      <directory/>
+      <includes>
+        <include>pom.xml</include>
+      </includes>
+    </fileSet>
+
+    <fileSet filtered="true" packaged="false">
+      <directory/>
+      <includes>
+        <include>README.md</include>
+      </includes>
+    </fileSet>
+
+    <!-- The whole tutorial content package: eleven tutorial-step UI frameworks, three vendor
+         libraries and the component views that go with them. Every file here is text (xml, less,
+         html, js) and some carry ${...} placeholders, so the whole tree is filtered. There are no
+         binaries in this module - if any are ever added they need their own unfiltered fileSet,
+         because filtering corrupts them. -->
+    <fileSet filtered="true" packaged="false">
+      <directory>content</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+
+  <requiredProperties>
+    <requiredProperty key="artifactDescription">
+      <defaultValue></defaultValue>
+    </requiredProperty>
+    <requiredProperty key="artifactName">
+      <defaultValue>${artifactId}</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="artifactIdNoSpecialCharacters">
+      <defaultValue>${artifactId}</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="organizationName">
+      <defaultValue></defaultValue>
+    </requiredProperty>
+    <requiredProperty key="hasParentProject">
+      <defaultValue>false</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="hashSymbol">
+      <defaultValue>#</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="artifactIdShorthand">
+      <defaultValue></defaultValue>
+    </requiredProperty>
+  </requiredProperties>
+
+</archetype-descriptor>
