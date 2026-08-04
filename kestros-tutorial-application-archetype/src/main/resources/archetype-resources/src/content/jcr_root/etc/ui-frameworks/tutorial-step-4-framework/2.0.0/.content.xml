@@ -4,5 +4,5 @@
           jcr:primaryType="kes:UiFramework"
           jcr:title="Versioned Framework (Step 4) 1.0.0"
           jcr:description=""
-          kes:vendorLibraries="[step-2-basic-library,step-4-versioned-library/2.0.0]"
+          kes:vendorLibraries="[tutorial-step-2-basic-library,tutorial-step-4-versioned-library/2.0.0]"
 />

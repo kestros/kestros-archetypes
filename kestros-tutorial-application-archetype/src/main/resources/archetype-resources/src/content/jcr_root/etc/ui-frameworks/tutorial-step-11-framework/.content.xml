@@ -5,5 +5,5 @@
           jcr:title="Step 11: What's Next"
           jcr:description=""
           kes:uiFrameworkCode="step-11-framework"
-          kes:vendorLibraries="[step-2-basic-library]"
+          kes:vendorLibraries="[tutorial-step-2-basic-library]"
 />
