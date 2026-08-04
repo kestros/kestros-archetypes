@@ -7,11 +7,22 @@
     ${artifactIdShorthand}-versioned-ui). Both forms are valid; the difference is who owns the view.
 
     A framework-scoped view belongs to the UI framework's own look. A library-scoped view travels with
-    a vendor library, so any framework that includes that library picks the view up. This one is
-    attached to the core Kestros Text component, which ships no view for this project's framework or
-    library, so without this file it falls back to its 'common' view.
+    a vendor library, so any framework that includes that library picks the view up.
 
-    Resolution is framework-first: if this component also had a view under this project's framework
-    code, that one would win and this file would never render. It renders here precisely because no
-    framework-scoped Text view exists in this project. */-->
-<p class="text text--${artifactIdShorthand}-library">${sign}{properties.text}</p>
+    WHERE THIS ACTUALLY RENDERS. It is attached to the core Kestros Text component, and it resolves
+    only for a framework whose vendor library carries the library code above. In this project that is
+    the VERSIONED framework, which lists ${artifactId}-versioned-library. The unversioned framework
+    pulls a different library, so under that framework Text still falls back to its 'common' view -
+    which is correct behaviour, not a broken example.
+
+    Resolution is framework-first: if Text also had a view under this project's framework code, that
+    one would win and this file would never render.
+
+    NOTE the data-sly-use below. A view supplies markup only - it never reaches past the component's
+    own model for its data. Text's data comes from TextDataSourceComponent, exactly as the core
+    'common' view does, so a datasource configured on the component still feeds it. This project ships
+    a Sample Text datasource; reading the raw 'text' property here instead would render an empty
+    paragraph the moment that datasource is selected. */-->
+<sly data-sly-use.text="${sign}{'io.kestros.cms.components.basic.core.content.text.TextDataSourceComponent'}"/>
+
+<p class="${sign}{text.inlineVariations} text--${artifactIdShorthand}-versioned-lib">${sign}{text.text}</p>
