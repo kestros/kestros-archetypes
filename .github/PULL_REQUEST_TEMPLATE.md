@@ -8,8 +8,10 @@
 
 ## Checklist
 
-- [ ] **If this PR adds, removes or renames an example the archetype ships, the list on
-      kestros.io has been updated in the same PR.**
+- [ ] **If this PR adds, removes or renames an example the archetype ships, a PR updating the
+      list on kestros.io is open and linked below.**
+      It cannot be the same PR - the list lives in a different repository - so link it here and
+      say which merges first.
       It lives in `live/guide-project-structure.html` under *Reading the generated project*, in
       `kestros-io-static-site`. That list is maintained by hand (Danny, 2026-07-31), so nothing
       updates it for you, and a list that has gone stale is worse than no list because readers
