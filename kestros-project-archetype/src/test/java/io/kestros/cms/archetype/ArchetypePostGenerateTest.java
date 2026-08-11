@@ -2,15 +2,21 @@ package io.kestros.cms.archetype;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import groovy.lang.GroovyShell;
 import groovy.lang.Script;
+import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
 /**
  * Covers the released-versus-SNAPSHOT decision in archetype-post-generate.groovy, which ships
@@ -24,6 +30,9 @@ import org.junit.Test;
 public class ArchetypePostGenerateTest {
 
   private static final String SCRIPT = "/META-INF/archetype-post-generate.groovy";
+
+  @Rule
+  public TemporaryFolder folder = new TemporaryFolder();
 
   private Script script;
 
@@ -78,5 +87,61 @@ public class ArchetypePostGenerateTest {
     assertEquals("mvn dependency:get -Dartifact=io.kestros.cms:kestros-api-archetype:null"
                  + " -Dtransative=false -U",
         String.valueOf(dependencyGetCommandFor("kestros-api-archetype", null)));
+  }
+
+  /**
+   * The script copied files by shelling out to `cp` and never waiting on the process, so the
+   * caller carried on against a file that might not exist yet. Every assertion below is made
+   * immediately on return, with no sleep and no retry — that is the whole point.
+   */
+  @Test
+  public void testCopyFileHasFinishedWhenItReturns() throws Exception {
+    final File source = folder.newFile("pom.xml");
+    Files.write(source.toPath(), "<project/>".getBytes(UTF_8));
+    final File target = new File(folder.getRoot(), "original-pom.xml");
+
+    script.invokeMethod("copyFile", new Object[]{source, target});
+
+    assertTrue("copyFile must not return before the target exists", target.exists());
+    assertEquals("<project/>", new String(Files.readAllBytes(target.toPath()), UTF_8));
+  }
+
+  @Test
+  public void testCopyFileOverwritesAnExistingTarget() throws Exception {
+    // resetPomFile copies onto a path the previous module's generation may have left behind.
+    final File source = folder.newFile("original-pom.xml");
+    Files.write(source.toPath(), "<project>new</project>".getBytes(UTF_8));
+    final File target = folder.newFile("pom.xml");
+    Files.write(target.toPath(), "<project>stale</project>".getBytes(UTF_8));
+
+    script.invokeMethod("copyFile", new Object[]{source, target});
+
+    assertEquals("<project>new</project>", new String(Files.readAllBytes(target.toPath()), UTF_8));
+  }
+
+  @Test
+  public void testResetPomFileRestoresPomFromOriginalBeforeItReturns() throws Exception {
+    // The generated project's pom.xml is rewritten by each submodule generation, so it is put back
+    // from original-pom.xml between them. The restore used to be an unwaited `cp`, so the next
+    // generation - and replacePomFile after it - could run against a pom.xml that was not there.
+    final File original = folder.newFile("original-pom.xml");
+    Files.write(original.toPath(), "<project>original</project>".getBytes(UTF_8));
+    final File pom = folder.newFile("pom.xml");
+    Files.write(pom.toPath(), "<project>with-modules</project>".getBytes(UTF_8));
+
+    script.invokeMethod("resetPomFile", new Object[]{folder.getRoot().getAbsolutePath()});
+
+    assertTrue("pom.xml must exist by the time resetPomFile returns", pom.exists());
+    assertEquals("<project>original</project>", new String(Files.readAllBytes(pom.toPath()), UTF_8));
+  }
+
+  @Test
+  public void testResetPomFileLeavesNoPomWhenThereIsNoOriginal() throws Exception {
+    final File pom = folder.newFile("pom.xml");
+    Files.write(pom.toPath(), "<project>with-modules</project>".getBytes(UTF_8));
+
+    script.invokeMethod("resetPomFile", new Object[]{folder.getRoot().getAbsolutePath()});
+
+    assertFalse("nothing to restore from, so pom.xml stays removed", pom.exists());
   }
 }

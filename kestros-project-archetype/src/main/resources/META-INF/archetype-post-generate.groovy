@@ -34,10 +34,7 @@ if (gitIgnoreFile.exists()) {
 def pomFile = new File(generatedProjectDirectory + "/pom.xml")
 def originalPomFile = new File(generatedProjectDirectory + "/original-pom.xml")
 if (pomFile.exists()) {
-    // run cp pom.xml original-pom.xml
-    def command = "cp pom.xml original-pom.xml"
-    command.execute(null, new File(generatedProjectDirectory))
-
+    copyFile(pomFile, originalPomFile)
 }
 
 // make sure pom.xml and original-pom.xml exist
@@ -227,9 +224,23 @@ def resetPomFile(generatedProjectDirectory) {
     // copy original-pom.xml to pom.xml
     def originalPomFile = new File(generatedProjectDirectory + "/original-pom.xml")
     if (originalPomFile.exists()) {
-        // run cp original-pom.xml pom.xml
-        def command = "cp original-pom.xml pom.xml"
-        command.execute(null, new File(generatedProjectDirectory))
+        copyFile(originalPomFile, pomFile)
     }
+}
+
+// Copy a file and do not return until it is there.
+//
+// This used to shell out - "cp a b".execute(...) - and nothing ever waited on the process.
+// String.execute() returns as soon as the fork happens, so every caller carried on against a file
+// that might or might not exist yet. The observed failure was the existence check below the first
+// copy: when cp had not finished, it reported "pom.xml or original-pom.xml does not exist" and the
+// script returned before generating any module. resetPomFile had the same shape, which leaves
+// pom.xml missing for the next generation and for replacePomFile.
+//
+// A java.nio copy has finished when it returns, which removes both. It also drops a dependency on
+// a `cp` binary from a script that runs on whatever machine an end user generates a project on.
+def copyFile(source, target) {
+    java.nio.file.Files.copy(source.toPath(), target.toPath(),
+            java.nio.file.StandardCopyOption.REPLACE_EXISTING)
 }
 
