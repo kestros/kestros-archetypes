@@ -95,20 +95,28 @@ def archetypeGenerate(generatedProjectDirectory, directoryName, archetype, arche
 //    println "organizationName: $organizationName"
 //    println "hasParentProject: $hasParentProject"
 
-    // update/download dependency using dependency plugin
-    def dependencyCommand = """mvn dependency:get -Dartifact=io.kestros.cms:$archetype:$archetypeVersion -Dtransative=false -U"""
-    println dependencyCommand
-    def dependencyResult = dependencyCommand.execute(null, new File(generatedProjectDirectory)).text
-
-    // print the result
-    println dependencyResult
-
-    // check that the dependency was downloaded
-    if (dependencyResult.contains("BUILD SUCCESS")) {
-        println "Dependency downloaded: io.kestros.cms:$archetype:$archetypeVersion"
+    // update/download dependency using dependency plugin, unless the version says not to.
+    // See dependencyGetCommandFor for which version is on which path.
+    def dependencyCommand = dependencyGetCommandFor(archetype, archetypeVersion)
+    if (dependencyCommand == null) {
+        println "Skipping dependency:get for SNAPSHOT archetype io.kestros.cms:$archetype:$archetypeVersion"
+        println "  A SNAPSHOT is not published to Maven Central. It has to be installed in the local"
+        println "  repository first - 'mvn install' on the archetype modules, in the order api, core,"
+        println "  content, application, project."
     } else {
-        println "Error downloading dependency: io.kestros.cms:$archetype:$archetypeVersion"
-        throw new Exception("Error downloading dependency: io.kestros.cms:$archetype:$archetypeVersion")
+        println dependencyCommand
+        def dependencyResult = dependencyCommand.execute(null, new File(generatedProjectDirectory)).text
+
+        // print the result
+        println dependencyResult
+
+        // check that the dependency was downloaded
+        if (dependencyResult.contains("BUILD SUCCESS")) {
+            println "Dependency downloaded: io.kestros.cms:$archetype:$archetypeVersion"
+        } else {
+            println "Error downloading dependency: io.kestros.cms:$archetype:$archetypeVersion"
+            throw new Exception("Error downloading dependency: io.kestros.cms:$archetype:$archetypeVersion")
+        }
     }
 
     println "Generating archetype: $archetype"
@@ -138,6 +146,11 @@ def archetypeGenerate(generatedProjectDirectory, directoryName, archetype, arche
         println "Archetype generated: $archetype"
     } else {
         println result
+        // For a SNAPSHOT that was never installed locally this is where the failure lands, and that
+        // is intended. Skipping dependency:get above does not make a missing SNAPSHOT resolvable; it
+        // only stops the script failing earlier for the wrong reason. The fix for a developer who
+        // sees this is 'mvn install' on the archetype modules, not another change here - a snapshot
+        // remote does not belong in a script that ships inside a released artifact.
         throw new Exception("Error generating archetype: $archetype")
     }
 
@@ -151,6 +164,25 @@ def archetypeGenerate(generatedProjectDirectory, directoryName, archetype, arche
     checkArchetypeWasBuilt(generatedProjectDirectory, directoryName)
     // do an ls -la command
     return result
+}
+
+// The command that fetches an archetype before it is generated, or null when there is nothing to
+// fetch. Two paths, and the archetype version alone decides which one you are on.
+//
+// RELEASED version - the path every end user is on. The archetype is on Maven Central, so it is
+// fetched up front and the caller fails loudly and early if it is not there, which is a clearer
+// error than whatever archetype:generate would report about it further down.
+//
+// -SNAPSHOT version - the developer path, and it must NOT fetch. A SNAPSHOT is never published to
+// Central, so dependency:get always failed and this script threw before it reached generation at
+// all. A SNAPSHOT has to be installed in the local repository first instead.
+//
+// Kept out of archetypeGenerate so the decision can be tested without launching Maven.
+def dependencyGetCommandFor(archetype, archetypeVersion) {
+    if (archetypeVersion != null && archetypeVersion.toString().endsWith("-SNAPSHOT")) {
+        return null
+    }
+    return """mvn dependency:get -Dartifact=io.kestros.cms:$archetype:$archetypeVersion -Dtransative=false -U"""
 }
 
 def checkArchetypeWasBuilt(generatedProjectDirectory, directoryName) {
