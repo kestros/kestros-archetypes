@@ -1,0 +1,30 @@
+<!--/* Sample Component view supplied by version 0.0.1 of the ${artifactName} Versioned Library
+    (library code ${artifactIdShorthand}-versioned-lib).
+
+    THIS FILE NEVER RENDERS, AND THAT IS THE POINT. It is not dead code and it is not a mistake -
+    it is here so you can see what happens to a library-scoped view on a component that a UI
+    Framework has already claimed. Deleting it deletes the lesson.
+
+    Sample Component already ships FRAMEWORK-scoped views under both of this project's framework
+    codes, ${artifactIdShorthand}-ui and ${artifactIdShorthand}-versioned-ui. This is the
+    VENDOR-LIBRARY-scoped form of the same thing, attached through the library that the versioned
+    framework includes.
+
+    WHY IT LOSES. For a given UI Framework, Kestros builds an ordered list of view roots to try:
+    the framework's own code and versions first, then the codes of every vendor library that
+    framework includes, then 'common'. Under ${artifactIdShorthand}-versioned-ui the list opens
+    with ${artifactIdShorthand}-versioned-ui/0.0.1 - which Sample Component has - so that view is
+    returned and this one is never reached. Under ${artifactIdShorthand}-ui the versioned library
+    is not part of the framework at all, so ${artifactIdShorthand}-versioned-lib is not even in
+    the list. There is no framework in this project under which this file wins.
+
+    THE COUNTERPART THAT DOES RENDER is the same library's view on the core Kestros Text
+    component. Text carries no view under either of this project's framework codes, so the
+    library code is the first entry that matches and the library view renders. The pairing is the
+    whole lesson: a library-scoped view only reaches a component the framework has not claimed.
+
+    TO SEE THE SHADOWING. Author a Sample Component on a page - it is not on the generated site's
+    page by default - and set the site's theme to one belonging to
+    ${artifactId}-versioned-framework. The markup that renders is the framework view's. Edit the
+    paragraph below to anything you like; the page will not change. */-->
+<p class="sample-component sample-component--${artifactIdShorthand}-versioned-lib">Sample Component, ${artifactName} Versioned Library view. Seeing this sentence on a page means the framework view stopped winning, and something is wrong.</p>
