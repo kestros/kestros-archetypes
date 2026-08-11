@@ -92,16 +92,18 @@ def archetypeGenerate(generatedProjectDirectory, directoryName, archetype, arche
 //    println "organizationName: $organizationName"
 //    println "hasParentProject: $hasParentProject"
 
+    def mvn = mavenExecutable(System.getProperty("maven.home"), System.getProperty("os.name"))
+
     // update/download dependency using dependency plugin, unless the version says not to.
     // See dependencyGetCommandFor for which version is on which path.
-    def dependencyCommand = dependencyGetCommandFor(archetype, archetypeVersion)
+    def dependencyCommand = dependencyGetCommandFor(mvn, archetype, archetypeVersion)
     if (dependencyCommand == null) {
         println "Skipping dependency:get for SNAPSHOT archetype io.kestros.cms:$archetype:$archetypeVersion"
         println "  A SNAPSHOT is not published to Maven Central. It has to be installed in the local"
         println "  repository first - 'mvn install' on the archetype modules, in the order api, core,"
         println "  content, application, project."
     } else {
-        println dependencyCommand
+        println dependencyCommand.join(" ")
         def dependencyResult = dependencyCommand.execute(null, new File(generatedProjectDirectory)).text
 
         // print the result
@@ -121,7 +123,7 @@ def archetypeGenerate(generatedProjectDirectory, directoryName, archetype, arche
     // (artifactName / artifactDescription / organizationName) survive intact. The old
     // single-string form was tokenized on whitespace by String.execute(), which forced a
     // replaceAll("\\s","") strip that deleted spaces from the generated jcr:title values.
-    def command = ["mvn", "archetype:generate",
+    def command = [mvn, "archetype:generate",
                    "-DarchetypeGroupId=io.kestros.cms",
                    "-DarchetypeArtifactId=${archetype}".toString(),
                    "-DarchetypeVersion=${archetypeVersion}".toString(),
@@ -175,11 +177,38 @@ def archetypeGenerate(generatedProjectDirectory, directoryName, archetype, arche
 // all. A SNAPSHOT has to be installed in the local repository first instead.
 //
 // Kept out of archetypeGenerate so the decision can be tested without launching Maven.
-def dependencyGetCommandFor(archetype, archetypeVersion) {
+//
+// Each argument is its own list element, as with the generate command below, so a Maven path
+// containing a space is not torn in half by String.execute()'s whitespace tokenizing.
+def dependencyGetCommandFor(mavenExecutable, archetype, archetypeVersion) {
     if (archetypeVersion != null && archetypeVersion.toString().endsWith("-SNAPSHOT")) {
         return null
     }
-    return """mvn dependency:get -Dartifact=io.kestros.cms:$archetype:$archetypeVersion -Dtransative=false -U"""
+    return [mavenExecutable, "dependency:get",
+            "-Dartifact=io.kestros.cms:${archetype}:${archetypeVersion}".toString(),
+            "-Dtransative=false", "-U"]
+}
+
+// The Maven binary to fork with.
+//
+// `mvn` on PATH is not a safe assumption. This script runs inside a Maven JVM, but a process it
+// forks inherits the launcher's environment, and there are ordinary setups where that PATH holds
+// no mvn at all - a Jenkins Maven tool installation invokes it by absolute path, and so do the
+// Maven wrapper and most IDEs. When that happens the fork dies with "Cannot run program mvn"
+// before it can generate anything.
+//
+// Maven sets maven.home on its own JVM, so take the binary from there when it is there, and fall
+// back to PATH when it is not. Arguments rather than System.getProperty calls so the choice is
+// testable.
+def mavenExecutable(mavenHome, osName) {
+    if (mavenHome != null && !mavenHome.toString().trim().isEmpty()) {
+        def windows = osName != null && osName.toString().toLowerCase().contains("windows")
+        def candidate = new File(new File(mavenHome.toString(), "bin"), windows ? "mvn.cmd" : "mvn")
+        if (candidate.isFile()) {
+            return candidate.absolutePath
+        }
+    }
+    return "mvn"
 }
 
 def checkArchetypeWasBuilt(generatedProjectDirectory, directoryName) {

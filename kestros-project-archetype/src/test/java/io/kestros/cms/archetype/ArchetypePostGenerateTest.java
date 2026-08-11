@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -48,15 +49,31 @@ public class ArchetypePostGenerateTest {
   }
 
   private Object dependencyGetCommandFor(final String archetype, final String archetypeVersion) {
+    return dependencyGetCommandFor("mvn", archetype, archetypeVersion);
+  }
+
+  private Object dependencyGetCommandFor(final String mavenExecutable, final String archetype,
+      final String archetypeVersion) {
     return script.invokeMethod("dependencyGetCommandFor",
-        new Object[]{archetype, archetypeVersion});
+        new Object[]{mavenExecutable, archetype, archetypeVersion});
+  }
+
+  @SuppressWarnings("unchecked")
+  private static String joined(final Object command) {
+    // The command is a list so an executable path containing a space survives; joining it back
+    // keeps these assertions readable as the command line they produce.
+    return String.join(" ", (List<String>) command);
+  }
+
+  private Object mavenExecutable(final String mavenHome, final String osName) {
+    return script.invokeMethod("mavenExecutable", new Object[]{mavenHome, osName});
   }
 
   @Test
   public void testDependencyGetCommandForWhenVersionIsReleased() {
     assertEquals("mvn dependency:get -Dartifact=io.kestros.cms:kestros-api-archetype:0.9.0"
                  + " -Dtransative=false -U",
-        String.valueOf(dependencyGetCommandFor("kestros-api-archetype", "0.9.0")));
+        joined(dependencyGetCommandFor("kestros-api-archetype", "0.9.0")));
   }
 
   @Test
@@ -79,14 +96,22 @@ public class ArchetypePostGenerateTest {
     // to carry the word elsewhere is still on Central and must still be fetched.
     assertEquals("mvn dependency:get -Dartifact=io.kestros.cms:kestros-core-archetype:0.9.0"
                  + "-SNAPSHOT-rebuild -Dtransative=false -U",
-        String.valueOf(dependencyGetCommandFor("kestros-core-archetype", "0.9.0-SNAPSHOT-rebuild")));
+        joined(dependencyGetCommandFor("kestros-core-archetype", "0.9.0-SNAPSHOT-rebuild")));
   }
 
   @Test
   public void testDependencyGetCommandForWhenVersionIsNull() {
     assertEquals("mvn dependency:get -Dartifact=io.kestros.cms:kestros-api-archetype:null"
                  + " -Dtransative=false -U",
-        String.valueOf(dependencyGetCommandFor("kestros-api-archetype", null)));
+        joined(dependencyGetCommandFor("kestros-api-archetype", null)));
+  }
+
+  @Test
+  @SuppressWarnings("unchecked")
+  public void testDependencyGetCommandForKeepsAMavenPathWithSpacesInOnePiece() {
+    final List<String> command = (List<String>) dependencyGetCommandFor(
+        "/opt/build tools/maven/bin/mvn", "kestros-api-archetype", "0.9.0");
+    assertEquals("/opt/build tools/maven/bin/mvn", command.get(0));
   }
 
   /**
@@ -143,5 +168,45 @@ public class ArchetypePostGenerateTest {
     script.invokeMethod("resetPomFile", new Object[]{folder.getRoot().getAbsolutePath()});
 
     assertFalse("nothing to restore from, so pom.xml stays removed", pom.exists());
+  }
+
+  /**
+   * The script forks Maven to generate each submodule. `mvn` is not always on the PATH a forked
+   * process inherits — a Jenkins Maven tool installation, the Maven wrapper and most IDEs all
+   * invoke it by absolute path — and the fork then dies with "Cannot run program mvn".
+   */
+  @Test
+  public void testMavenExecutableUsesTheBinaryFromMavenHome() throws Exception {
+    final File bin = folder.newFolder("maven", "bin");
+    final File mvn = new File(bin, "mvn");
+    assertTrue(mvn.createNewFile());
+
+    assertEquals(mvn.getAbsolutePath(),
+        mavenExecutable(bin.getParentFile().getAbsolutePath(), "Linux"));
+  }
+
+  @Test
+  public void testMavenExecutableUsesTheWindowsBinaryOnWindows() throws Exception {
+    final File bin = folder.newFolder("maven", "bin");
+    final File mvnCmd = new File(bin, "mvn.cmd");
+    assertTrue(mvnCmd.createNewFile());
+
+    assertEquals(mvnCmd.getAbsolutePath(),
+        mavenExecutable(bin.getParentFile().getAbsolutePath(), "Windows 10"));
+  }
+
+  @Test
+  public void testMavenExecutableFallsBackToThePathWhenMavenHomeIsUnset() {
+    // System.getProperty("maven.home") is set by Maven's own launcher, but the script must not
+    // break for anything that parses or runs it without one.
+    assertEquals("mvn", mavenExecutable(null, "Linux"));
+    assertEquals("mvn", mavenExecutable("  ", "Linux"));
+  }
+
+  @Test
+  public void testMavenExecutableFallsBackToThePathWhenMavenHomeHoldsNoBinary() throws Exception {
+    final File mavenHome = folder.newFolder("empty-maven");
+
+    assertEquals("mvn", mavenExecutable(mavenHome.getAbsolutePath(), "Linux"));
   }
 }
