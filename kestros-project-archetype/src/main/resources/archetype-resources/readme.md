@@ -22,6 +22,7 @@ small: find it, change it, redeploy.
 |---------|-------|
 | Custom component (definition, edit dialog, Sling Model, common view) | `application`: `apps/${artifactId}/components/sample-component`, `SampleComponent.java` |
 | Component views per UI Framework, layouts, and variations | `application`: `sample-component/${artifactIdShorthand}-ui` (layouts + variations) and `${artifactIdShorthand}-versioned-ui` |
+| Component view attached by a VENDOR LIBRARY rather than a framework | `application`: `apps/kestros/commons/components/content/text/${artifactIdShorthand}-versioned-lib/versions/0.0.1`, on the core Text component. It is carried by `${artifactId}-versioned-library`, so switch the site's theme to the versioned framework to see it render; under the unversioned framework Text keeps its `common` view |
 | UI Library (unversioned + versioned) | `application`: `etc/vendor-libraries/${artifactId}-library` and `${artifactId}-versioned-library` |
 | UI Framework (unversioned + versioned, with themes) | `application`: `etc/ui-frameworks/${artifactId}-framework` and `${artifactId}-versioned-framework` |
 | OSGi service consumed by models and datasources | `api`: `SampleService`, `core`: `SampleServiceImpl` |
