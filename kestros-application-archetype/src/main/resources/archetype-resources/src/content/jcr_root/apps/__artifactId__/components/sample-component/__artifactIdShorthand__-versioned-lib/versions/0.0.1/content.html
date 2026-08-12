@@ -18,10 +18,10 @@
     is not part of the framework at all, so ${artifactIdShorthand}-versioned-lib is not even in
     the list. There is no framework in this project under which this file wins.
 
-    THE COUNTERPART THAT DOES RENDER is the same library's view on the core Kestros Text
-    component. Text carries no view under either of this project's framework codes, so the
-    library code is the first entry that matches and the library view renders. The pairing is the
-    whole lesson: a library-scoped view only reaches a component the framework has not claimed.
+    WHEN THE SAME VIEW WOULD WIN. Put this file under a component that carries no view for
+    ${artifactIdShorthand}-versioned-ui or its versions, and the library code becomes the first
+    entry in the list that matches - so the library view is what renders. That is the whole
+    lesson: a library-scoped view only reaches a component the framework has not claimed.
 
     TO SEE THE SHADOWING. Author a Sample Component on a page - it is not on the generated site's
     page by default - and set the site's theme to one belonging to
