@@ -83,4 +83,46 @@
         </plugins>
     </build>
 
+    <profiles>
+        <!-- Regenerates src/test/resources/projects/it1/reference from the project the archetype
+             integration test just generated. The reference tree is 244 files and every one of
+             them is output, so it is rebuilt rather than edited:
+
+                 mvn -B verify -Pregenerate-reference
+
+             Run it after any change to archetype-resources, read the resulting git diff to check
+             the change is the one you meant, and commit the tree with the change. Editing a
+             reference file by hand makes the comparison agree with a project the archetype does
+             not actually produce, which is worse than having no comparison. -->
+        <profile>
+            <id>regenerate-reference</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>${antrun.version}</version>
+                        <executions>
+                            <execution>
+                                <id>regenerate-reference</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <delete dir="${project.basedir}/src/test/resources/projects/it1/reference"/>
+                                        <copy todir="${project.basedir}/src/test/resources/projects/it1/reference">
+                                            <fileset dir="${project.build.directory}/test-classes/projects/it1/project/build-integration-test"/>
+                                        </copy>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>

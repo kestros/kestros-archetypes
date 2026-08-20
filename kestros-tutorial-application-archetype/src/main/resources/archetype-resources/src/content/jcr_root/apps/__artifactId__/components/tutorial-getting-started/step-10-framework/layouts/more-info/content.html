@@ -1,0 +1,18 @@
+<h2>Step 10</h2>
+<h3>Datasources</h3>
+<div class="grid">
+    <div class="column column-2">
+        <p>A datasource is chosen per component instance, not per component type. The same Card
+            component renders authored content when <code>kes:datasource</code> is absent, and
+            programmatic content when it names a registered datasource.</p>
+        <p>Only the datasource node's <code>classPath</code> ties the two together, so a datasource
+            can be swapped for another without touching the page, and a component view never
+            references a datasource class directly.</p>
+        <p><code>container="{Boolean}true"</code> on the registration node is what marks this
+            datasource as supplying a container element - a Card - rather than a single value such
+            as a string of text.</p>
+    </div>
+    <div class="column column-2">
+        <sly data-sly-resource="${'datasource-card'}"></sly>
+    </div>
+</div>
