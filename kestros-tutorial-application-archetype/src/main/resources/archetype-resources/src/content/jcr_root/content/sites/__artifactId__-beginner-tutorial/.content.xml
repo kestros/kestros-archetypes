@@ -28,7 +28,17 @@
                              sling:resourceType="/libs/kestros/commons/components/content/heading"
                              text="Welcome to Kestros!" level="h1"/>
                     <tutorial-getting-started jcr:primaryType="nt:unstructured"
-                                              sling:resourceType="${artifactId}/components/tutorial-getting-started"/>
+                                              sling:resourceType="${artifactId}/components/tutorial-getting-started">
+                        <!-- Step 10's demonstration Card. It carries no title or description of
+                             its own: kes:datasource names the registration node under
+                             /apps/kestros/commons/components/content/card/datasources, which
+                             points at TutorialCardDataSource, and everything on the card is built
+                             there in Java. Only the step-10 view of tutorial-getting-started
+                             pulls this node in, so it is on screen at step 10 and nowhere else. -->
+                        <datasource-card jcr:primaryType="nt:unstructured"
+                                         sling:resourceType="/libs/kestros/commons/components/content/card"
+                                         kes:datasource="${artifactId}-tutorial-card"/>
+                    </tutorial-getting-started>
                 </content>
             </container>
         </main>

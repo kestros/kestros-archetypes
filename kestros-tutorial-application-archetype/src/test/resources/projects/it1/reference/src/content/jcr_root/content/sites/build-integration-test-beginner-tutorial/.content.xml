@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          xmlns:kes="http://kestros.io/kes/1.0"
+          jcr:primaryType="kes:Site">
+    <jcr:content jcr:primaryType="nt:unstructured"
+                 sling:resourceType="kestros/commons/components/kestros-base-page"
+                 kes:theme="/etc/ui-frameworks/tutorial-beginner-step-1-framework/themes/default"
+                 jcr:title="Beginner Tutorial - Build Integration Test"
+                 jcr:description="Learn the fundamentals of developing sites for Kestros.">
+        <header jcr:primaryType="nt:unstructured"
+                sling:resourceType="kestros/commons/components/inherited-content-area">
+            <container jcr:primaryType="nt:unstructured"
+                       sling:resourceType="/libs/kestros/commons/components/structure/container">
+                <content jcr:primaryType="nt:unstructured"
+                         sling:resourceType="kestros/commons/components/content-area">
+                    <top-navigation jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="/libs/kestros/commons/components/structure/top-navigation"/>
+                </content>
+            </container>
+        </header>
+        <main jcr:primaryType="nt:unstructured"
+              sling:resourceType="kestros/commons/components/content-area">
+            <container jcr:primaryType="nt:unstructured"
+                       sling:resourceType="/libs/kestros/commons/components/structure/container">
+                <content jcr:primaryType="nt:unstructured"
+                         sling:resourceType="kestros/commons/components/content-area">
+                    <heading jcr:primaryType="nt:unstructured"
+                             sling:resourceType="/libs/kestros/commons/components/content/heading"
+                             text="Welcome to Kestros!" level="h1"/>
+                    <tutorial-getting-started jcr:primaryType="nt:unstructured"
+                                              sling:resourceType="build-integration-test/components/tutorial-getting-started">
+                        <!-- Step 10's demonstration Card. It carries no title or description of
+                             its own: kes:datasource names the registration node under
+                             /apps/kestros/commons/components/content/card/datasources, which
+                             points at TutorialCardDataSource, and everything on the card is built
+                             there in Java. Only the step-10 view of tutorial-getting-started
+                             pulls this node in, so it is on screen at step 10 and nowhere else. -->
+                        <datasource-card jcr:primaryType="nt:unstructured"
+                                         sling:resourceType="/libs/kestros/commons/components/content/card"
+                                         kes:datasource="build-integration-test-tutorial-card"/>
+                    </tutorial-getting-started>
+                </content>
+            </container>
+        </main>
+        <footer jcr:primaryType="nt:unstructured"
+                sling:resourceType="kestros/commons/components/inherited-content-area"/>
+    </jcr:content>
+</jcr:root>

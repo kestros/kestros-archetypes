@@ -1,0 +1,1 @@
+console.log('Hello World! I am JavaScript being provided by the Empty Framework.')
