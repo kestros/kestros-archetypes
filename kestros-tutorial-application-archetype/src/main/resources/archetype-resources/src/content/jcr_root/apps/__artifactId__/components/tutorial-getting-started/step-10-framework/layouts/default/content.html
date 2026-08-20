@@ -1,0 +1,32 @@
+<h2>Step 10</h2>
+<h3>Services</h3>
+<p>Every step so far rendered content that was sitting on the page. A component often needs
+    something that is not - a product list, a search result, the current user - and that comes from
+    an OSGi service in your project's <code>core</code> module, reached through a Sling Model.</p>
+<h4>The three pieces</h4>
+<ul>
+    <li>An interface in <code>api</code>, so that the component depends on a contract rather than
+        an implementation.
+    </li>
+    <li>An implementation in <code>core</code>, annotated as an OSGi component so the container
+        registers it.
+    </li>
+    <li>A Sling Model adapting the component's resource, holding the service and exposing what the
+        view needs.
+    </li>
+</ul>
+<h4>Why the view stays simple</h4>
+<p>The view calls one property on the model and renders it. Keeping the work on the Java side is
+    what lets every framework in this tutorial provide a different view of the same component
+    without any of them re-implementing how the data was fetched.</p>
+<p>The generated project ships a <code>SampleService</code> and a <code>SampleModel</code> in those
+    two modules as a starting point.</p>
+
+<h2>Next Step</h2>
+<p>That is the last of the mechanics. One step left.</p>
+<ol>
+    <li>Click <code>Edit</code> in the <code>Actionbar</code> at the top of the page.</li>
+    <li>In the <code>Edit Page</code> dialog, click the <code>Styles</code> tab.</li>
+    <li>Select <code>Step 11: What's Next</code>, and the <code>Default</code> theme.</li>
+    <li>Click <code>Save</code> to apply the changes.</li>
+</ol>

@@ -1,44 +1,49 @@
 <h2>Follow Along!</h2>
 <p>Follow along with the steps to learn everything you need to know to get started with Kestros.</p>
 <h2>Step 1: Getting Started</h2>
-<p>In this tutorial, we are going to go through
+<p>Over the next eleven steps you will change nothing but the <code>UIFramework</code> this page is
+    rendered with, and watch the page change underneath you. Everything you see below is coming from
+    the tutorial component in your own codebase.</p>
 <h3>Component Types</h3>
-<p>A <code>ComponentType</code> is block of content that can be dropped onto a page. This <code>ComponentType</code>
-    can be
-    found in your codebase at <code>application/src/content/jcr_root/apps/${artifactId}/components/sample-component</code>.
-</p>
+<p>A <code>ComponentType</code> is block of content that can be dropped onto a page. This
+    <code>ComponentType</code> can be found in your codebase at
+    <code>src/content/jcr_root/apps/${artifactId}/components/tutorial-getting-started</code>.</p>
 <p>Each <code>ComponentType</code> can contain any number of <code>ComponentViews</code>, that can
     be provided for each <code>Library</code> or <code>UIFramework</code>. This allows you to simply
     change the <code>UIFramework</code> that is being used to render a page, and the layout, styles
     and behavior of the page will automatically update, with having to create a new site or migrate
     any content!</p>
 <p><a target="_blank" rel="noopener noreferrer"
-      href="/libs/kestros/site-admin/component-management/component-type.html/apps/${artifactId}/components/sample-component">Documentation
+      href="/libs/kestros/site-admin/component-management/component-type.html/apps/${artifactId}/components/tutorial-getting-started">Documentation
     for <code>ComponentTypes</code> is automatically generated, and provides usage information as
     well as validation to help you troubleshoot potential development issues.</a></p>
 <h4>Common View</h4>
-Right now you are looking
-at the <code>common</code> view for this <code>ComponentType</code>, which means that neither the
-<code>UIFramework</code> nor the Libraries that it references are providing a
-<code>ComponentView</code> for it.</p>
+<p>Right now you are looking
+    at the <code>common</code> view for this <code>ComponentType</code>, which means that neither the
+    <code>UIFramework</code> nor the Libraries that it references are providing a
+    <code>ComponentView</code> for it.</p>
 <h3>UI Frameworks</h3>
 <p><code>UIFrameworks</code> are used to provide CSS and JavaScript to a page, as well as determine
     which <code>ComponentViews</code> will be used when a page is being rendered. Right now, this
     page is using
-    the <code>UIFramework</code> named <code>Empty Framework</code>. It does not reference any
-    <code>Libraries</code>, provide any of its own CSS or JavaScript, or provide any <code>ComponentViews</code>.
+    the <code>UIFramework</code> named <code>Step 1: Getting Started</code>. It does not reference
+    any
+    <code>Libraries</code>, provide any of its own CSS or JavaScript, or provide any
+    <code>ComponentViews</code>.
 </p>
-<p>Lets take a look at the CSS and JavaScript files it provides to a page.</p>
+<p>Lets take a look at the CSS and JavaScript files it provides to a page. Both are empty for now -
+    that is what a framework with nothing in it looks like, and it is the baseline every later step
+    is measured against.</p>
 <ul>
-    <li><a href="/content/sites/${artifactId}.step-1.default.css"
+    <li><a href="/content/sites/${artifactId}-beginner-tutorial.step-1.default.css"
            target="_blank" rel="noopener noreferrer">CSS</a></li>
-    <li><a href="/content/sites/${artifactId}.step-1.default.js"
+    <li><a href="/content/sites/${artifactId}-beginner-tutorial.step-1.default.js"
            target="_blank" rel="noopener noreferrer">JavaScript</a></li>
 </ul>
-<p>This <code>UIFramework</code> can be found in your codebase at <code>application/src/content/jcr_root/etc/ui-frameworks/step-1-framework</code>.
-</p>
+<p>This <code>UIFramework</code> can be found in your codebase at
+    <code>src/content/jcr_root/etc/ui-frameworks/tutorial-beginner-step-1-framework</code>.</p>
 <p><a target="_blank" rel="noopener noreferrer"
-      href="http://localhost:8080/libs/kestros/site-admin/ui-management/ui-framework.html/etc/ui-frameworks/step-1-framework">Documentation
+      href="/libs/kestros/site-admin/ui-management/ui-framework.html/etc/ui-frameworks/tutorial-beginner-step-1-framework">Documentation
     for <code>UI Frameworks</code> is automatically generated, and provides usage information as
     well as validation to help you troubleshoot potential development issues.</a></p>
 
@@ -48,6 +53,7 @@ at the <code>common</code> view for this <code>ComponentType</code>, which means
 <ol>
     <li>Click <code>Edit</code> in the <code>Actionbar</code> at the top of the page.</li>
     <li>In the <code>Edit Page</code> dialog, click the <code>Styles</code> tab.</li>
-    <li>Select <code>Framework using Libraries (Step 2)</code>, and the <code>Default</code> theme.</li>
+    <li>Select <code>Step 2: Framework using Libraries</code>, and the <code>Default</code> theme.
+    </li>
     <li>Click <code>Save</code> to apply the changes.</li>
 </ol>
