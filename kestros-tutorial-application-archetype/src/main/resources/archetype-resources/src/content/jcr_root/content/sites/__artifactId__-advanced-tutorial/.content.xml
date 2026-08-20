@@ -4,7 +4,7 @@
           jcr:primaryType="kes:Site">
     <jcr:content jcr:primaryType="nt:unstructured"
                  sling:resourceType="kestros/commons/components/kestros-base-page"
-                 kes:theme="/etc/ui-frameworks/intermediate-step-1-framework/themes/default"
+                 kes:theme="/etc/ui-frameworks/tutorial-beginner-step-1-framework/themes/default"
                  jcr:title="Advanced Tutorial - ${artifactName}">
         <header jcr:primaryType="nt:unstructured"
                 sling:resourceType="kestros/commons/components/inherited-content-area">

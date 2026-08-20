@@ -1,0 +1,34 @@
+<h2>Step 9</h2>
+<h3>Create New Component Types</h3>
+<p>Everything so far has been views over components that already existed. A
+    <code>ComponentType</code> of your own is a directory under
+    <code>src/content/jcr_root/apps/${artifactId}/components</code> with a
+    <code>.content.xml</code> declaring it, and at least a <code>common</code> view - which is
+    exactly what the component you are reading is.</p>
+<h4>What the .content.xml has to say</h4>
+<ul>
+    <li><code>jcr:primaryType</code> of <code>kes:ComponentType</code>, which is what makes it one.
+    </li>
+    <li>A <code>jcr:title</code>, because that is the name authors pick it by.</li>
+    <li>A <code>componentGroup</code>, which is the section of the component picker it appears
+        under. Leave it out and authors cannot find it.
+    </li>
+    <li>A <code>sling:resourceSuperType</code>, usually
+        <code>kestros/commons/components/kestros-parent</code>, which is where edit-mode behaviour
+        comes from.
+    </li>
+</ul>
+<h4>Then the views</h4>
+<p>A <code>common</code> view is the fallback and is the only one strictly required. Add framework
+    views beside it as you go, on the same rules you have been using since step 3 - and the
+    documentation and validation pages Kestros generates for the component start working the moment
+    the component exists.</p>
+
+<h2>Next Step</h2>
+<p>Next we will give a component something to render that is not stored on the page.</p>
+<ol>
+    <li>Click <code>Edit</code> in the <code>Actionbar</code> at the top of the page.</li>
+    <li>In the <code>Edit Page</code> dialog, click the <code>Styles</code> tab.</li>
+    <li>Select <code>Step 10: Services</code>, and the <code>Default</code> theme.</li>
+    <li>Click <code>Save</code> to apply the changes.</li>
+</ol>

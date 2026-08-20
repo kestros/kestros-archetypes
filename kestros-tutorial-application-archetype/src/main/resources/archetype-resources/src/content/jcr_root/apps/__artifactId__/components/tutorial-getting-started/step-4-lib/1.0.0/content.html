@@ -3,15 +3,28 @@
 
         <sly data-sly-resource="${'step-details' @ resourceType='${artifactId}/components/tutorial-step-details'}"></sly>
 
+        <h3>Try the Other Two Versions</h3>
+        <p>This framework ships in three versions, and each one references a different version of
+            the Step 4 library. Before moving on, switch between them in the <code>Styles</code>
+            tab and watch what happens to the page:</p>
+        <ul>
+            <li><code>Versioned Framework (Step 4) 2.0.0</code> - the library's 2.0.0 declares no
+                view, so the page falls back to the 1.0.0 view you are reading now. The panel
+                beside this one is how you can tell.
+            </li>
+            <li><code>Versioned Framework (Step 4) 3.0.0</code> - 3.0.0 does declare a view, so the
+                page changes.
+            </li>
+        </ul>
+        <p>That fallback is the point of the step: a version only has to provide what it changes,
+            and everything else keeps resolving to the newest earlier version that provided it.</p>
+
         <h2>Next Step</h2>
-        <p>Let's try switching to a <code>UIFramework</code> that provides a
-            <code>ComponentView</code>
-            for
-            this <code>ComponentType</code></p>
+        <p>Next we will version the framework itself rather than the library it depends on.</p>
         <ol>
             <li>Click <code>Edit</code> in the <code>Actionbar</code> at the top of the page.</li>
             <li>In the <code>Edit Page</code> dialog, click the <code>Styles</code> tab.</li>
-            <li>Select <code>Framework with View Override (Step 3)</code>, and the
+            <li>Select <code>Using Framework Versions (Step 5) 1.0.0</code>, and the
                 <code>Default</code>
                 theme.
             </li>
