@@ -50,7 +50,7 @@
             <artifactId>kestros-site-building-api</artifactId>
         </dependency>
         <dependency>
-            <!-- BaseContainerSlingModelDataSource and the card/heading elements the step-10
+            <!-- BaseContainerSlingModelDataSource and the card/heading elements the step-11
                  datasource is built from. -->
             <groupId>io.kestros.cms</groupId>
             <artifactId>kestros-basic-components</artifactId>

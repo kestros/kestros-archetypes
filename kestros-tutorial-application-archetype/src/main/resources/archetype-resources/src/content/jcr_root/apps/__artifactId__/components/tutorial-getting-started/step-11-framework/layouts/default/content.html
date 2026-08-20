@@ -1,0 +1,41 @@
+<h2>Step 11</h2>
+<h3>Datasources</h3>
+<div class="grid">
+    <div class="column column-2">
+        <p>The card below is not stored anywhere in this project's content package. Its title and
+            its description are built in Java, by
+            <code>TutorialCardDataSource</code>, and handed to the standard Kestros
+            <code>Card</code> component at render time.</p>
+        <p>The wiring is two nodes and one class:</p>
+        <ol>
+            <li><code>TutorialCardDataSource</code> extends
+                <code>BaseContainerSlingModelDataSource</code> and implements
+                <code>KestrosCard</code>. It is a Sling Model, so it needs no OSGi service
+                registration.
+            </li>
+            <li>A node under
+                <code>/apps/kestros/commons/components/content/card/datasources</code> names that
+                class in its <code>classPath</code> property. That is what makes the datasource
+                selectable on a Card.
+            </li>
+            <li>The Card instance on this page carries
+                <code>kes:datasource="${artifactId}-tutorial-card"</code>, which is the name of
+                that node.
+            </li>
+        </ol>
+
+        <h4>Change what the card says</h4>
+        <ol>
+            <li>Open
+                <code>src/main/java/${packageInPathFormat}/application/datasources/TutorialCardDataSource.java</code>.
+            </li>
+            <li>Edit the string returned by <code>getDescription()</code>.</li>
+            <li>Rebuild and redeploy the application module, then reload this page. The new text
+                is on the card, and nothing in the content package changed.
+            </li>
+        </ol>
+    </div>
+    <div class="column column-2">
+        <sly data-sly-resource="${'datasource-card'}"></sly>
+    </div>
+</div>

@@ -2,7 +2,7 @@
 #
 # Checks the project the archetype just generated: every content filter root points at a
 # node that exists, every UI framework node is named by a root, no trace of the removed
-# Services step survives, and step 10's datasource ships as class, node and filter.
+# Services step survives, and the datasource step ships as class, node and filter.
 #
 # Filter drift - a <filter root> naming a node that is not there, or a node that no root
 # names - is the defect that kept this module dormant, so it is checked rather than
@@ -19,22 +19,23 @@ if [ -z "$BASEDIR" ]; then
   exit 2
 fi
 
-# Slot 10 held the Services step, which #165 removed. #164 refills the same slot with the
-# datasources step, so the count is back to eleven and step 10 exists again - what must not
-# come back is Services, not the slot. The three strings below are the Services step's own
-# wording; the datasources step reuses the node name and the framework code, which is the
-# point of reusing the slot rather than renumbering.
-EXPECTED_FRAMEWORK_ROOTS=11
-REQUIRED_FRAMEWORK=tutorial-step-11-framework
+# Slot 10 held the Services step, which #165 removed. #164 refilled the same slot with the
+# datasources step; #166 then inserted the themes step at 6, which pushed the datasources
+# step and everything else above 5 up by one. What must not come back is Services, and the
+# two strings below are the Services step's own wording, so they stay as they were written
+# however the ladder renumbers around them.
+EXPECTED_FRAMEWORK_ROOTS=12
+REQUIRED_FRAMEWORK=tutorial-step-12-framework
 FORBIDDEN=(
   "Step 10: Services"
   "tutorial-step-10-services"
 )
 
-# Step 10 is the datasources step. Named explicitly so that deleting the wrong framework
+# Step 11 is the datasources step. Named explicitly so that deleting the wrong framework
 # line is caught rather than merely changing the count.
-STEP_10_FRAMEWORK=tutorial-step-10-framework
-STEP_10_TITLE="Step 10: Datasources"
+DATASOURCE_STEP_FRAMEWORK=tutorial-step-11-framework
+DATASOURCE_STEP_TITLE="Step 11: Datasources"
+DATASOURCE_STEP_CODE=step-11-framework
 
 # The datasource ships as three things that must agree, and each is checked against the
 # generated project rather than against the archetype source: the class at its packaged
@@ -129,37 +130,37 @@ for project in "${projects[@]}"; do
     fail "$REQUIRED_FRAMEWORK is not listed in $filter - the tutorial finale was removed"
   fi
 
-  # Slot 10 is the datasources step: the framework node, its title, and the component view
-  # named by the framework CODE (step-10-framework), not by the node name.
-  found_step_10=false
+  # The datasources step: the framework node, its title, and the component view named by
+  # the framework CODE (step-11-framework), not by the node name.
+  found_datasource_step=false
   for root in "${framework_roots[@]}"; do
-    if [ "$root" = "/etc/ui-frameworks/$STEP_10_FRAMEWORK" ]; then
-      found_step_10=true
+    if [ "$root" = "/etc/ui-frameworks/$DATASOURCE_STEP_FRAMEWORK" ]; then
+      found_datasource_step=true
       break
     fi
   done
-  if [ "$found_step_10" = false ]; then
-    fail "$STEP_10_FRAMEWORK is not listed in $filter - slot 10 is empty"
+  if [ "$found_datasource_step" = false ]; then
+    fail "$DATASOURCE_STEP_FRAMEWORK is not listed in $filter - the datasources step is missing"
   fi
-  step_10_node="$jcr_root/etc/ui-frameworks/$STEP_10_FRAMEWORK/.content.xml"
-  if [ ! -f "$step_10_node" ]; then
-    fail "no framework node at $step_10_node"
-  elif ! grep -q -F -- "jcr:title=\"$STEP_10_TITLE\"" "$step_10_node"; then
-    fail "$step_10_node is not titled \"$STEP_10_TITLE\""
-  elif ! grep -q -F -- 'kes:uiFrameworkCode="step-10-framework"' "$step_10_node"; then
-    fail "$step_10_node does not keep kes:uiFrameworkCode=\"step-10-framework\""
+  datasource_step_node="$jcr_root/etc/ui-frameworks/$DATASOURCE_STEP_FRAMEWORK/.content.xml"
+  if [ ! -f "$datasource_step_node" ]; then
+    fail "no framework node at $datasource_step_node"
+  elif ! grep -q -F -- "jcr:title=\"$DATASOURCE_STEP_TITLE\"" "$datasource_step_node"; then
+    fail "$datasource_step_node is not titled \"$DATASOURCE_STEP_TITLE\""
+  elif ! grep -q -F -- "kes:uiFrameworkCode=\"$DATASOURCE_STEP_CODE\"" "$datasource_step_node"; then
+    fail "$datasource_step_node does not keep kes:uiFrameworkCode=\"$DATASOURCE_STEP_CODE\""
   fi
 
   # The view directory is named by the framework code. A view under the node name instead
   # would never resolve, and nothing at runtime would say why.
-  step_10_view=""
+  datasource_step_view=""
   while IFS= read -r dir; do
-    step_10_view="$dir"
-  done < <(find "$jcr_root/apps" -type d -name step-10-framework -path '*/tutorial-getting-started/*' 2>/dev/null)
-  if [ -z "$step_10_view" ]; then
-    fail "no step-10-framework view directory under tutorial-getting-started"
-  elif [ ! -f "$step_10_view/layouts/default/content.html" ]; then
-    fail "$step_10_view has no layouts/default/content.html"
+    datasource_step_view="$dir"
+  done < <(find "$jcr_root/apps" -type d -name "$DATASOURCE_STEP_CODE" -path '*/tutorial-getting-started/*' 2>/dev/null)
+  if [ -z "$datasource_step_view" ]; then
+    fail "no $DATASOURCE_STEP_CODE view directory under tutorial-getting-started"
+  elif [ ! -f "$datasource_step_view/layouts/default/content.html" ]; then
+    fail "$datasource_step_view has no layouts/default/content.html"
   fi
 
   # The datasource, as three things that have to agree. The class is found by name so the
@@ -231,7 +232,7 @@ for project in "${projects[@]}"; do
     fail "$intermediate is not a sling:Folder"
   fi
 
-  # The Card the learner sees at step 10 has to exist on the beginner site and be wired to
+  # The Card the learner sees at step 11 has to exist on the beginner site and be wired to
   # the registration by name. Beginner site only - the other two sites are #163's.
   beginner=""
   while IFS= read -r hit; do
@@ -241,7 +242,7 @@ for project in "${projects[@]}"; do
   if [ -z "$beginner" ]; then
     fail "no beginner tutorial site under $jcr_root/content/sites"
   elif ! grep -q -F -- 'kes:datasource=' "$beginner"; then
-    fail "$beginner has no component wired to a datasource - step 10 has nothing to show"
+    fail "$beginner has no component wired to a datasource - step 11 has nothing to show"
   fi
 
   # Nothing anywhere in the generated tree may still name the removed step, in a file's
