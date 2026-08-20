@@ -75,6 +75,10 @@
                                     <arg value="${project.basedir}/src/test/scripts/check-filter-roots.sh"/>
                                     <arg value="${project.basedir}"/>
                                 </exec>
+                                <exec executable="bash" failonerror="true">
+                                    <arg value="${project.basedir}/src/test/scripts/check-tutorial-content.sh"/>
+                                    <arg value="${project.basedir}"/>
+                                </exec>
                             </target>
                         </configuration>
                     </execution>

@@ -1,0 +1,65 @@
+<h2>Step 6</h2>
+<div class="grid">
+    <div class="column column-3">
+
+        <h3>Themes</h3>
+        <p>Every step so far has asked you to pick a framework <em>and</em> a theme, without
+            saying what the theme was doing. This step is that answer.</p>
+        <p>A <code>Theme</code> is a child of a <code>UIFramework</code>, and it supplies the CSS
+            that framework serves to the page. The framework decides which
+            <code>ComponentViews</code> render - which words you see - and the theme decides how
+            those words look. Nothing else about the page changes when you change the theme.</p>
+        <p>This framework, <code>Step 6: Themes</code>, ships two of them:</p>
+        <ul>
+            <li><code>Default Theme</code>, at <code>application/src/content/jcr_root/etc/ui-frameworks/tutorial-step-6-framework/themes/default</code></li>
+            <li><code>High Contrast Theme</code>, at <code>application/src/content/jcr_root/etc/ui-frameworks/tutorial-step-6-framework/themes/high-contrast</code></li>
+        </ul>
+        <p>They differ by one file each - the <code>.less</code> under the theme's
+            <code>css</code> node.</p>
+
+        <h4>A theme is not a component variation</h4>
+        <p>Two steps from here, <code>Step 8: Variations</code> introduces a variation group
+            called <code>Color/Theme</code>. Despite the name it is a different thing. A
+            variation is declared by a <code>ComponentType</code> and restyles
+            <em>that one component</em> wherever an author switches it on. A theme belongs to a
+            <code>UIFramework</code> and restyles <em>the whole page</em>, for every component on
+            it, and it is chosen once in the page's <code>Styles</code> tab rather than per
+            component.</p>
+        <p>That is why the themes here are named <code>Default</code> and
+            <code>High Contrast</code> and not <code>Dark</code> and <code>Light</code>: those
+            two words are already taken by the <code>Color/Theme</code> variation you will meet
+            at step 8.</p>
+
+        <h3>Try It</h3>
+        <p>Keep the same framework selected and change only the theme. The instructions and
+            the layout will not move; the colours will.</p>
+        <ol>
+            <li>Click <code>Edit</code> in the <code>Actionbar</code> at the top of the page.</li>
+            <li>In the <code>Edit Page</code> dialog, click the <code>Styles</code> tab.</li>
+            <li>Leave <code>Step 6: Themes</code> selected as the framework, and change the theme
+                to <code>High Contrast Theme</code>.
+            </li>
+            <li>Click <code>Save</code> to apply the changes.</li>
+        </ol>
+        <p>You are reading the same view either way. Open the framework's stylesheet to see
+            which theme served it:</p>
+        <ul>
+            <li><a href="/content/sites/${artifactId}-beginner-tutorial.step-6-framework.default.css"
+                   target="_blank" rel="noopener noreferrer">CSS for the Default Theme</a></li>
+            <li><a href="/content/sites/${artifactId}-beginner-tutorial.step-6-framework.high-contrast.css"
+                   target="_blank" rel="noopener noreferrer">CSS for the High Contrast Theme</a></li>
+        </ul>
+
+        <h2>Next Step</h2>
+        <p>Next, a framework that provides more than one layout for the same component.</p>
+        <ol>
+            <li>Click <code>Edit</code> in the <code>Actionbar</code> at the top of the page.</li>
+            <li>In the <code>Edit Page</code> dialog, click the <code>Styles</code> tab.</li>
+            <li>Select <code>Step 7: Layouts</code>, and the <code>Default Theme</code>.</li>
+            <li>Click <code>Save</code> to apply the changes.</li>
+        </ol>
+    </div>
+    <div class="column column-1">
+        <sly data-sly-resource="${'framework-views' @ resourceType='${artifactId}/components/tutorial-framework-view-map'}"></sly>
+    </div>
+</div>

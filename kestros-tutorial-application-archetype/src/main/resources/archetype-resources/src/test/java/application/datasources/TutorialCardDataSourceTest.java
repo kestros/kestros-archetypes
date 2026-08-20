@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Tests the tutorial's step-10 Card datasource. Extends {@link BaseDataSourceTest} for the shared
+ * Tests the tutorial's step-11 Card datasource. Extends {@link BaseDataSourceTest} for the shared
  * service setup and adds only this datasource's model and resource.
  */
 public class TutorialCardDataSourceTest extends BaseDataSourceTest {
