@@ -30,7 +30,7 @@
     </fileSet>
 
     <!-- The whole tutorial content package (at src/content, matching the sibling archetypes and the
-         filevault plugin's filterSource in the generated pom): eleven tutorial-step UI frameworks, three vendor
+         filevault plugin's filterSource in the generated pom): ten tutorial-step UI frameworks, three vendor
          libraries and the component views that go with them. Every file here is text (xml, less,
          html, js) and some carry ${...} placeholders, so the whole tree is filtered. There are no
          binaries in this module - if any are ever added they need their own unfiltered fileSet,

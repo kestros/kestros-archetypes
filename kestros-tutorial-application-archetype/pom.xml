@@ -35,6 +35,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <archetype.version>3.2.1</archetype.version>
+        <antrun.version>3.1.0</antrun.version>
     </properties>
 
     <build>
@@ -52,6 +53,32 @@
             <plugin>
                 <artifactId>maven-archetype-plugin</artifactId>
                 <version>${archetype.version}</version>
+            </plugin>
+            <!-- Checks the project archetype:integration-test just generated, in the phase after
+                 it. Version is explicit because this module has no parent to inherit one from.
+                 If a second check is ever added to this module it goes in as another <exec>
+                 here, not as a second plugin block. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>${antrun.version}</version>
+                <executions>
+                    <execution>
+                        <id>check-generated-content</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <exec executable="bash" failonerror="true">
+                                    <arg value="${project.basedir}/src/test/scripts/check-filter-roots.sh"/>
+                                    <arg value="${project.basedir}"/>
+                                </exec>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
