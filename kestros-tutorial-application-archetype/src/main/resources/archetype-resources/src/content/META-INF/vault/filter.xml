@@ -25,7 +25,6 @@
     <filter root="/etc/ui-frameworks/tutorial-step-7-framework"/>
     <filter root="/etc/ui-frameworks/tutorial-step-8-framework"/>
     <filter root="/etc/ui-frameworks/tutorial-step-9-framework"/>
-    <filter root="/etc/ui-frameworks/tutorial-step-10-framework"/>
     <filter root="/etc/ui-frameworks/tutorial-step-11-framework"/>
 
     <!-- Vendor libraries the step frameworks pull in, including a versioned one. -->
