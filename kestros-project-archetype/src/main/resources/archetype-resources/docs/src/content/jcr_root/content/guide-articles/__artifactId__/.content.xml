@@ -5,6 +5,6 @@
   <jcr:content
     jcr:primaryType="nt:unstructured"
     sling:resourceType="kestros/components/site-admin/foundation/pages/site-admin-page"
-    kes:theme="/etc/ui-frameworks/kestros-site-admin/themes/default">
+    kes:theme="/etc/ui-frameworks/kestros-site-admin/versions/0.0.1/themes/default">
   </jcr:content>
 </jcr:root>

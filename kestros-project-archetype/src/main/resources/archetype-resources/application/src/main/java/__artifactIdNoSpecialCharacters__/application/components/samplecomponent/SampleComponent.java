@@ -16,11 +16,11 @@ public class SampleComponent extends BaseComponent {
 
   @OSGiService
   @Optional
-  private SampleService sampleServive;
+  private SampleService sampleService;
 
   public String getMyServiceValue() {
-    if(sampleServive != null) {
-      return sampleServive.getMyServiceValue();
+    if(sampleService != null) {
+      return sampleService.getMyServiceValue();
     }
     return StringUtils.EMPTY;
   }

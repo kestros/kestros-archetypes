@@ -1,0 +1,23 @@
+<h2>Step 3</h2>
+<div class="grid">
+    <div class="column column-3">
+
+        <h2>Next Step</h2>
+        <p>Let's try switching to a <code>UIFramework</code> that provides a
+            <code>ComponentView</code>
+            for
+            this <code>ComponentType</code></p>
+        <ol>
+            <li>Click <code>Edit</code> in the <code>Actionbar</code> at the top of the page.</li>
+            <li>In the <code>Edit Page</code> dialog, click the <code>Styles</code> tab.</li>
+            <li>Select <code>Framework with View Override (Step 3)</code>, and the
+                <code>Default</code>
+                theme.
+            </li>
+            <li>Click <code>Save</code> to apply the changes.</li>
+        </ol>
+    </div>
+    <div class="column column-1">
+        <sly data-sly-resource="${'framework-views' @ resourceType='${artifactId}/components/tutorial-framework-view-map'}"></sly>
+    </div>
+</div>

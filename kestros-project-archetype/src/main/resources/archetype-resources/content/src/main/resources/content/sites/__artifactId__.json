@@ -36,10 +36,9 @@
             "text": "Welcome to Kestros!",
             "level": "h1"
           },
-          "text": {
+          "sample-component": {
             "jcr:primaryType": "nt:unstructured",
-            "sling:resourceType": "/libs/kestros/commons/components/content/richtext",
-            "text": "&lt;p&gt;If this is your first time using Kestros, be sure to follow along with the &lt;a href=&quot;https://www.kestros.io/docs.html&quot;&gt;Beginner's Guide&lt;/a&gt;.&lt;/p&gt;"
+            "sling:resourceType": "${artifactId}/components/content/sample-component"
           }
         }
       }

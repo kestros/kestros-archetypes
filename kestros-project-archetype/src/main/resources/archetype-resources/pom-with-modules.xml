@@ -1,0 +1,47 @@
+#set($dollar = '$')
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.kestros.cms</groupId>
+        <artifactId>kestros-site-parent</artifactId>
+        <version>0.1.2</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>${groupId}</groupId>
+    <artifactId>${artifactId}</artifactId>
+    <version>${version}</version>
+    <packaging>pom</packaging>
+
+    <name>${artifactName}</name>
+    <description>${artifactDescription}</description>
+    <url></url>
+    <inceptionYear></inceptionYear>
+
+    <organization>
+        <name>${organizationName}</name>
+    </organization>
+    <developers>
+        <developer></developer>
+    </developers>
+    <licenses>
+        <license></license>
+    </licenses>
+    <scm>
+        <connection></connection>
+        <developerConnection></developerConnection>
+        <url></url>
+    </scm>
+
+
+    <modules>
+        <module>api</module>
+        <module>core</module>
+        <module>application</module>
+        <module>content</module>
+    </modules>
+
+</project>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+
+  <filter root="/apps/build-integration-test2"/>
+
+  <filter root="/apps/build-integration-test2/install" mode="update">
+    <include pattern=".*build-integration-test2-application.*\.jar"/>
+  </filter>
+
+  <filter root="/etc/ui-frameworks/build-integration-test2-framework"/>
+  <filter root="/etc/ui-frameworks/build-integration-test2-versioned-framework"/>
+
+  <filter root="/etc/vendor-libraries/build-integration-test2-library"/>
+  <filter root="/etc/vendor-libraries/build-integration-test2-versioned-library"/>
+
+  <!-- Project-provided additions to the Kestros Card List component: the sample datasource
+       registration and the versioned-framework view that overrides it. Only the project's own
+       nodes are covered; everything else under the component stays untouched.
+       The intermediate lists/card-list/datasources nodes must be matched too (with sling:Folder
+       .content.xml docviews shipped alongside), or FileVault silently skips creating them on a
+       fresh instance and the included leaves never install. -->
+  <filter root="/apps/kestros/commons/components">
+    <include pattern="^/apps/kestros/commons/components/lists$"/>
+    <include pattern="^/apps/kestros/commons/components/lists/card-list$"/>
+    <include pattern="^/apps/kestros/commons/components/lists/card-list/datasources$"/>
+    <include pattern="^/apps/kestros/commons/components/lists/card-list/datasources/build-integration-test2-sample-cards(/.*)?$"/>
+    <include pattern="^/apps/kestros/commons/components/lists/card-list/bit2-versioned-ui(/.*)?$"/>
+    <include pattern="^/apps/kestros/commons/components/content$"/>
+    <include pattern="^/apps/kestros/commons/components/content/table$"/>
+    <include pattern="^/apps/kestros/commons/components/content/table/datasources$"/>
+    <include pattern="^/apps/kestros/commons/components/content/table/datasources/build-integration-test2-sample-table(/.*)?$"/>
+    <include pattern="^/apps/kestros/commons/components/content/card$"/>
+    <include pattern="^/apps/kestros/commons/components/content/card/datasources$"/>
+    <include pattern="^/apps/kestros/commons/components/content/card/datasources/build-integration-test2-sample-card(/.*)?$"/>
+    <include pattern="^/apps/kestros/commons/components/content/button$"/>
+    <include pattern="^/apps/kestros/commons/components/content/button/datasources$"/>
+    <include pattern="^/apps/kestros/commons/components/content/button/datasources/build-integration-test2-sample-button(/.*)?$"/>
+    <include pattern="^/apps/kestros/commons/components/content/text$"/>
+    <include pattern="^/apps/kestros/commons/components/content/text/datasources$"/>
+    <include pattern="^/apps/kestros/commons/components/content/text/datasources/build-integration-test2-sample-text(/.*)?$"/>
+  </filter>
+
+</workspaceFilter>

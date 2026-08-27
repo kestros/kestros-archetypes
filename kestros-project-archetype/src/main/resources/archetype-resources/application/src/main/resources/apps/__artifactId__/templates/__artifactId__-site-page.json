@@ -1,0 +1,9 @@
+{
+  "jcr:description": "Baseline empty site.",
+  "jcr:primaryType": "kes:SiteTemplate",
+  "jcr:title": "${artifactName} Site",
+  "jcr:content": {
+    "jcr:primaryType": "nt:unstructured",
+    "sling:resourceType": "kestros/commons/components/kestros-base-page"
+  }
+}

@@ -1,0 +1,13 @@
+<!--/* Card List view for version 0.0.1 of the Build Integration Test2 Versioned Framework
+    (bit2-versioned-ui).
+
+    This is the same Card List component as the common view, rendered with this framework version's
+    own markup (note the card-list--sample class). Like every component view it binds the generic
+    CardListDataSourceComponent, which renders whichever datasource the author selected via the
+    kes:datasource property on the component instance. A datasource is never referenced directly
+    from a view; only the markup differs between framework views. */-->
+<sly data-sly-use.cardList="${'io.kestros.cms.components.basic.core.lists.cardlist.CardListDataSourceComponent'}"/>
+
+<div class="card-list card-list--sample" data-sly-list.card="${cardList.cards}">
+    <sly data-sly-resource="${card}"/>
+</div>
