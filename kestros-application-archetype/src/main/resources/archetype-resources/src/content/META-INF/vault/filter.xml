@@ -38,6 +38,9 @@
     <include pattern="^/apps/kestros/commons/components/content/text$"/>
     <include pattern="^/apps/kestros/commons/components/content/text/datasources$"/>
     <include pattern="^/apps/kestros/commons/components/content/text/datasources/${artifactId}-sample-text(/.*)?$"/>
+    <!-- The vendor-library-scoped counterpart to the framework-scoped Card List view above:
+         a view attached to the core Text component through this project's versioned library. -->
+    <include pattern="^/apps/kestros/commons/components/content/text/${artifactIdShorthand}-versioned-lib(/.*)?$"/>
   </filter>
 
 </workspaceFilter>

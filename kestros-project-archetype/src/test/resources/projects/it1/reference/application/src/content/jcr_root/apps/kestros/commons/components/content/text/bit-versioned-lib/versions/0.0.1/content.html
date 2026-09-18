@@ -1,0 +1,27 @@
+<!--/* Text view supplied by version 0.0.1 of the Build Integration Test Versioned Library
+    (library code bit-versioned-lib).
+
+    This is the VENDOR-LIBRARY-scoped form of a component view, and it is the counterpart to the
+    framework-scoped views elsewhere in this project (for example the Card List view under
+    bit-versioned-ui). Both forms are valid; the difference is who owns the view.
+
+    A framework-scoped view belongs to the UI framework's own look. A library-scoped view travels with
+    a vendor library, so any framework that includes that library picks the view up.
+
+    WHERE THIS ACTUALLY RENDERS. It is attached to the core Kestros Text component, and it resolves
+    only for a framework whose vendor library carries the library code above. In this project that is
+    the VERSIONED framework, which lists build-integration-test-versioned-library. The unversioned framework
+    pulls a different library, so under that framework Text still falls back to its 'common' view -
+    which is correct behaviour, not a broken example.
+
+    Resolution is framework-first: if Text also had a view under this project's framework code, that
+    one would win and this file would never render.
+
+    NOTE the data-sly-use below. A view supplies markup only - it never reaches past the component's
+    own model for its data. Text's data comes from TextDataSourceComponent, exactly as the core
+    'common' view does, so a datasource configured on the component still feeds it. This project ships
+    a Sample Text datasource; reading the raw 'text' property here instead would render an empty
+    paragraph the moment that datasource is selected. */-->
+<sly data-sly-use.text="${'io.kestros.cms.components.basic.core.content.text.TextDataSourceComponent'}"/>
+
+<p class="${text.inlineVariations} text--bit-versioned-lib">${text.text}</p>
