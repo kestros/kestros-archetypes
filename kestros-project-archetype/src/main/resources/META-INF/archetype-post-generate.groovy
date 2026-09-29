@@ -34,10 +34,9 @@ if (gitIgnoreFile.exists()) {
 def pomFile = new File(generatedProjectDirectory + "/pom.xml")
 def originalPomFile = new File(generatedProjectDirectory + "/original-pom.xml")
 if (pomFile.exists()) {
-    // run cp pom.xml original-pom.xml
-    def command = "cp pom.xml original-pom.xml"
-    command.execute(null, new File(generatedProjectDirectory))
-
+    // Copy in-process: a shelled-out "cp" is not awaited, so the existence check below could
+    // run before it finished and silently skip generating every submodule.
+    copyFile(pomFile, originalPomFile)
 }
 
 // make sure pom.xml and original-pom.xml exist
@@ -195,9 +194,12 @@ def resetPomFile(generatedProjectDirectory) {
     // copy original-pom.xml to pom.xml
     def originalPomFile = new File(generatedProjectDirectory + "/original-pom.xml")
     if (originalPomFile.exists()) {
-        // run cp original-pom.xml pom.xml
-        def command = "cp original-pom.xml pom.xml"
-        command.execute(null, new File(generatedProjectDirectory))
+        copyFile(originalPomFile, pomFile)
     }
+}
+
+def copyFile(File source, File target) {
+    java.nio.file.Files.copy(source.toPath(), target.toPath(),
+            java.nio.file.StandardCopyOption.REPLACE_EXISTING)
 }
 
