@@ -36,12 +36,24 @@
         <url></url>
     </scm>
 
+    <properties>
+        <!-- Community Hub metadata. The community-hub module writes these, with the project
+             version, to META-INF/kestros/community-hub.json and fails its build when one is
+             missing or malformed. Tags are comma-separated and need one type: tag; dependencies
+             are whitespace-separated, each packageId:x.y.z or packageId:[x.y.z,x.y.z). -->
+        <kestros.hub.id>${hubId}</kestros.hub.id>
+        <kestros.hub.title>${hubTitle}</kestros.hub.title>
+        <kestros.hub.description>${hubDescription}</kestros.hub.description>
+        <kestros.hub.tags>${hubTags}</kestros.hub.tags>
+        <kestros.hub.dependencies>${hubDependencies}</kestros.hub.dependencies>
+    </properties>
 
     <modules>
         <module>api</module>
         <module>core</module>
         <module>application</module>
         <module>content</module>
+        <module>community-hub</module>
     </modules>
 
 </project>

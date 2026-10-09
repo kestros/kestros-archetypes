@@ -1,0 +1,121 @@
+#set($dollar = '$')
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>${groupId}</groupId>
+        <artifactId>${artifactId}</artifactId>
+        <version>${version}</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <groupId>${groupId}</groupId>
+    <artifactId>${artifactId}-community-hub</artifactId>
+
+    <version>${version}</version>
+
+    <name>${artifactName} - Community Hub</name>
+    <description>The single file a Community Hub version carries: the application and content
+        packages, plus META-INF/kestros/community-hub.json built from the kestros.hub.*
+        properties in the project pom.</description>
+
+    <packaging>content-package</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${artifactId}-application</artifactId>
+            <version>${version}</version>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${artifactId}-content</artifactId>
+            <version>${version}</version>
+            <type>zip</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Checks the hub metadata at validate, so nothing is packaged when it is incomplete,
+                 and adds the descriptor to the built package at package. -->
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <version>1.13.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy</artifactId>
+                        <version>3.0.21</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>community-hub-check</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <properties>
+                                <property>
+                                    <name>hubMode</name>
+                                    <value>check</value>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>community-hub-descriptor</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <properties>
+                                <property>
+                                    <name>hubMode</name>
+                                    <value>write</value>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <scripts>
+                        <script>${dollar}{project.basedir}/src/build/community-hub.groovy</script>
+                    </scripts>
+                </configuration>
+            </plugin>
+            <!-- Builds the package. Mixed, as application and content are, so it may carry them
+                 as sub packages. -->
+            <plugin>
+                <groupId>org.apache.jackrabbit</groupId>
+                <artifactId>filevault-package-maven-plugin</artifactId>
+                <version>1.3.6</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <packageType>mixed</packageType>
+                    <failOnMissingEmbed>true</failOnMissingEmbed>
+                    <subPackages>
+                        <subPackage>
+                            <groupId>${groupId}</groupId>
+                            <artifactId>${artifactId}-application</artifactId>
+                            <filter>true</filter>
+                        </subPackage>
+                        <subPackage>
+                            <groupId>${groupId}</groupId>
+                            <artifactId>${artifactId}-content</artifactId>
+                            <filter>true</filter>
+                        </subPackage>
+                    </subPackages>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

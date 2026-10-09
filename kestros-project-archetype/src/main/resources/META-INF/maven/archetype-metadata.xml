@@ -18,6 +18,21 @@
       </includes>
     </fileSet>
 
+    <fileSet filtered="true" packaged="false">
+      <directory>community-hub</directory>
+      <includes>
+        <include>pom.xml</include>
+      </includes>
+    </fileSet>
+
+    <!-- Unfiltered: Velocity would eat the script's ${} expressions. -->
+    <fileSet filtered="false" packaged="false">
+      <directory>community-hub/src/build</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>
+
 <!--    <fileSet filtered="true" packaged="false">-->
 <!--      <directory>api</directory>-->
 <!--      <includes>-->
@@ -137,6 +152,22 @@
       <defaultValue>#</defaultValue>
     </requiredProperty>
     <requiredProperty key="artifactIdShorthand">
+      <defaultValue></defaultValue>
+    </requiredProperty>
+    <!-- Community Hub metadata, written into the root pom as kestros.hub.* properties. -->
+    <requiredProperty key="hubId">
+      <defaultValue></defaultValue>
+    </requiredProperty>
+    <requiredProperty key="hubTitle">
+      <defaultValue></defaultValue>
+    </requiredProperty>
+    <requiredProperty key="hubDescription">
+      <defaultValue></defaultValue>
+    </requiredProperty>
+    <requiredProperty key="hubTags">
+      <defaultValue></defaultValue>
+    </requiredProperty>
+    <requiredProperty key="hubDependencies">
       <defaultValue></defaultValue>
     </requiredProperty>
   </requiredProperties>
