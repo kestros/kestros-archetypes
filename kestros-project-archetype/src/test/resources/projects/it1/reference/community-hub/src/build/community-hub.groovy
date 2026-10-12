@@ -12,7 +12,10 @@ def VERSION = /\d+\.\d+\.\d+(-SNAPSHOT)?/
 def PLAIN_VERSION = /\d+\.\d+\.\d+/
 def DEPENDENCY = /[A-Za-z0-9._-]+:(${PLAIN_VERSION}|\[${PLAIN_VERSION},${PLAIN_VERSION}\))/
 
-def prop = { String name -> (project.properties.getProperty(name) ?: '').trim() }
+// A -D on the command line wins over the pom, as it does for any other Maven property.
+def prop = { String name ->
+    (session.userProperties.getProperty(name) ?: project.properties.getProperty(name) ?: '').trim()
+}
 
 def id = prop('kestros.hub.id')
 def title = prop('kestros.hub.title')

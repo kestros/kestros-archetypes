@@ -154,22 +154,10 @@
     <requiredProperty key="artifactIdShorthand">
       <defaultValue></defaultValue>
     </requiredProperty>
-    <!-- Community Hub metadata, written into the root pom as kestros.hub.* properties. -->
-    <requiredProperty key="hubId">
-      <defaultValue></defaultValue>
-    </requiredProperty>
-    <requiredProperty key="hubTitle">
-      <defaultValue></defaultValue>
-    </requiredProperty>
-    <requiredProperty key="hubDescription">
-      <defaultValue></defaultValue>
-    </requiredProperty>
-    <requiredProperty key="hubTags">
-      <defaultValue></defaultValue>
-    </requiredProperty>
-    <requiredProperty key="hubDependencies">
-      <defaultValue></defaultValue>
-    </requiredProperty>
+    <!-- No Community Hub properties here: the archetype plugin treats an empty value as missing
+         and refuses to generate, so a project without hub metadata could not be created. The
+         root pom carries empty kestros.hub.* properties instead, and community-hub's build
+         names each one that is still empty. -->
   </requiredProperties>
 
 </archetype-descriptor>

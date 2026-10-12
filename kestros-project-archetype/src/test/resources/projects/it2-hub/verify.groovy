@@ -16,6 +16,6 @@ assert zip.entries().toList().any { it.name.endsWith('build-integration-test-con
 zip.close()
 
 def expected = '{"id":"build-it","title":"Build IT","description":"Built by the archetype integration test",' +
-        '"version":"0.0.1-SNAPSHOT","tags":["type:site","demo"],"dependencies":["other:1.0.0","lib:[1.0.0,2.0.0)"]}'
+        '"version":"0.0.1-SNAPSHOT","tags":["type:site"],"dependencies":["other:1.0.0","lib:2.0.0"]}'
 assert json == expected : "descriptor was ${json}"
 return true

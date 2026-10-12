@@ -40,7 +40,8 @@
     <build>
         <plugins>
             <!-- Checks the hub metadata at validate, so nothing is packaged when it is incomplete,
-                 and adds the descriptor to the built package at package. -->
+                 and adds the descriptor to the built package at verify: filevault rebuilds the
+                 zip at package, after this would have run, so a write there is lost. -->
             <plugin>
                 <groupId>org.codehaus.gmavenplus</groupId>
                 <artifactId>gmavenplus-plugin</artifactId>
@@ -70,7 +71,7 @@
                     </execution>
                     <execution>
                         <id>community-hub-descriptor</id>
-                        <phase>package</phase>
+                        <phase>verify</phase>
                         <goals>
                             <goal>execute</goal>
                         </goals>
@@ -99,6 +100,9 @@
                 <extensions>true</extensions>
                 <configuration>
                     <packageType>mixed</packageType>
+                    <!-- The parent sets merge, which the validator rejects on a package holding no
+                         access control lists. This one only wraps; each sub package keeps merge. -->
+                    <accessControlHandling>ignore</accessControlHandling>
                     <failOnMissingEmbed>true</failOnMissingEmbed>
                     <subPackages>
                         <subPackage>

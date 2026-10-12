@@ -41,11 +41,11 @@
              version, to META-INF/kestros/community-hub.json and fails its build when one is
              missing or malformed. Tags are comma-separated and need one type: tag; dependencies
              are whitespace-separated, each packageId:x.y.z or packageId:[x.y.z,x.y.z). -->
-        <kestros.hub.id>${hubId}</kestros.hub.id>
-        <kestros.hub.title>${hubTitle}</kestros.hub.title>
-        <kestros.hub.description>${hubDescription}</kestros.hub.description>
-        <kestros.hub.tags>${hubTags}</kestros.hub.tags>
-        <kestros.hub.dependencies>${hubDependencies}</kestros.hub.dependencies>
+        <kestros.hub.id></kestros.hub.id>
+        <kestros.hub.title></kestros.hub.title>
+        <kestros.hub.description></kestros.hub.description>
+        <kestros.hub.tags></kestros.hub.tags>
+        <kestros.hub.dependencies></kestros.hub.dependencies>
     </properties>
 
     <modules>
