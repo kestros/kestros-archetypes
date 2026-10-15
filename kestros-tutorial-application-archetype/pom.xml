@@ -3,28 +3,55 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>io.kestros.cms</groupId>
-        <artifactId>kestros-archetypes</artifactId>
-        <version>0.2.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
+    <!-- No parent, matching kestros-application-archetype and kestros-project-archetype, whose
+         parent blocks are likewise commented out. This module previously declared
+         kestros-archetypes:0.2.0-SNAPSHOT with relativePath ../pom.xml - but the root pom is
+         version 0.9.0, so the relativePath never matched and Maven resolved that parent from the
+         private Nexus instead. Three consequences, all removed by dropping it: the whole reactor
+         gained a private-repository dependency, a SNAPSHOT parent made the module unreleasable,
+         and the licence below was being inherited as GPL-v3.0 from a 2025 parent while this
+         project is Apache-2.0. -->
 
-    <groupId>io.kestros.archetypes</groupId>
+    <groupId>io.kestros.cms</groupId>
     <artifactId>kestros-tutorial-application-archetype</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.9.0</version>
 
     <name>Kestros Tutorial Application Module Archetype</name>
 
+    <description>Archetype for generating a guided tutorial project for Kestros.</description>
+
+    <url>https://www.kestros.io</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <packaging>maven-archetype</packaging>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <archetype.version>3.2.1</archetype.version>
+    </properties>
+
     <build>
+        <!-- Declared here rather than inherited, now that this module has no parent - the same
+             shape kestros-application-archetype uses. Without it the packaging above is unknown
+             and the module cannot be read at all. -->
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.archetype</groupId>
+                <artifactId>archetype-packaging</artifactId>
+                <version>${archetype.version}</version>
+            </extension>
+        </extensions>
         <plugins>
             <plugin>
                 <artifactId>maven-archetype-plugin</artifactId>
-                <configuration>
-                    <postBuildHookScript>post-build-script.groovy</postBuildHookScript>
-                </configuration>
+                <version>${archetype.version}</version>
             </plugin>
         </plugins>
     </build>
