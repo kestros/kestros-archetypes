@@ -4,5 +4,5 @@
           jcr:primaryType="kes:ComponentType"
           sling:resourceSuperType="kestros/commons/components/kestros-parent"
           jcr:title="Framework View Map"
-          componentGroup="Build Integration Test Components - Tutorial"
+          componentGroup="${artifactName} Components - Tutorial"
 />

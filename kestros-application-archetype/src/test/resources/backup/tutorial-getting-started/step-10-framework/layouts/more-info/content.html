@@ -1,0 +1,35 @@
+<h2>Step 10</h2>
+<h3>Services, from the more-info layout</h3>
+<p>Both of this framework's layouts read the same model, and neither of them knows where the data
+    came from. That separation is the whole reason a component can carry several views.</p>
+<h4>Where each piece lives</h4>
+<ul>
+    <li><code>api/src/main/java/.../services</code> - the interface, and any exception it
+        declares.
+    </li>
+    <li><code>core/src/main/java/.../services</code> - the implementation, and its unit test.</li>
+    <li><code>application/src/main/java/.../components</code> - the Sling Model the view binds
+        to.
+    </li>
+</ul>
+<h4>Things worth knowing early</h4>
+<ul>
+    <li>A model that cannot get its service should render nothing rather than fail the page - the
+        rest of the page is not at fault.
+    </li>
+    <li>Services are singletons in the container. Anything per-request belongs on the model, not on
+        the service.
+    </li>
+    <li>Kestros's health checks will report a service that never came up, which is usually a
+        missing OSGi annotation rather than a mistake in the logic.
+    </li>
+</ul>
+
+<h2>Next Step</h2>
+<p>That is the last of the mechanics. One step left.</p>
+<ol>
+    <li>Click <code>Edit</code> in the <code>Actionbar</code> at the top of the page.</li>
+    <li>In the <code>Edit Page</code> dialog, click the <code>Styles</code> tab.</li>
+    <li>Select <code>Step 11: What's Next</code>, and the <code>Default</code> theme.</li>
+    <li>Click <code>Save</code> to apply the changes.</li>
+</ol>

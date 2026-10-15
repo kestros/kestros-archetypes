@@ -1,0 +1,30 @@
+<h2>Step 8</h2>
+<h3>Customizing core components, from the more-info layout</h3>
+<p>The core heading above is still wearing this framework's view, because that view belongs to the
+    framework and not to whichever layout of the tutorial component you happen to be reading.</p>
+<h4>What you can and cannot change</h4>
+<ul>
+    <li>You can replace the markup a core component renders, add classes to it, and wrap it in
+        structure of your own.
+    </li>
+    <li>You can give it variations and layouts, the same as any component you wrote.</li>
+    <li>You cannot change what data it reads or what its dialog asks the author for - that is the
+        component's Java model, not its view.
+    </li>
+</ul>
+<h4>When to reach for it</h4>
+<p>When a core component is right but does not match your design. Writing a new
+    <code>ComponentType</code> instead means re-implementing its dialog, its validation and its
+    documentation for the sake of markup you could have overridden in one directory.</p>
+<p>When the component itself is wrong for what you need, step 9 is the answer instead.</p>
+
+<h2>Next Step</h2>
+<p>Next we will add a <code>ComponentType</code> of our own rather than restyling one that already
+    exists.</p>
+<ol>
+    <li>Click <code>Edit</code> in the <code>Actionbar</code> at the top of the page.</li>
+    <li>In the <code>Edit Page</code> dialog, click the <code>Styles</code> tab.</li>
+    <li>Select <code>Step 9: Creating Component Types</code>, and the <code>Default</code> theme.
+    </li>
+    <li>Click <code>Save</code> to apply the changes.</li>
+</ol>
