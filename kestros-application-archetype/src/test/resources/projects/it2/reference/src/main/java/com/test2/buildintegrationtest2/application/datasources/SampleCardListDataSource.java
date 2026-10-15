@@ -4,9 +4,7 @@ import com.test2.buildintegrationtest2.api.exceptions.SampleModelRetrievalExcept
 import com.test2.buildintegrationtest2.api.models.SampleModel;
 import com.test2.buildintegrationtest2.api.services.SampleService;
 import io.kestros.cms.components.basic.api.content.KestrosCard;
-import io.kestros.cms.components.basic.api.exceptions.ComponentConfigurationException;
 import io.kestros.cms.components.basic.api.lists.KestrosCardList;
-import io.kestros.cms.components.basic.core.BaseContainerSlingModelDataSource;
 import io.kestros.cms.components.basic.core.content.card.KestrosCardImpl;
 import io.kestros.cms.components.basic.core.content.heading.KestrosHeadingImpl;
 import java.util.ArrayList;
@@ -17,8 +15,6 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Optional;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Sample Card List datasource.
@@ -34,10 +30,8 @@ import org.slf4j.LoggerFactory;
  * component instance, which stores the datasource name in the {@code kes:datasource} property.</p>
  */
 @Model(adaptables = {SlingHttpServletRequest.class, Resource.class})
-public class SampleCardListDataSource extends BaseContainerSlingModelDataSource
+public class SampleCardListDataSource extends BaseSampleContainerDataSource
     implements KestrosCardList {
-
-  private static final Logger LOG = LoggerFactory.getLogger(SampleCardListDataSource.class);
 
   @OSGiService
   @Optional
@@ -53,27 +47,27 @@ public class SampleCardListDataSource extends BaseContainerSlingModelDataSource
   public List<KestrosCard> getCardElements() {
     List<KestrosCard> cards = new ArrayList<>();
     if (sampleService == null) {
-      LOG.warn("SampleService is not available. Rendering an empty card list.");
+      getLog().warn("SampleService is not available. Rendering an empty card list.");
       return cards;
     }
     List<SampleModel> sampleModels;
     try {
       sampleModels = sampleService.getSampleModels(getResourceResolver());
     } catch (final SampleModelRetrievalException e) {
-      LOG.error("Failed to retrieve Sample Models. Rendering an empty card list. {}",
+      getLog().error("Failed to retrieve Sample Models. Rendering an empty card list. {}",
           e.getMessage());
       return cards;
     }
     int index = 0;
     for (final SampleModel sampleModel : sampleModels) {
-      try {
-        cards.add(new KestrosCardImpl(sampleModel.getDescription(),
-            new KestrosHeadingImpl(sampleModel.getTitle(), "h3", this, "title", "title-" + index),
-            null, null, this, "card", "sample-card-" + index));
+      final int cardIndex = index;
+      KestrosCard card = buildOrNull(() -> new KestrosCardImpl(sampleModel.getDescription(),
+          new KestrosHeadingImpl(sampleModel.getTitle(), "h3", this, "title",
+              "title-" + cardIndex), null, null, this, "card", "sample-card-" + cardIndex),
+          "card for Sample Model " + sampleModel.getTitle());
+      if (card != null) {
+        cards.add(card);
         index++;
-      } catch (final ComponentConfigurationException e) {
-        LOG.error("Failed to build card for Sample Model {}. {}", sampleModel.getTitle(),
-            e.getMessage());
       }
     }
     return cards;
