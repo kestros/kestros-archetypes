@@ -179,6 +179,29 @@ public class TutorialContentTest {
   }
 
   /**
+   * Criteria 4 and 9. Danny, 2026-09-13: the beginner site opens on step 1, intermediate on step
+   * 4 (Library Versions) and advanced on step 8 (Customizing Core Components). Three sites on one
+   * theme are one site generated three times.
+   */
+  @Test
+  public void testEachTutorialSiteOpensOnItsOwnStep() throws Exception {
+    final Map<String, String> expected = new LinkedHashMap<>();
+    expected.put("__artifactId__-beginner-tutorial", "/etc/ui-frameworks/tutorial-beginner-step-1-framework/");
+    expected.put("__artifactId__-intermediate-tutorial", "/etc/ui-frameworks/tutorial-step-4-framework/");
+    expected.put("__artifactId__-advanced-tutorial", "/etc/ui-frameworks/tutorial-step-8-framework/");
+    final List<String> offenders = new ArrayList<>();
+    for (final Map.Entry<String, String> site : expected.entrySet()) {
+      final File node = new File(CONTENT_ROOT, "content/sites/" + site.getKey() + "/.content.xml");
+      assertTrue(node.getPath() + " does not exist", node.isFile());
+      final String theme = attribute(read(node), KES_THEME);
+      if (theme == null || !theme.startsWith(site.getValue())) {
+        offenders.add("  " + site.getKey() + " -> " + theme + ", expected under " + site.getValue());
+      }
+    }
+    failWith("a tutorial site does not open on its own step", offenders);
+  }
+
+  /**
    * Criterion 5. The tutorial's whole teaching mechanism is that switching framework changes the
    * page. Two views that are byte-identical teach the learner that it does not.
    */
