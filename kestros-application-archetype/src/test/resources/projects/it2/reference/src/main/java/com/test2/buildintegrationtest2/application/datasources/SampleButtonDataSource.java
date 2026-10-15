@@ -28,19 +28,19 @@ public class SampleButtonDataSource extends BaseSlingModelDataSource implements 
   @Nullable
   @Override
   public String getText() {
-    return "Sample Button from a datasource";
+    return SampleContent.BUTTON_TEXT;
   }
 
   @Nullable
   @Override
   public String getHref() {
-    return "https://kestros.io";
+    return SampleContent.BUTTON_HREF;
   }
 
   @Nullable
   @Override
   public String getTitle() {
-    return "Visit kestros.io";
+    return SampleContent.BUTTON_TITLE;
   }
 
   @Nonnull
@@ -52,13 +52,13 @@ public class SampleButtonDataSource extends BaseSlingModelDataSource implements 
   @Nullable
   @Override
   public String getRel() {
-    return "noopener";
+    return SampleContent.BUTTON_REL;
   }
 
   @Nullable
   @Override
   public String getAriaLabel() {
-    return "Sample button supplied by a datasource";
+    return SampleContent.BUTTON_ARIA_LABEL;
   }
 
   @Nullable

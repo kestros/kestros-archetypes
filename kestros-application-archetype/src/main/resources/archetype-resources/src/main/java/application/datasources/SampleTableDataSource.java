@@ -1,23 +1,18 @@
 package ${package}.application.datasources;
 
-import io.kestros.cms.components.basic.api.exceptions.ComponentConfigurationException;
 import io.kestros.cms.components.basic.api.table.KestrosTable;
 import io.kestros.cms.components.basic.api.table.KestrosTableCell;
 import io.kestros.cms.components.basic.api.table.KestrosTableHeader;
 import io.kestros.cms.components.basic.api.table.KestrosTableRow;
-import io.kestros.cms.components.basic.core.BaseContainerSlingModelDataSource;
 import io.kestros.cms.components.basic.core.content.table.KestrosTableCellImpl;
 import io.kestros.cms.components.basic.core.content.table.KestrosTableHeaderImpl;
 import io.kestros.cms.components.basic.core.content.table.KestrosTableRowImpl;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import javax.annotation.Nonnull;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Sample Table datasource.
@@ -33,10 +28,8 @@ import org.slf4j.LoggerFactory;
  * view resolves the selected datasource through {@code TableDataSourceComponent}.</p>
  */
 @Model(adaptables = {SlingHttpServletRequest.class, Resource.class})
-public class SampleTableDataSource extends BaseContainerSlingModelDataSource
+public class SampleTableDataSource extends BaseSampleContainerDataSource
     implements KestrosTable {
-
-  private static final Logger LOG = LoggerFactory.getLogger(SampleTableDataSource.class);
 
   /**
    * Table column headers.
@@ -47,17 +40,23 @@ public class SampleTableDataSource extends BaseContainerSlingModelDataSource
   @Override
   public List<KestrosTableHeader> getHeaderElements() {
     List<KestrosTableHeader> headers = new ArrayList<>();
-    try {
-      headers.add(new KestrosTableHeaderImpl("Name", this, "header", "sample-header-name"));
-      headers.add(new KestrosTableHeaderImpl("Role", this, "header", "sample-header-role"));
-    } catch (final ComponentConfigurationException e) {
-      LOG.error("Failed to build sample table headers. {}", e.getMessage());
+    KestrosTableHeader name = buildOrNull(
+        () -> new KestrosTableHeaderImpl(SampleContent.TABLE_HEADER_NAME, this, "header",
+            "sample-header-name"), "sample table header name");
+    if (name != null) {
+      headers.add(name);
+    }
+    KestrosTableHeader role = buildOrNull(
+        () -> new KestrosTableHeaderImpl(SampleContent.TABLE_HEADER_ROLE, this, "header",
+            "sample-header-role"), "sample table header role");
+    if (role != null) {
+      headers.add(role);
     }
     return headers;
   }
 
   /**
-   * Table data rows, each built from an in-code {@code String[]} of cell values.
+   * Table data rows, each built from a list of cell values in {@link SampleContent}.
    *
    * @return Rows to render in the Table component's {@code tbody}.
    */
@@ -65,23 +64,22 @@ public class SampleTableDataSource extends BaseContainerSlingModelDataSource
   @Override
   public List<KestrosTableRow> getRowElements() {
     List<KestrosTableRow> rows = new ArrayList<>();
-    List<String[]> sampleData = Arrays.asList(
-        new String[]{"Ada Lovelace", "Mathematician"},
-        new String[]{"Alan Turing", "Computer Scientist"});
     int rowIndex = 0;
-    for (final String[] rowData : sampleData) {
-      try {
+    for (final List<String> rowData : SampleContent.TABLE_ROWS) {
+      final int currentRow = rowIndex;
+      KestrosTableRow row = buildOrNull(() -> {
         List<KestrosTableCell> cells = new ArrayList<>();
         int cellIndex = 0;
         for (final String cellValue : rowData) {
           cells.add(new KestrosTableCellImpl(cellValue, this, "cell",
-              "sample-cell-" + rowIndex + "-" + cellIndex));
+              "sample-cell-" + currentRow + "-" + cellIndex));
           cellIndex++;
         }
-        rows.add(new KestrosTableRowImpl(cells, this, "row", "sample-row-" + rowIndex));
+        return new KestrosTableRowImpl(cells, this, "row", "sample-row-" + currentRow);
+      }, "sample table row " + currentRow);
+      if (row != null) {
+        rows.add(row);
         rowIndex++;
-      } catch (final ComponentConfigurationException e) {
-        LOG.error("Failed to build sample table row {}. {}", rowIndex, e.getMessage());
       }
     }
     return rows;

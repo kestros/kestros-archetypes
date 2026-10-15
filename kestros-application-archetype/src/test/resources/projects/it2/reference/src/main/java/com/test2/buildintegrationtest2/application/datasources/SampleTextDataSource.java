@@ -26,7 +26,6 @@ public class SampleTextDataSource extends BaseSlingModelDataSource implements Ke
   @Nullable
   @Override
   public String getText() {
-    return "This paragraph text is supplied programmatically by SampleTextDataSource, "
-        + "selected on the Text component via the kes:datasource property.";
+    return SampleContent.TEXT;
   }
 }
