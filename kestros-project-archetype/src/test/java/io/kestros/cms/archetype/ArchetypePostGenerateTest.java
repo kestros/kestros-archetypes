@@ -209,4 +209,74 @@ public class ArchetypePostGenerateTest {
 
     assertEquals("mvn", mavenExecutable(mavenHome.getAbsolutePath(), "Linux"));
   }
+
+  /**
+   * The licence is the customer's choice (Danny, 2026-10-22). Builds a generated-project layout
+   * with the archetype's licences/ directory, and returns its root.
+   */
+  private File projectWithLicenceTexts() throws Exception {
+    final File project = folder.newFolder("project");
+    final File licences = new File(project, "licenses");
+    assertTrue(licences.mkdirs());
+    for (final String id : new String[]{"GPL-3.0", "Apache-2.0", "MIT"}) {
+      Files.write(new File(licences, id + ".txt").toPath(),
+          (id + " text, Copyright (c) [year] [fullname]\n").getBytes(UTF_8));
+    }
+    final File java = new File(project, "core/src/main/java/Sample.java");
+    assertTrue(java.getParentFile().mkdirs());
+    Files.write(java.toPath(), "package x;\n".getBytes(UTF_8));
+    Files.write(new File(project, "pom.xml").toPath(),
+        "<?xml version=\"1.0\"?>\n<project/>\n".getBytes(UTF_8));
+    Files.write(new File(project, "README.md").toPath(), "# readme\n".getBytes(UTF_8));
+    return project;
+  }
+
+  private String read(final File file) throws Exception {
+    return new String(Files.readAllBytes(file.toPath()), UTF_8);
+  }
+
+  @Test
+  public void testApplyLicenseNoneWritesNoHeaderAndNoLicenseFile() throws Exception {
+    final File project = projectWithLicenceTexts();
+
+    script.invokeMethod("applyLicense", new Object[]{project, "none", "Acme", 2026});
+
+    assertFalse("none writes no LICENSE", new File(project, "LICENSE").exists());
+    assertFalse("licence texts are removed", new File(project, "licenses").exists());
+    assertEquals("package x;\n", read(new File(project, "core/src/main/java/Sample.java")));
+    assertEquals("<?xml version=\"1.0\"?>\n<project/>\n", read(new File(project, "pom.xml")));
+  }
+
+  @Test
+  public void testApplyLicenseGplStampsEverySourceFileAndWritesLicense() throws Exception {
+    final File project = projectWithLicenceTexts();
+
+    script.invokeMethod("applyLicense", new Object[]{project, "GPL-3.0", "Acme", 2026});
+
+    assertEquals("GPL-3.0 text, Copyright (c) 2026 Acme\n", read(new File(project, "LICENSE")));
+    assertFalse("licence texts are removed", new File(project, "licenses").exists());
+    final String java = read(new File(project, "core/src/main/java/Sample.java"));
+    assertTrue(java, java.startsWith("/*\n * Copyright (C) 2026 Acme\n"));
+    assertTrue(java, java.contains(" * the Free Software Foundation, either version 3 of the License"));
+    assertTrue(java, java.endsWith(" */\npackage x;\n"));
+    final String pom = read(new File(project, "pom.xml"));
+    assertTrue("header goes after the XML declaration: " + pom,
+        pom.startsWith("<?xml version=\"1.0\"?>\n<!--\n  Copyright (C) 2026 Acme\n"));
+    assertTrue(pom, pom.endsWith("-->\n<project/>\n"));
+    assertEquals("a file with no comment syntax is left alone", "# readme\n",
+        read(new File(project, "README.md")));
+  }
+
+  @Test
+  public void testApplyLicenseRefusesAnUnknownLicence() throws Exception {
+    final File project = projectWithLicenceTexts();
+    try {
+      script.invokeMethod("applyLicense", new Object[]{project, "BSD-3-Clause", "Acme", 2026});
+      throw new AssertionError("an unknown licence must fail generation");
+    } catch (final Exception expected) {
+      assertTrue(expected.getMessage(), expected.getMessage().contains("Unknown licence"));
+    }
+    assertFalse("licence texts are removed even on failure",
+        new File(project, "licenses").exists());
+  }
 }

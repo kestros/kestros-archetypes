@@ -16,6 +16,24 @@ assert zip.entries().toList().any { it.name.endsWith('build-integration-test-con
 zip.close()
 
 def expected = '{"id":"build-it","title":"Build IT","description":"Built by the archetype integration test",' +
-        '"version":"0.0.1-SNAPSHOT","tags":["type:site"],"dependencies":["other:1.0.0","lib:2.0.0"]}'
+        '"version":"0.0.1-SNAPSHOT","tags":["type:site"],"dependencies":["other:1.0.0","lib:2.0.0"],' +
+        '"license":"none"}'
 assert json == expected : "descriptor was ${json}"
+
+// license=none: no LICENSE file, no licences/ directory left behind, and no generated source
+// file carries a licence header.
+def project = found[0].parentFile.parentFile.parentFile
+assert !new File(project, 'LICENSE').exists() : 'license=none wrote a LICENSE file'
+assert !new File(project, 'licenses').exists() : 'licenses/ directory left in the project'
+def headed = []
+project.eachFileRecurse(groovy.io.FileType.FILES) {
+    if (!it.path.contains('/target/') && it.name ==~ /.*\.(java|groovy|js|css|less|scss|xml|html|properties|yml|yaml)/) {
+        def head = it.getText('UTF-8').take(2000)
+        if (head.contains('GNU General Public License') || head.contains('Licensed under the Apache License')
+                || head.contains('Permission is hereby granted')) {
+            headed << it.path
+        }
+    }
+}
+assert headed.isEmpty() : "license=none, but these files carry a licence header: ${headed}"
 return true

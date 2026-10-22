@@ -11,6 +11,7 @@ import java.nio.file.StandardOpenOption
 def VERSION = /\d+\.\d+\.\d+(-SNAPSHOT)?/
 def PLAIN_VERSION = /\d+\.\d+\.\d+/
 def DEPENDENCY = /[A-Za-z0-9._-]+:(${PLAIN_VERSION}|\[${PLAIN_VERSION},${PLAIN_VERSION}\))/
+def LICENSES = ['none', 'GPL-3.0', 'Apache-2.0', 'MIT']
 
 // A -D on the command line wins over the pom, as it does for any other Maven property.
 def prop = { String name ->
@@ -22,9 +23,13 @@ def title = prop('kestros.hub.title')
 def description = prop('kestros.hub.description')
 def tags = prop('kestros.hub.tags').split(',').collect { it.trim() }.findAll { it }
 def dependencies = prop('kestros.hub.dependencies').split(/\s+/).findAll { it }
+def license = prop('kestros.hub.license')
 def version = project.version
 
 def problems = []
+if (!(license in LICENSES)) {
+    problems << "kestros.hub.license \"${license}\" is not one of ${LICENSES.join(', ')}"
+}
 if (!id) {
     problems << 'kestros.hub.id is empty'
 }
@@ -70,7 +75,8 @@ def descriptor = '{' + [
         '"description":' + json(description),
         '"version":' + json(version),
         '"tags":' + list(tags),
-        '"dependencies":' + list(dependencies)
+        '"dependencies":' + list(dependencies),
+        '"license":' + json(license)
 ].join(',') + '}\n'
 
 def zip = project.artifact.file

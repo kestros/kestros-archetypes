@@ -78,6 +78,10 @@ result = archetypeGenerate(generatedProjectDirectory, 'application', "kestros-ap
 checkForGitIgnoreAndRemove(generatedProjectDirectory, 'application')
 replacePomFile(generatedProjectDirectory)
 
+println "applying licence: ${request.properties['license'] ?: 'none'}"
+applyLicense(new File(request.outputDirectory + "/" + request.artifactId), request.properties['license'],
+        organizationName, java.time.Year.now().value)
+
 
 def archetypeGenerate(generatedProjectDirectory, directoryName, archetype, archetypeVersion, groupId, artifactId, version, packageValue, artifactIdNoSpecialCharacters, artifactIdShorthand, artifactDescription, organizationName, artifactName, hasParentProject) {
 //    println generatedProjectDirectory
@@ -255,6 +259,117 @@ def resetPomFile(generatedProjectDirectory) {
     if (originalPomFile.exists()) {
         copyFile(originalPomFile, pomFile)
     }
+}
+
+// The licence the project was generated with. We do not choose it for the customer (Danny,
+// 2026-10-22): `none` writes no header and no LICENSE file; any other licence stamps its header
+// into every generated source file and writes the full text to LICENSE. The licences/ directory
+// the archetype ships the texts in is removed either way.
+def applyLicense(projectDirectory, license, holder, year) {
+    license = (license ?: 'none').toString().trim()
+    def licenceTexts = new File(projectDirectory, 'licenses')
+    try {
+        if (license == 'none') {
+            return
+        }
+        def text = new File(licenceTexts, "${license}.txt")
+        if (!text.isFile()) {
+            throw new Exception("Unknown licence: ${license} (expected none, GPL-3.0, Apache-2.0 or MIT)")
+        }
+        def holderName = (holder ?: '').toString().trim() ?: 'the authors'
+        new File(projectDirectory, 'LICENSE').setText(text.getText('UTF-8')
+                .replace('[year]', year.toString()).replace('[fullname]', holderName), 'UTF-8')
+        def header = licenseHeader(license, holderName, year)
+        projectDirectory.eachFileRecurse(groovy.io.FileType.FILES) { file ->
+            if (!file.path.contains("${File.separator}target${File.separator}")
+                    && !file.path.startsWith(licenceTexts.path)) {
+                stampHeader(file, header)
+            }
+        }
+    } finally {
+        licenceTexts.deleteDir()
+    }
+}
+
+// The standard notice for each licence, one line per element, without comment markers.
+def licenseHeader(license, holder, year) {
+    def copyright = "Copyright (C) ${year} ${holder}".toString()
+    switch (license) {
+        case 'GPL-3.0':
+            return [copyright, '',
+                    'This program is free software: you can redistribute it and/or modify',
+                    'it under the terms of the GNU General Public License as published by',
+                    'the Free Software Foundation, either version 3 of the License, or',
+                    '(at your option) any later version.', '',
+                    'This program is distributed in the hope that it will be useful,',
+                    'but WITHOUT ANY WARRANTY; without even the implied warranty of',
+                    'MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the',
+                    'GNU General Public License for more details.', '',
+                    'You should have received a copy of the GNU General Public License',
+                    'along with this program.  If not, see <https://www.gnu.org/licenses/>.']
+        case 'Apache-2.0':
+            return [copyright, '',
+                    'Licensed under the Apache License, Version 2.0 (the "License");',
+                    'you may not use this file except in compliance with the License.',
+                    'You may obtain a copy of the License at', '',
+                    '    http://www.apache.org/licenses/LICENSE-2.0', '',
+                    'Unless required by applicable law or agreed to in writing, software',
+                    'distributed under the License is distributed on an "AS IS" BASIS,',
+                    'WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.',
+                    'See the License for the specific language governing permissions and',
+                    'limitations under the License.']
+        case 'MIT':
+            return [copyright, '',
+                    'Permission is hereby granted, free of charge, to any person obtaining a copy',
+                    'of this software and associated documentation files (the "Software"), to deal',
+                    'in the Software without restriction, subject to the conditions in the LICENSE',
+                    'file at the root of this project.']
+        default:
+            throw new Exception("Unknown licence: ${license}")
+    }
+}
+
+// Files that take a header, by the comment style they use. Anything else (json, md, images)
+// is left alone: it has no comment syntax, or is not source.
+def headerStyleFor(file) {
+    def name = file.name.toLowerCase()
+    def ext = name.contains('.') ? name.substring(name.lastIndexOf('.') + 1) : ''
+    if (ext in ['java', 'groovy', 'js', 'ts', 'css', 'less', 'scss']) {
+        return 'block'
+    }
+    if (ext in ['xml', 'html', 'htm']) {
+        return 'markup'
+    }
+    if (ext in ['properties', 'yml', 'yaml', 'sh', 'cfg']) {
+        return 'hash'
+    }
+    return null
+}
+
+// Put the header at the top of one file, after an XML declaration or a shebang if there is one.
+// Returns whether the file took a header.
+def stampHeader(file, header) {
+    def style = headerStyleFor(file)
+    if (style == null) {
+        return false
+    }
+    def comment
+    if (style == 'block') {
+        comment = '/*\n' + header.collect { it ? " * ${it}" : ' *' }.join('\n') + '\n */\n'
+    } else if (style == 'markup') {
+        comment = '<!--\n' + header.collect { it ? "  ${it}" : '' }.join('\n') + '\n-->\n'
+    } else {
+        comment = header.collect { it ? "# ${it}" : '#' }.join('\n') + '\n'
+    }
+    def content = file.getText('UTF-8')
+    def prologue = ''
+    def matcher = content =~ /^(<\?xml[^>]*\?>\s*\n|#![^\n]*\n)/
+    if (matcher.find()) {
+        prologue = matcher.group(1)
+        content = content.substring(prologue.length())
+    }
+    file.setText(prologue + comment + content, 'UTF-8')
+    return true
 }
 
 // Copy a file and do not return until it is there.

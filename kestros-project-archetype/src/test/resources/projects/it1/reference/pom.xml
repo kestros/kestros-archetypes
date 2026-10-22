@@ -45,6 +45,8 @@
         <kestros.hub.description></kestros.hub.description>
         <kestros.hub.tags></kestros.hub.tags>
         <kestros.hub.dependencies></kestros.hub.dependencies>
+        <!-- Chosen at generation: none, GPL-3.0, Apache-2.0 or MIT. -->
+        <kestros.hub.license>none</kestros.hub.license>
     </properties>
 
     <modules>
