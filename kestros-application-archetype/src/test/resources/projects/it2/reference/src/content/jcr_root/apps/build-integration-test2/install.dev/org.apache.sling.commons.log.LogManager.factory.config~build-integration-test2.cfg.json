@@ -1,0 +1,7 @@
+{
+  "org.apache.sling.commons.log.level": "DEBUG",
+  "org.apache.sling.commons.log.file": "logs/build-integration-test2.log",
+  "org.apache.sling.commons.log.names": [
+    "com.test2.buildintegrationtest2"
+  ]
+}
