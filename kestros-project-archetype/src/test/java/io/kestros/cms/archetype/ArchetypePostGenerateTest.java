@@ -215,7 +215,11 @@ public class ArchetypePostGenerateTest {
    * with the archetype's licences/ directory, and returns its root.
    */
   private File projectWithLicenceTexts() throws Exception {
-    final File project = folder.newFolder("project");
+    return projectWithLicenceTexts("project");
+  }
+
+  private File projectWithLicenceTexts(final String... path) throws Exception {
+    final File project = folder.newFolder(path);
     final File licences = new File(project, "licenses");
     assertTrue(licences.mkdirs());
     for (final String id : new String[]{"GPL-3.0", "Apache-2.0", "MIT"}) {
@@ -258,13 +262,28 @@ public class ArchetypePostGenerateTest {
     final String java = read(new File(project, "core/src/main/java/Sample.java"));
     assertTrue(java, java.startsWith("/*\n * Copyright (C) 2026 Acme\n"));
     assertTrue(java, java.contains(" * the Free Software Foundation, either version 3 of the License"));
-    assertTrue(java, java.endsWith(" */\npackage x;\n"));
+    assertTrue(java, java.endsWith(" */\n\npackage x;\n"));
     final String pom = read(new File(project, "pom.xml"));
     assertTrue("header goes after the XML declaration: " + pom,
         pom.startsWith("<?xml version=\"1.0\"?>\n<!--\n  Copyright (C) 2026 Acme\n"));
-    assertTrue(pom, pom.endsWith("-->\n<project/>\n"));
+    assertTrue(pom, pom.endsWith("-->\n\n<project/>\n"));
     assertEquals("a file with no comment syntax is left alone", "# readme\n",
         read(new File(project, "README.md")));
+  }
+
+  @Test
+  public void testApplyLicenseStampsAProjectThatSitsUnderATargetDirectory() throws Exception {
+    final File project = projectWithLicenceTexts("target", "project");
+    final File built = new File(project, "core/target/Built.java");
+    assertTrue(built.getParentFile().mkdirs());
+    Files.write(built.toPath(), "package x;\n".getBytes(UTF_8));
+
+    script.invokeMethod("applyLicense", new Object[]{project, "GPL-3.0", "Acme", 2026});
+
+    final String java = read(new File(project, "core/src/main/java/Sample.java"));
+    assertTrue(java, java.startsWith("/*\n * Copyright (C) 2026 Acme\n"));
+    assertTrue(read(new File(project, "pom.xml")).contains("Copyright (C) 2026 Acme"));
+    assertEquals("build output inside the project is left alone", "package x;\n", read(built));
   }
 
   @Test
