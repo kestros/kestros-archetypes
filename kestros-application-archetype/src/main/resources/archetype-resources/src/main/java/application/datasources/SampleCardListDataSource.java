@@ -61,8 +61,7 @@ public class SampleCardListDataSource extends BaseContainerSlingModelDataSource
     try {
       sampleModels = sampleService.getSampleModels(getResourceResolver());
     } catch (final SampleModelRetrievalException e) {
-      LOG.error("Failed to retrieve Sample Models. Rendering an empty card list. {}",
-          e.getMessage());
+      LOG.error("Failed to retrieve Sample Models. Rendering an empty card list.", e);
       return cards;
     }
     int index = 0;
@@ -73,8 +72,7 @@ public class SampleCardListDataSource extends BaseContainerSlingModelDataSource
             null, null, this, "card", "sample-card-" + index));
         index++;
       } catch (final ComponentConfigurationException e) {
-        LOG.error("Failed to build card for Sample Model {}. {}", sampleModel.getTitle(),
-            e.getMessage());
+        LOG.error("Failed to build a card for a Sample Model.", e);
       }
     }
     return cards;

@@ -4,6 +4,8 @@ import com.test.buildintegrationtest.api.services.SampleService;
 import io.kestros.cms.sitebuilding.api.models.BaseComponent;
 import io.kestros.commons.structuredslingmodels.annotation.KestrosModel;
 import io.kestros.commons.structuredslingmodels.annotation.KestrosProperty;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
@@ -27,6 +29,7 @@ public class SampleComponent extends BaseComponent {
    *
    * @return Value from the SampleService.
    */
+  @Nonnull
   public String getMyServiceValue() {
     if (sampleService != null) {
       return sampleService.getMyServiceValue();
@@ -48,6 +51,7 @@ public class SampleComponent extends BaseComponent {
                   + "dialog.",
           configurable = true,
           sampleValue = "Hello World!")
+  @Nullable
   public String getSampleProperty() {
     return getProperty("sampleProperty", StringUtils.EMPTY);
   }

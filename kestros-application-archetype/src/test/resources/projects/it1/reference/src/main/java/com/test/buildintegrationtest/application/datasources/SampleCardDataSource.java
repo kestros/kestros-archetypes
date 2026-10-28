@@ -46,7 +46,7 @@ public class SampleCardDataSource extends BaseContainerSlingModelDataSource
       return new KestrosHeadingImpl("Sample Card from a datasource", "h3", this, "title",
           "titleElement");
     } catch (final ComponentConfigurationException e) {
-      LOG.error("Failed to build sample card title. {}", e.getMessage());
+      LOG.error("Failed to build sample card title.", e);
       return null;
     }
   }

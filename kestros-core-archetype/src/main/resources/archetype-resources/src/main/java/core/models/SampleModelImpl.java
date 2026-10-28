@@ -2,8 +2,8 @@ package ${package}.core.models;
 
 import ${package}.api.models.SampleModel;
 import java.util.Objects;
+import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * POJO implementation of SampleModel.
@@ -38,7 +38,7 @@ public class SampleModelImpl implements SampleModel {
   }
 
   @Override
-  public boolean equals(@Nullable Object other) {
+  public boolean equals(@CheckForNull Object other) {
     if (this == other) {
       return true;
     }
