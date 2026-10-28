@@ -34,4 +34,9 @@ public class SampleModelImpl implements SampleModel {
   public String getDescription() {
     return description;
   }
+
+  @Override
+  public String toString() {
+    return "SampleModelImpl{title='" + title + "', description='" + description + "'}";
+  }
 }

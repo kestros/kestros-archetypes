@@ -19,4 +19,11 @@ public class SampleModelImplTest {
     sampleModelImpl = new SampleModelImpl("title", "description");
     assertEquals("description", sampleModelImpl.getDescription());
   }
+
+  @Test
+  public void testToString() {
+    sampleModelImpl = new SampleModelImpl("title", "description");
+    assertEquals("SampleModelImpl{title='title', description='description'}",
+                 sampleModelImpl.toString());
+  }
 }
