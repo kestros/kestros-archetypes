@@ -17,8 +17,8 @@ import org.apache.sling.models.annotations.Model;
  * and title in code rather than from authored properties.</p>
  *
  * <p>It is registered to the Button component by the application module, via the
- * {@code ${artifactId} node under
- * {@code apps/kestros/commons/components/content/button/datasources}-sample-button} node (see
+ * {@code ${artifactId}-sample-button} node under
+ * {@code apps/kestros/commons/components/content/button/datasources} node (see
  * the {@code classPath} property on that node). Authors select it on a Button component instance,
  * which stores the datasource name in the {@code kes:datasource} property. The component's common
  * view resolves the selected datasource through {@code ButtonDataSourceComponent}.</p>

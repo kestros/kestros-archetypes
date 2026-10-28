@@ -29,8 +29,8 @@ import org.slf4j.LoggerFactory;
  * ({@code /libs/kestros/commons/components/lists/card-list}).</p>
  *
  * <p>It is registered to the Card List component by the application module, via the
- * {@code ${artifactId} node under
- * {@code apps/kestros/commons/components/lists/card-list/datasources}-sample-cards}
+ * {@code ${artifactId}-sample-cards}, a child of the
+ * {@code apps/kestros/commons/components/lists/card-list/datasources}
  * node (see the {@code classPath} property on that node). Authors select it on a Card List
  * component instance, which stores the datasource name in the {@code kes:datasource} property.</p>
  */
