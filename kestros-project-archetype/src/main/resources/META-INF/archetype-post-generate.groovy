@@ -372,7 +372,8 @@ def stampHeader(file, header) {
         prologue = matcher.group(1)
         content = content.substring(prologue.length())
     }
-    file.setText(prologue + comment + content, 'UTF-8')
+    // A blank line after the header: Checkstyle's EmptyLineSeparator wants one before `package`.
+    file.setText(prologue + comment + '\n' + content, 'UTF-8')
     return true
 }
 
