@@ -1,7 +1,9 @@
 package com.test.buildintegrationtest.core.models;
 
 import com.test.buildintegrationtest.api.models.SampleModel;
+import java.util.Objects;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * POJO implementation of SampleModel.
@@ -35,6 +37,24 @@ public class SampleModelImpl implements SampleModel {
     return description;
   }
 
+  @Override
+  public boolean equals(@Nullable Object other) {
+    if (this == other) {
+      return true;
+    }
+    if (other == null || getClass() != other.getClass()) {
+      return false;
+    }
+    SampleModelImpl that = (SampleModelImpl) other;
+    return title.equals(that.title) && description.equals(that.description);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(title, description);
+  }
+
+  @Nonnull
   @Override
   public String toString() {
     return "SampleModelImpl{title='" + title + "', description='" + description + "'}";

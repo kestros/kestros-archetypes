@@ -26,8 +26,13 @@ def project = found[0].parentFile.parentFile.parentFile
 assert !new File(project, 'LICENSE').exists() : 'license=none wrote a LICENSE file'
 assert !new File(project, 'licenses').exists() : 'licenses/ directory left in the project'
 def headed = []
+def checked = 0
 project.eachFileRecurse(groovy.io.FileType.FILES) {
-    if (!it.path.contains('/target/') && it.name ==~ /.*\.(java|groovy|js|css|less|scss|xml|html|properties|yml|yaml)/) {
+    // the project itself sits under the archetype's target/, so skip build output by its path
+    // inside the project
+    def inBuildOutput = project.toPath().relativize(it.toPath()).any { it.toString() == 'target' }
+    if (!inBuildOutput && it.name ==~ /.*\.(java|groovy|js|css|less|scss|xml|html|properties|yml|yaml)/) {
+        checked++
         def head = it.getText('UTF-8').take(2000)
         if (head.contains('GNU General Public License') || head.contains('Licensed under the Apache License')
                 || head.contains('Permission is hereby granted')) {
@@ -35,5 +40,6 @@ project.eachFileRecurse(groovy.io.FileType.FILES) {
         }
     }
 }
+assert checked > 0 : 'no source files found to check'
 assert headed.isEmpty() : "license=none, but these files carry a licence header: ${headed}"
 return true

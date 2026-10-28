@@ -26,7 +26,10 @@ assert new File(project, 'pom.xml').getText('UTF-8').contains('<kestros.hub.lice
 def missing = []
 def checked = 0
 project.eachFileRecurse(groovy.io.FileType.FILES) {
-    if (!it.path.contains('/target/') && it.name ==~ /.*\.(java|groovy|js|css|less|scss|xml|html|properties|yml|yaml)/) {
+    // the project itself sits under the archetype's target/, so skip build output by its path
+    // inside the project
+    def inBuildOutput = project.toPath().relativize(it.toPath()).any { it.toString() == 'target' }
+    if (!inBuildOutput && it.name ==~ /.*\.(java|groovy|js|css|less|scss|xml|html|properties|yml|yaml)/) {
         checked++
         if (!it.getText('UTF-8').take(2000).contains('GNU General Public License')) {
             missing << it.path

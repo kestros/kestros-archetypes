@@ -280,9 +280,13 @@ def applyLicense(projectDirectory, license, holder, year) {
         new File(projectDirectory, 'LICENSE').setText(text.getText('UTF-8')
                 .replace('[year]', year.toString()).replace('[fullname]', holderName), 'UTF-8')
         def header = licenseHeader(license, holderName, year)
+        // Build output is skipped by its path inside the project: the project itself may sit under
+        // a target/ directory (the archetype integration tests generate there).
+        def projectPath = projectDirectory.toPath()
         projectDirectory.eachFileRecurse(groovy.io.FileType.FILES) { file ->
-            if (!file.path.contains("${File.separator}target${File.separator}")
-                    && !file.path.startsWith(licenceTexts.path)) {
+            def inProject = projectPath.relativize(file.toPath())
+            def inBuildOutput = inProject.any { it.toString() == 'target' }
+            if (!inBuildOutput && !file.path.startsWith(licenceTexts.path)) {
                 stampHeader(file, header)
             }
         }
