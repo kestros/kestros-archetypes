@@ -1,3 +1,6 @@
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
+
 generatedProjectDirectory = request.outputDirectory + "/" + request.artifactId
 
 groupId = request.groupId
@@ -34,10 +37,9 @@ if (gitIgnoreFile.exists()) {
 def pomFile = new File(generatedProjectDirectory + "/pom.xml")
 def originalPomFile = new File(generatedProjectDirectory + "/original-pom.xml")
 if (pomFile.exists()) {
-    // run cp pom.xml original-pom.xml
-    def command = "cp pom.xml original-pom.xml"
-    command.execute(null, new File(generatedProjectDirectory))
-
+    // Copy in-process: a shelled-out cp runs asynchronously, and the existence check below
+    // could run before it finished, silently skipping every module.
+    Files.copy(pomFile.toPath(), originalPomFile.toPath(), StandardCopyOption.REPLACE_EXISTING)
 }
 
 // make sure pom.xml and original-pom.xml exist
@@ -195,9 +197,7 @@ def resetPomFile(generatedProjectDirectory) {
     // copy original-pom.xml to pom.xml
     def originalPomFile = new File(generatedProjectDirectory + "/original-pom.xml")
     if (originalPomFile.exists()) {
-        // run cp original-pom.xml pom.xml
-        def command = "cp original-pom.xml pom.xml"
-        command.execute(null, new File(generatedProjectDirectory))
+        Files.copy(originalPomFile.toPath(), pomFile.toPath(), StandardCopyOption.REPLACE_EXISTING)
     }
 }
 
