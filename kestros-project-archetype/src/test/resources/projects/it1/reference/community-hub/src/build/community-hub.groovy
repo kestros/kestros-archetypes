@@ -2,10 +2,11 @@
 // them, with the project version, to META-INF/kestros/community-hub.json in the built package.
 //
 // Run by gmavenplus twice: hubMode=check at validate (fails the build, one line per problem,
-// each naming the property) and hubMode=write at package (adds the descriptor to the zip).
+// each naming the property) and hubMode=write at prepare-package (writes the descriptor into
+// filevault's work directory, which the package goal then zips).
 
-import java.nio.file.FileSystems
 import java.nio.file.Files
+import java.nio.file.Paths
 import java.nio.file.StandardOpenOption
 
 def VERSION = /\d+\.\d+\.\d+(-SNAPSHOT)?/
@@ -79,14 +80,9 @@ def descriptor = '{' + [
         '"license":' + json(license)
 ].join(',') + '}\n'
 
-def zip = project.artifact.file
-if (zip == null || !zip.isFile()) {
-    throw new IllegalStateException("Community Hub descriptor: no package to write into (${zip})")
-}
-FileSystems.newFileSystem(zip.toPath(), (ClassLoader) null).withCloseable { fs ->
-    def entry = fs.getPath('META-INF', 'kestros', 'community-hub.json')
-    Files.createDirectories(entry.parent)
-    Files.write(entry, descriptor.getBytes('UTF-8'), StandardOpenOption.CREATE,
-            StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE)
-}
-log.info("Community Hub descriptor written to ${zip.name}!META-INF/kestros/community-hub.json")
+// filevault's work directory: its package goal zips everything under META-INF here.
+def entry = Paths.get(project.build.directory, 'vault-work', 'META-INF', 'kestros', 'community-hub.json')
+Files.createDirectories(entry.parent)
+Files.write(entry, descriptor.getBytes('UTF-8'), StandardOpenOption.CREATE,
+        StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE)
+log.info("Community Hub descriptor written to ${entry}")

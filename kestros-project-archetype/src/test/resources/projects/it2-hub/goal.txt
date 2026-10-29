@@ -1,1 +1,1 @@
-clean install -Drat.skip=true "-Dkestros.hub.id=build-it" "-Dkestros.hub.title=Build IT" "-Dkestros.hub.description=Built by the archetype integration test" "-Dkestros.hub.tags=type:site" "-Dkestros.hub.dependencies=other:1.0.0 lib:2.0.0"
+clean package -Drat.skip=true "-Dkestros.hub.id=build-it" "-Dkestros.hub.title=Build IT" "-Dkestros.hub.description=Built by the archetype integration test" "-Dkestros.hub.tags=type:site" "-Dkestros.hub.dependencies=other:1.0.0 lib:2.0.0"

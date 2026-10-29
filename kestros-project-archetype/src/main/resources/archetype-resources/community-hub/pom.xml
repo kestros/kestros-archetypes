@@ -41,8 +41,8 @@
     <build>
         <plugins>
             <!-- Checks the hub metadata at validate, so nothing is packaged when it is incomplete,
-                 and adds the descriptor to the built package at verify: filevault rebuilds the
-                 zip at package, after this would have run, so a write there is lost. -->
+                 and writes the descriptor into filevault's work directory at prepare-package, so
+                 the package goal zips it and a plain `mvn package` carries it. -->
             <plugin>
                 <groupId>org.codehaus.gmavenplus</groupId>
                 <artifactId>gmavenplus-plugin</artifactId>
@@ -72,7 +72,7 @@
                     </execution>
                     <execution>
                         <id>community-hub-descriptor</id>
-                        <phase>verify</phase>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>execute</goal>
                         </goals>
