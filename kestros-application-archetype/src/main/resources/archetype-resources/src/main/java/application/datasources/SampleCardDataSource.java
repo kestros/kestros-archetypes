@@ -22,7 +22,8 @@ import org.slf4j.LoggerFactory;
  * description in code; the image and button group are omitted (null).</p>
  *
  * <p>It is registered to the Card component by the application module, via the
- * {@code apps/kestros/commons/components/content/card/datasources/${artifactId}-sample-card} node (see the
+ * {@code ${artifactId}-sample-card} node under
+ * {@code apps/kestros/commons/components/content/card/datasources} node (see the
  * {@code classPath} property on that node). Authors select it on a Card component instance, which
  * stores the datasource name in the {@code kes:datasource} property. The component's common view
  * resolves the selected datasource through {@code CardDataSourceComponent}.</p>
@@ -45,7 +46,7 @@ public class SampleCardDataSource extends BaseContainerSlingModelDataSource
       return new KestrosHeadingImpl("Sample Card from a datasource", "h3", this, "title",
           "titleElement");
     } catch (final ComponentConfigurationException e) {
-      LOG.error("Failed to build sample card title. {}", e.getMessage());
+      LOG.error("Failed to build sample card title.", e);
       return null;
     }
   }

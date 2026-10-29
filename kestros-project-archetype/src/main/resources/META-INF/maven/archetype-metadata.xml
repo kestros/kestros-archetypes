@@ -18,6 +18,30 @@
       </includes>
     </fileSet>
 
+    <fileSet filtered="true" packaged="false">
+      <directory>community-hub</directory>
+      <includes>
+        <include>pom.xml</include>
+      </includes>
+    </fileSet>
+
+    <!-- Licence texts. archetype-post-generate.groovy copies the chosen one to LICENSE and
+         deletes this directory. -->
+    <fileSet filtered="false" packaged="false">
+      <directory>licenses</directory>
+      <includes>
+        <include>*.txt</include>
+      </includes>
+    </fileSet>
+
+    <!-- Unfiltered: Velocity would eat the script's ${} expressions. -->
+    <fileSet filtered="false" packaged="false">
+      <directory>community-hub/src/build</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>
+
 <!--    <fileSet filtered="true" packaged="false">-->
 <!--      <directory>api</directory>-->
 <!--      <includes>-->
@@ -139,6 +163,17 @@
     <requiredProperty key="artifactIdShorthand">
       <defaultValue></defaultValue>
     </requiredProperty>
+    <!-- The project's licence: we do not choose it for the customer. none writes no header and
+         no LICENSE file; any other value stamps that licence's header into every generated
+         source file and writes its LICENSE. Saved in the pom as kestros.hub.license. -->
+    <requiredProperty key="license">
+      <defaultValue>none</defaultValue>
+      <validationRegex>^(none|GPL-3\.0|Apache-2\.0|MIT)$</validationRegex>
+    </requiredProperty>
+    <!-- No other Community Hub properties here: the archetype plugin treats an empty value as missing
+         and refuses to generate, so a project without hub metadata could not be created. The
+         root pom carries empty kestros.hub.* properties instead, and community-hub's build
+         names each one that is still empty. -->
   </requiredProperties>
 
 </archetype-descriptor>

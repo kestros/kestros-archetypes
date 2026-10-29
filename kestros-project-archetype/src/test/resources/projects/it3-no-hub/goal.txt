@@ -1,0 +1,1 @@
+clean install -Drat.skip=true --fail-never
