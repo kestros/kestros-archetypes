@@ -57,7 +57,7 @@ public abstract class BaseSampleContainerDataSource extends BaseContainerSlingMo
     try {
       return builder.build();
     } catch (final ComponentConfigurationException e) {
-      getLog().error("Failed to build {}. {}", what, e.getMessage());
+      getLog().error("Failed to build {}.", what, e);
       return null;
     }
   }

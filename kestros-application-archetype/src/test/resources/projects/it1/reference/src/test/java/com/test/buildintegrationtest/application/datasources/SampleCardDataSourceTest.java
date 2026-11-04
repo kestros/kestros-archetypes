@@ -49,8 +49,12 @@ public class SampleCardDataSourceTest extends BaseDataSourceTest {
   }
 
   @Test
-  public void testImageAndButtonGroupAreOmitted() {
+  public void testGetImageElement() {
     assertNull(dataSource.getImageElement());
+  }
+
+  @Test
+  public void testGetButtonGroupElement() {
     assertNull(dataSource.getButtonGroupElement());
   }
 }

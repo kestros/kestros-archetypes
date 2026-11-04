@@ -25,7 +25,8 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
  * ({@code /libs/kestros/commons/components/lists/card-list}).</p>
  *
  * <p>It is registered to the Card List component by the application module, via the
- * {@code apps/kestros/commons/components/lists/card-list/datasources/${artifactId}-sample-cards}
+ * {@code ${artifactId}-sample-cards}, a child of the
+ * {@code apps/kestros/commons/components/lists/card-list/datasources}
  * node (see the {@code classPath} property on that node). Authors select it on a Card List
  * component instance, which stores the datasource name in the {@code kes:datasource} property.</p>
  */
@@ -54,8 +55,7 @@ public class SampleCardListDataSource extends BaseSampleContainerDataSource
     try {
       sampleModels = sampleService.getSampleModels(getResourceResolver());
     } catch (final SampleModelRetrievalException e) {
-      getLog().error("Failed to retrieve Sample Models. Rendering an empty card list. {}",
-          e.getMessage());
+      getLog().error("Failed to retrieve Sample Models. Rendering an empty card list.", e);
       return cards;
     }
     int index = 0;

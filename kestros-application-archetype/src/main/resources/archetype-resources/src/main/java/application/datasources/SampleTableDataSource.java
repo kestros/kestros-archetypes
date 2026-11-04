@@ -22,7 +22,8 @@ import org.apache.sling.models.annotations.Model;
  * child resources, this datasource builds them in code: a header row plus two data rows.</p>
  *
  * <p>It is registered to the Table component by the application module, via the
- * {@code apps/kestros/commons/components/content/table/datasources/${artifactId}-sample-table} node (see
+ * {@code ${artifactId}-sample-table} node under
+ * {@code apps/kestros/commons/components/content/table/datasources} node (see
  * the {@code classPath} property on that node). Authors select it on a Table component instance,
  * which stores the datasource name in the {@code kes:datasource} property. The component's common
  * view resolves the selected datasource through {@code TableDataSourceComponent}.</p>
@@ -68,7 +69,7 @@ public class SampleTableDataSource extends BaseSampleContainerDataSource
     for (final List<String> rowData : SampleContent.TABLE_ROWS) {
       final int currentRow = rowIndex;
       KestrosTableRow row = buildOrNull(() -> {
-        List<KestrosTableCell> cells = new ArrayList<>();
+        List<KestrosTableCell> cells = new ArrayList<>(rowData.size());
         int cellIndex = 0;
         for (final String cellValue : rowData) {
           cells.add(new KestrosTableCellImpl(cellValue, this, "cell",
