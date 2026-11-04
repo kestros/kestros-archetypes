@@ -27,7 +27,8 @@ import org.slf4j.LoggerFactory;
  * child resources, this datasource builds them in code: a header row plus two data rows.</p>
  *
  * <p>It is registered to the Table component by the application module, via the
- * {@code apps/kestros/commons/components/content/table/datasources/build-integration-test2-sample-table} node (see
+ * {@code build-integration-test2-sample-table} node under
+ * {@code apps/kestros/commons/components/content/table/datasources} node (see
  * the {@code classPath} property on that node). Authors select it on a Table component instance,
  * which stores the datasource name in the {@code kes:datasource} property. The component's common
  * view resolves the selected datasource through {@code TableDataSourceComponent}.</p>
@@ -51,7 +52,7 @@ public class SampleTableDataSource extends BaseContainerSlingModelDataSource
       headers.add(new KestrosTableHeaderImpl("Name", this, "header", "sample-header-name"));
       headers.add(new KestrosTableHeaderImpl("Role", this, "header", "sample-header-role"));
     } catch (final ComponentConfigurationException e) {
-      LOG.error("Failed to build sample table headers. {}", e.getMessage());
+      LOG.error("Failed to build sample table headers.", e);
     }
     return headers;
   }
@@ -71,7 +72,7 @@ public class SampleTableDataSource extends BaseContainerSlingModelDataSource
     int rowIndex = 0;
     for (final String[] rowData : sampleData) {
       try {
-        List<KestrosTableCell> cells = new ArrayList<>();
+        List<KestrosTableCell> cells = new ArrayList<>(rowData.length);
         int cellIndex = 0;
         for (final String cellValue : rowData) {
           cells.add(new KestrosTableCellImpl(cellValue, this, "cell",
@@ -81,7 +82,7 @@ public class SampleTableDataSource extends BaseContainerSlingModelDataSource
         rows.add(new KestrosTableRowImpl(cells, this, "row", "sample-row-" + rowIndex));
         rowIndex++;
       } catch (final ComponentConfigurationException e) {
-        LOG.error("Failed to build sample table row {}. {}", rowIndex, e.getMessage());
+        LOG.error("Failed to build a sample table row.", e);
       }
     }
     return rows;

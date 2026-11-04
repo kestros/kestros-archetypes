@@ -25,22 +25,23 @@ public class SampleServiceImpl implements SampleService {
   private static final Logger LOG = LoggerFactory.getLogger(SampleServiceImpl.class);
 
   @Override
-  public void activate(ComponentContext componentContext) {
+  public void activate(@Nonnull ComponentContext componentContext) {
     LOG.info("Activating Sample Service");
   }
 
   @Override
-  public void deactivate(ComponentContext componentContext) {
+  public void deactivate(@Nonnull ComponentContext componentContext) {
     LOG.info("Deactivating Sample Service");
   }
 
+  @Nonnull
   @Override
   public String getDisplayName() {
     return "My Sample Service";
   }
 
   @Override
-  public void runAdditionalHealthChecks(FormattingResultLog log) {
+  public void runAdditionalHealthChecks(@Nonnull FormattingResultLog log) {
     // In the current version there is a bug where no logs added will result in a WARN status.
     log.debug("Running additional health checks.");
     if (StringUtils.isEmpty(getMyServiceValue())) {
