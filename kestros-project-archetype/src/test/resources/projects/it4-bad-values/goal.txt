@@ -1,0 +1,1 @@
+clean install -Drat.skip=true --fail-never "-Dkestros.hub.id=build-it" "-Dkestros.hub.title=Build IT" "-Dkestros.hub.tags=demo" "-Dkestros.hub.dependencies=bad"
