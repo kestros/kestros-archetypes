@@ -102,6 +102,22 @@ The following connection properties can be overwritten:
 | sling.user     | admin         |
 | sling.password | admin         |
 
+## Run-mode Configuration
+
+OSGi configurations that differ per environment live in run-mode install folders:
+
+* `src/content/jcr_root/apps/build-integration-test2/install.dev/` is applied only on an instance running the `dev` run mode
+* `src/content/jcr_root/apps/build-integration-test2/install.prod/` is applied only on an instance running the `prod` run mode
+
+Each folder holds a sample logger config, `org.apache.sling.commons.log.LogManager.factory.config~build-integration-test2.cfg.json`,
+that writes the `com.test2.buildintegrationtest2` logger to `logs/build-integration-test2.log`: DEBUG in `install.dev`, WARN in `install.prod`.
+
+Start an instance in the `dev` run mode with:
+
+```
+-Dsling.run.modes=dev
+```
+
 
 ## Development Guide
 
