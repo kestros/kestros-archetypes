@@ -1,6 +1,8 @@
 package com.test2.buildintegrationtest2.core.models;
 
 import com.test2.buildintegrationtest2.api.models.SampleModel;
+import java.util.Objects;
+import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
 /**
@@ -33,5 +35,28 @@ public class SampleModelImpl implements SampleModel {
   @Override
   public String getDescription() {
     return description;
+  }
+
+  @Override
+  public boolean equals(@CheckForNull Object other) {
+    if (this == other) {
+      return true;
+    }
+    if (other == null || getClass() != other.getClass()) {
+      return false;
+    }
+    SampleModelImpl that = (SampleModelImpl) other;
+    return title.equals(that.title) && description.equals(that.description);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(title, description);
+  }
+
+  @Nonnull
+  @Override
+  public String toString() {
+    return "SampleModelImpl{title='" + title + "', description='" + description + "'}";
   }
 }
