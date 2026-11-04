@@ -41,6 +41,24 @@
         <include>**/*</include>
       </includes>
     </fileSet>
+
+    <!-- The tutorial's Java, matching kestros-application-archetype. packaged="true" is what puts
+         the class under the generated project's package directory instead of at the source root -
+         the .java files here declare "package ${package}.application.datasources", so without it
+         the package statement and the path disagree and the generated project will not compile. -->
+    <fileSet filtered="true" packaged="true">
+      <directory>src/main/java</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>
+
+    <fileSet filtered="true" packaged="true">
+      <directory>src/test/java</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>
   </fileSets>
 
   <requiredProperties>

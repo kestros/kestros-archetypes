@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+
+    <!-- The tutorial's own components. Each carries a view per tutorial step, which is how the lesson
+         works: switching the page's framework re-renders the same component with the next step's
+         instructions in it. -->
+    <filter root="/apps/build-integration-test"/>
+
+    <!-- The three tutorial sites the learner actually opens. -->
+    <filter root="/content/sites/build-integration-test-beginner-tutorial"/>
+    <filter root="/content/sites/build-integration-test-intermediate-tutorial"/>
+    <filter root="/content/sites/build-integration-test-advanced-tutorial"/>
+
+    <!-- One UI framework per step. The learner switches between these from the editor, and the one
+         they pick decides which view of the tutorial component resolves - so the page teaches view
+         resolution by performing it.
+         Note the first two are named "beginner-step", not "step": the previous filter listed
+         tutorial-step-1-framework and tutorial-step-2-framework, which do not exist. -->
+    <filter root="/etc/ui-frameworks/tutorial-beginner-step-1-framework"/>
+    <filter root="/etc/ui-frameworks/tutorial-beginner-step-2-framework"/>
+    <filter root="/etc/ui-frameworks/tutorial-step-3-framework"/>
+    <filter root="/etc/ui-frameworks/tutorial-step-4-framework"/>
+    <filter root="/etc/ui-frameworks/tutorial-step-5-framework"/>
+    <filter root="/etc/ui-frameworks/tutorial-step-6-framework"/>
+    <filter root="/etc/ui-frameworks/tutorial-step-7-framework"/>
+    <filter root="/etc/ui-frameworks/tutorial-step-8-framework"/>
+    <filter root="/etc/ui-frameworks/tutorial-step-9-framework"/>
+    <filter root="/etc/ui-frameworks/tutorial-step-10-framework"/>
+    <filter root="/etc/ui-frameworks/tutorial-step-11-framework"/>
+
+    <!-- Vendor libraries the step frameworks pull in, including a versioned one. -->
+    <filter root="/etc/vendor-libraries/tutorial-step-2-basic-library"/>
+    <filter root="/etc/vendor-libraries/tutorial-step-3-cards"/>
+    <filter root="/etc/vendor-libraries/tutorial-step-4-versioned-library"/>
+
+    <!-- Step 10's datasource registration, added to the Kestros Card component. Only this
+         project's own node is covered; everything else under the component stays untouched.
+         The intermediate content/card/datasources nodes must be matched too (with sling:Folder
+         .content.xml docviews shipped alongside), or FileVault silently skips creating them on a
+         fresh instance and the included leaf never installs. -->
+    <filter root="/apps/kestros/commons/components">
+        <include pattern="^/apps/kestros/commons/components/content$"/>
+        <include pattern="^/apps/kestros/commons/components/content/card$"/>
+        <include pattern="^/apps/kestros/commons/components/content/card/datasources$"/>
+        <include pattern="^/apps/kestros/commons/components/content/card/datasources/build-integration-test-tutorial-card(/.*)?$"/>
+    </filter>
+
+</workspaceFilter>
