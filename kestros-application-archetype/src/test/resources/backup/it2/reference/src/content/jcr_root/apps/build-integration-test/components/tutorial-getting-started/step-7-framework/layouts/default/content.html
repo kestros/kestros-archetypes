@@ -1,5 +1,32 @@
 <h2>Step 7a</h2>
 <h3>Variations</h3>
+<p>A <code>Variation</code> is a CSS class a framework offers for a component, with the stylesheet
+    that backs it. An author turns one on in the component's dialog; nothing about which view
+    renders changes.</p>
 <h4>Grouped Variations</h4>
+<p>Variations are declared inside a named group - this framework has <code>theme</code> and
+    <code>font-style</code>. The group is what the dialog shows as a heading, and it is how the
+    author is told which choices belong together.</p>
 <h4>Mutually Exclusive Groups</h4>
+<p>A group marked mutually exclusive lets one variation be on at a time, which is what
+    <code>theme</code> wants - <code>light</code> and <code>dark</code> cannot both apply. A group
+    that is not, like <code>font-style</code>, lets <code>bold</code> and <code>underline</code> be
+    combined.</p>
 <h4>Inline Variations</h4>
+<p>An inline variation writes its CSS into the page rather than into the framework's stylesheet.
+    Reach for it when the rule only matters where the variation is used, and you would rather not
+    ship it to every page the framework renders.</p>
+<p>Turn some on in this component's dialog and watch the page. Each one is a directory under
+    <code>step-7-framework/variations</code> in your codebase.</p>
+
+<h2>Next Step</h2>
+<p>Next we will override a view on one of Kestros's own core component types rather than on the
+    tutorial's.</p>
+<ol>
+    <li>Click <code>Edit</code> in the <code>Actionbar</code> at the top of the page.</li>
+    <li>In the <code>Edit Page</code> dialog, click the <code>Styles</code> tab.</li>
+    <li>Select <code>Step 8: Customizing Core Components</code>, and the <code>Default</code>
+        theme.
+    </li>
+    <li>Click <code>Save</code> to apply the changes.</li>
+</ol>
