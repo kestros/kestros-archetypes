@@ -28,7 +28,6 @@
         <archetype.version>3.2.1</archetype.version>
     </properties>
 
-    <!-- Test scope only. Nothing here reaches the generated project or the published archetype. -->
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -57,15 +56,9 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
                 <configuration>
-                    <!-- 11, not 1.11. There is no 1.11 and javac rejects it; the aggregator still
-                         carries the wrong value because until now the archetype lifecycle ran no
-                         compiler goal to read it. -->
                     <source>11</source>
                     <target>11</target>
                 </configuration>
-                <!-- The maven-archetype lifecycle binds no test goals at all, so unit tests need
-                     both of these declared by hand or src/test/java is silently never built or
-                     run. Same shape as kestros-project-archetype. -->
                 <executions>
                     <execution>
                         <id>test-compile</id>
