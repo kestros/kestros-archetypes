@@ -39,8 +39,6 @@
     </properties>
 
     <dependencies>
-        <!-- ${artifactName} Dependencies -->
-        <!-- Kestros Dependencies -->
         <dependency>
             <groupId>io.kestros.cms</groupId>
             <artifactId>kestros-component-types-api</artifactId>
@@ -49,7 +47,6 @@
             <groupId>io.kestros.cms</groupId>
             <artifactId>kestros-site-building-api</artifactId>
         </dependency>
-        <!-- Test Dependencies -->
     </dependencies>
 
 
@@ -63,7 +60,6 @@
         </resources>
 
         <plugins>
-            <!-- Builds the content package -->
             <plugin>
                 <groupId>org.apache.jackrabbit</groupId>
                 <artifactId>filevault-package-maven-plugin</artifactId>
@@ -167,7 +163,6 @@
             </build>
         </profile>
         <profile>
-            <!-- overrides default bundle installation configuration -->
             <id>installBundle</id>
         </profile>
     </profiles>
