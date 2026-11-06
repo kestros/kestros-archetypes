@@ -1,0 +1,26 @@
+<h2>Step 8</h2>
+<h3>Customizing Core Component Types</h3>
+<p>Kestros ships its own <code>ComponentTypes</code> - headings, text, buttons, cards, tables - and
+    a framework can provide views for those exactly as it does for your own. Nothing about the
+    core component changes, and nothing is forked: the view is a directory in your codebase, named
+    after your framework, under the core component's path.</p>
+<p>Look at the heading above this component. It is
+    <code>kestros/commons/components/content/heading</code>, and this framework provides a view for
+    it - that is why it does not look the way it did on the earlier steps.</p>
+<h4>Where it goes</h4>
+<p>Under <code>src/content/jcr_root/apps/kestros/commons/components/content/heading</code>, in a
+    directory named for the framework code. The core component's own files are never touched, so an
+    upgrade of Kestros cannot conflict with your view.</p>
+<p>This is the same precedence rule as step 3, applied one level out: a framework's view beats
+    whatever the component itself provides.</p>
+
+<h2>Next Step</h2>
+<p>Next we will add a <code>ComponentType</code> of our own rather than restyling one that already
+    exists.</p>
+<ol>
+    <li>Click <code>Edit</code> in the <code>Actionbar</code> at the top of the page.</li>
+    <li>In the <code>Edit Page</code> dialog, click the <code>Styles</code> tab.</li>
+    <li>Select <code>Step 9: Creating Component Types</code>, and the <code>Default</code> theme.
+    </li>
+    <li>Click <code>Save</code> to apply the changes.</li>
+</ol>
