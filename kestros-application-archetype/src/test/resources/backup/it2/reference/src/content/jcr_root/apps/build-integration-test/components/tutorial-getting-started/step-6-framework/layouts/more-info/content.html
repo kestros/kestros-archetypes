@@ -1,6 +1,28 @@
-<h1>Layouts can be useful for many things!</h1>
+<h2>Step 6</h2>
+<h3>You are reading the more-info layout</h3>
+<p>Same component, same content, same framework - a different view. Nothing on the page changed
+    except which of this framework's layouts this one component asked for.</p>
+<h4>What layouts are good for</h4>
 <ul>
-    <li>Different HTML structures for the same Component Type.</li>
-    <li>Hard coded variation configurations.</li>
-    <li>Dynamic views. (switching between a list view or card view dynamically)</li>
+    <li>Different HTML structures for the same <code>ComponentType</code> - a list here, cards
+        there.
+    </li>
+    <li>A hard-coded variation configuration you do not want authors to have to set each time.</li>
+    <li>Denser or sparser presentations of the same data, chosen per placement.</li>
 </ul>
+<h4>What they are not</h4>
+<p>A layout is not a version and it is not a framework. It cannot change what data the component
+    reads, and it only exists for the framework that declares it - switch the page to a framework
+    with no <code>more-info</code> layout and this component falls back to that framework's
+    <code>default</code>.</p>
+<p>Switch back with the layout picker in this component's dialog.</p>
+
+<h2>Next Step</h2>
+<p>Next we will look at variations, which change how a component is styled rather than which markup
+    it renders.</p>
+<ol>
+    <li>Click <code>Edit</code> in the <code>Actionbar</code> at the top of the page.</li>
+    <li>In the <code>Edit Page</code> dialog, click the <code>Styles</code> tab.</li>
+    <li>Select <code>Step 7: Variations</code>, and the <code>Default</code> theme.</li>
+    <li>Click <code>Save</code> to apply the changes.</li>
+</ol>
