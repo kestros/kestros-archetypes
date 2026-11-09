@@ -25,13 +25,20 @@
         </p>
 
         <h4>Providing Component Views with UI Libraries</h4>
-        <p><code>Component Views</code> can be provided by <code>UI Libraries</code> to </p>
-        <p>Lets take a look at the CSS and JavaScript files it provides to a page.</p>
+        <p><code>Component Views</code> can be provided by <code>UI Libraries</code> so that the
+            markup travels with the CSS and JavaScript that styles it. Any
+            <code>UI Framework</code> that includes the library gets the view, without that
+            framework having to declare anything itself.</p>
 
         <h3>When to Provide Views with Libraries</h3>
-
+        <p>Put a view on the library when the markup belongs to the library - a grid, a card, a
+            carousel. Put it on the framework when the markup is specific to one site's design.
+            Anything on the framework wins over anything the libraries it includes provide.</p>
 
         <h3>This Page</h3>
+        <p>The view you are reading is coming from the Step 2 library, not from the framework. The
+            framework named <code>Step 2: Framework using Libraries</code> declares no view of its
+            own - it only includes the library, and the view came with it.</p>
         <h2>Next Step</h2>
         <p>Let's try switching to a <code>UIFramework</code> that provides a
             <code>ComponentView</code>
@@ -40,7 +47,7 @@
         <ol>
             <li>Click <code>Edit</code> in the <code>Actionbar</code> at the top of the page.</li>
             <li>In the <code>Edit Page</code> dialog, click the <code>Styles</code> tab.</li>
-            <li>Select <code>Framework with View Override (Step 3)</code>, and the
+            <li>Select <code>Step 3: Framework with View Override</code>, and the
                 <code>Default</code>
                 theme.
             </li>
