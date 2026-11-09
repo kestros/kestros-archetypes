@@ -39,13 +39,6 @@
     </properties>
 
     <dependencies>
-        <!-- ${artifactName} Dependencies -->
-        <dependency>
-            <groupId>${groupId}</groupId>
-            <artifactId>${artifactId}-api</artifactId>
-            <version>${version}</version>
-        </dependency>
-        <!-- Kestros Dependencies -->
         <dependency>
             <groupId>io.kestros.cms</groupId>
             <artifactId>kestros-component-types-api</artifactId>
@@ -53,14 +46,6 @@
         <dependency>
             <groupId>io.kestros.cms</groupId>
             <artifactId>kestros-site-building-api</artifactId>
-        </dependency>
-        <!-- Test Dependencies -->
-        <dependency>
-            <groupId>${groupId}</groupId>
-            <artifactId>${artifactId}-core</artifactId>
-            <version>${version}</version>
-            <scope>test</scope>
-            <!-- Scope test can be removed if the dependency is needed for main code -->
         </dependency>
     </dependencies>
 
@@ -75,7 +60,6 @@
         </resources>
 
         <plugins>
-            <!-- Builds the content package -->
             <plugin>
                 <groupId>org.apache.jackrabbit</groupId>
                 <artifactId>filevault-package-maven-plugin</artifactId>
@@ -179,7 +163,6 @@
             </build>
         </profile>
         <profile>
-            <!-- overrides default bundle installation configuration -->
             <id>installBundle</id>
         </profile>
     </profiles>

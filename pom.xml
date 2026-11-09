@@ -52,7 +52,7 @@
         <module>kestros-core-archetype</module>
         <module>kestros-content-archetype</module>
         <module>kestros-application-archetype</module>
-<!--        <module>kestros-tutorial-application-archetype</module> (deferred to a later release) -->
+        <module>kestros-tutorial-application-archetype</module>
         <module>kestros-project-archetype</module>
     </modules>
 
