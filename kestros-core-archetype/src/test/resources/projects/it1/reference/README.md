@@ -57,7 +57,7 @@ The following connection properties can be overwritten:
 | sling.host     | localhost     |
 | sling.port     | 8080          |
 | sling.protocol | http          |
-| sling.user     | admin         |
+| sling.username | admin         |
 | sling.password | admin         |
 
 
