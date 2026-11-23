@@ -7,7 +7,7 @@ Kestros projects.
 
 ```
 mvn archetype:generate                                  \
-  -DarchetypeGroupId=io.kestros.cms.archetypes   \
+  -DarchetypeGroupId=io.kestros.cms   \
   -DarchetypeArtifactId=kestros-api-archetype       \
-  -DarchetypeVersion=0.0.1-SNAPSHOT
+  -DarchetypeVersion=0.9.0
 ```

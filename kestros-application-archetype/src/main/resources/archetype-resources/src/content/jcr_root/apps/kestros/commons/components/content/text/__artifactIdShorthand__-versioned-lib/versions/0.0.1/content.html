@@ -1,0 +1,6 @@
+#set( $sign = '$' )
+<!--/* Library-scoped view: renders only under a framework that includes ${artifactIdShorthand}-versioned-lib.
+    Reads TextDataSourceComponent, like the core view, so a configured datasource still feeds it. */-->
+<sly data-sly-use.text="${sign}{'io.kestros.cms.components.basic.core.content.text.TextDataSourceComponent'}"/>
+
+<p class="${sign}{text.inlineVariations} text--${artifactIdShorthand}-versioned-lib">${sign}{text.text}</p>
