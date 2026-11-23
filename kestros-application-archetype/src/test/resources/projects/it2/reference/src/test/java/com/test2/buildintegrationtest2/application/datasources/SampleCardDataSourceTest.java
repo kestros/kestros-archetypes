@@ -4,15 +4,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import io.kestros.cms.components.basic.api.content.KestrosHeading;
 import io.kestros.cms.components.basic.testing.BaseDataSourceTest;
 import java.util.HashMap;
 import java.util.Map;
-import org.apache.sling.api.resource.Resource;
 import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Tests the sample single-Card datasource.
+ * Tests the sample Card datasource returns its sample title, description and ids.
  */
 public class SampleCardDataSourceTest extends BaseDataSourceTest {
 
@@ -22,19 +22,23 @@ public class SampleCardDataSourceTest extends BaseDataSourceTest {
   public void setUp() {
     context.addModelsForClasses(SampleCardDataSource.class);
 
-    // The title heading resolves its containing page, so the resource must live under a page.
+    // Elements resolve their containing page, so the datasource resource must live under a page.
     Map<String, Object> pageProperties = new HashMap<>();
     pageProperties.put("jcr:primaryType", "kes:Page");
     context.create().resource("/content/page", pageProperties);
     context.create().resource("/content/page/jcr:content");
-    Resource resource = context.create().resource("/content/page/jcr:content/sample-card");
-    dataSource = resource.adaptTo(SampleCardDataSource.class);
+    dataSource = context.create().resource("/content/page/jcr:content/sample-card")
+        .adaptTo(SampleCardDataSource.class);
     assertNotNull(dataSource);
   }
 
   @Test
   public void testGetTitleElement() {
-    assertNotNull(dataSource.getTitleElement());
+    KestrosHeading title = dataSource.getTitleElement();
+    assertNotNull(title);
+    assertEquals("Sample Card from a datasource", title.getHeadingText());
+    assertEquals("h3", title.getHeadingType());
+    assertEquals("titleElement", title.getResource().getName());
   }
 
   @Test
