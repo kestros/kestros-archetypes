@@ -1,2 +1,27 @@
-<h1>I'm the default layout. Try switching to the More Info layout!</h1>
-<p>To use layouts, you must include a default layout.</p>
+<h2>Step 6</h2>
+<h3>Layouts</h3>
+<p>Every step so far changed the page by changing the framework. A <code>Layout</code> changes one
+    component without touching the framework at all: the framework provides several views for the
+    same <code>ComponentType</code>, and each component on the page picks the one it wants.</p>
+<p>This framework provides two of them, <code>default</code> and <code>more-info</code>. You are
+    reading <code>default</code>, which is the one a component gets when it has asked for nothing.
+    That is why a framework that provides layouts must always provide a <code>default</code> - it
+    is the fallback, not just the first entry in a list.</p>
+<h4>Switching this component's layout</h4>
+<ol>
+    <li>Click <code>Edit</code> in the <code>Actionbar</code>, then click this component.</li>
+    <li>Open its dialog and choose the <code>more-info</code> layout.</li>
+    <li>Save. Only this component changes - the page's framework is untouched.</li>
+</ol>
+<p>In your codebase the two views sit side by side at
+    <code>src/content/jcr_root/apps/${artifactId}/components/tutorial-getting-started/step-6-framework/layouts</code>.</p>
+
+<h2>Next Step</h2>
+<p>Next we will look at variations, which change how a component is styled rather than which markup
+    it renders.</p>
+<ol>
+    <li>Click <code>Edit</code> in the <code>Actionbar</code> at the top of the page.</li>
+    <li>In the <code>Edit Page</code> dialog, click the <code>Styles</code> tab.</li>
+    <li>Select <code>Step 7: Variations</code>, and the <code>Default</code> theme.</li>
+    <li>Click <code>Save</code> to apply the changes.</li>
+</ol>

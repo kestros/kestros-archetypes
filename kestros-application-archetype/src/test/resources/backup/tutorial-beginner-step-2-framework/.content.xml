@@ -5,5 +5,5 @@
           jcr:title="Step 2: Framework using Libraries"
           jcr:description=""
           kes:uiFrameworkCode="step-2"
-          kes:vendorLibraries="[step-2-basic-library]"
+          kes:vendorLibraries="[tutorial-step-2-basic-library]"
 />

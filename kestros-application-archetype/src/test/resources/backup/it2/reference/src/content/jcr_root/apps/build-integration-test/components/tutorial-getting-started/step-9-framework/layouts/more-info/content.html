@@ -1,0 +1,27 @@
+<h2>Step 9</h2>
+<h3>Creating component types, from the more-info layout</h3>
+<p>This tutorial component is itself the worked example, and you have been reading its views since
+    step 1. Its own directory is the shape yours will take.</p>
+<h4>What it contains</h4>
+<ul>
+    <li>A <code>.content.xml</code> declaring the <code>ComponentType</code> and its group.</li>
+    <li>A <code>common</code> view, used whenever nothing more specific applies - step 1 was that
+        view.
+    </li>
+    <li>One directory per framework that overrides it, named after that framework's code.</li>
+    <li>An <code>edit</code> directory, holding the dialog authors see in edit mode.</li>
+</ul>
+<h4>Two components, not one</h4>
+<p>The panels this tutorial renders beside its steps are separate <code>ComponentTypes</code> -
+    <code>tutorial-framework-view-map</code> and <code>tutorial-step-details</code> - included from
+    the step views with <code>data-sly-resource</code>. Composing small components that way is
+    cheaper than one component with a flag for every arrangement.</p>
+
+<h2>Next Step</h2>
+<p>Next we will give a component something to render that is not stored on the page.</p>
+<ol>
+    <li>Click <code>Edit</code> in the <code>Actionbar</code> at the top of the page.</li>
+    <li>In the <code>Edit Page</code> dialog, click the <code>Styles</code> tab.</li>
+    <li>Select <code>Step 10: Services</code>, and the <code>Default</code> theme.</li>
+    <li>Click <code>Save</code> to apply the changes.</li>
+</ol>

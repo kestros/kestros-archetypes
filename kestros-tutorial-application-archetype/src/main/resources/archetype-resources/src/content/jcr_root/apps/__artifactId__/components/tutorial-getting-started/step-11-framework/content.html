@@ -1,18 +1,66 @@
 <h2>Step 11</h2>
 <h3>What's Next</h3>
+<p>You have been through the whole thing: a framework with nothing in it, libraries, view
+    overrides, versions of both, layouts, variations, core component customisation, components of
+    your own, and services behind them. Nothing on this page was ever edited to make any of that
+    happen - only which framework rendered it.</p>
+
 <h4>Best Practices and Tips</h4>
-<h4>Try it Yourself</h4>
 <ul>
-    <li><strong>Lean on the side of modularization.</strong></li>
-    <li><strong>Strict versioning</strong> Once a version is finalized, it should never change. Changing code in existing versions could have unintended effects if you have multiple sites using a library of framework.</li>
-    <li><strong>Use HTL Templates</strong></li>
+    <li><strong>Lean on the side of modularization.</strong> A library that does one thing can be
+        included by every framework that needs it. A framework that does everything can be included
+        by nobody.
+    </li>
+    <li><strong>Strict versioning.</strong> Once a version is finalized, it should never change.
+        Changing code in existing versions could have unintended effects if you have multiple sites
+        using a library or framework.
+    </li>
+    <li><strong>Use HTL Templates</strong> for markup two views share, rather than copying it. Six
+        identical views teach an author nothing and hide the differences that do exist.
+    </li>
+    <li><strong>Override rather than fork.</strong> Step 8's rule holds generally - a view in your
+        codebase beats a core one, and nothing you own has to be re-merged when Kestros moves.
+    </li>
+    <li><strong>Name things for what an author sees.</strong> Titles are what appear in the picker,
+        and two nodes sharing a title is a choice nobody can make.
+    </li>
 </ul>
+
+<h4>Try it Yourself</h4>
 <p>Here's some ideas to get you started:</p>
 <ul>
-    <li>Create a UI Library for a popular CSS Framework</li>
-    <li>Create a Versioned UI Framework, so that you can walk through your development progression</li>
-    <li></li>
+    <li>Create a UI Library for a popular CSS Framework, and a UI Framework that includes it.</li>
+    <li>Create a Versioned UI Framework, so that you can walk through your development
+        progression.
+    </li>
+    <li>Give one of Kestros's core components a view in your own framework, as step 8 did with the
+        heading above.
+    </li>
+    <li>Add a third layout to your framework and switch a single component onto it.</li>
 </ul>
+
 <h3>Clean Up</h3>
 <h4>Delete the tutorial files</h4>
+<p>The tutorial is ordinary content in your project, so removing it is deleting directories and
+    rebuilding:</p>
+<ul>
+    <li><code>src/content/jcr_root/apps/${artifactId}/components/tutorial-*</code> - the four
+        tutorial components and every view under them.
+    </li>
+    <li><code>src/content/jcr_root/etc/ui-frameworks/tutorial-*</code> - the eleven step
+        frameworks.
+    </li>
+    <li><code>src/content/jcr_root/etc/vendor-libraries/tutorial-*</code> - the three tutorial
+        libraries.
+    </li>
+    <li><code>src/content/jcr_root/content/sites/${artifactId}-beginner-tutorial</code> and its
+        intermediate and advanced siblings.
+    </li>
+</ul>
+<p>Your own <code>${artifactIdShorthand}-ui</code> and
+    <code>${artifactIdShorthand}-versioned-ui</code> views are not tutorial files - keep those.</p>
+
 <h4>Rebuild a project without the tutorial</h4>
+<p>Or start again and leave it out: generate from
+    <code>kestros-project-archetype</code> rather than the tutorial archetype, and you get the same
+    project with a single sample component in place of all of the above.</p>

@@ -1,16 +1,29 @@
 <h2>Step 3</h2>
 <div class="grid">
     <div class="column column-3">
+        <h3>Overriding a View</h3>
+        <p>In step 2 the view came from a library. This framework includes that same library, but
+            also declares a view of its own for this <code>ComponentType</code> - and that is the
+            one you are reading. A view on the framework always wins over a view from any library
+            the framework includes.</p>
+        <p>That is the whole precedence rule, and it is what lets one site override a shared
+            library's markup without forking the library or touching any other site that uses
+            it.</p>
+        <h3>Where This View Lives</h3>
+        <p>In your codebase, at
+            <code>src/content/jcr_root/apps/${artifactId}/components/tutorial-getting-started/step-3-framework</code>.
+            The directory is named after the framework's code, which is how Kestros knows which
+            framework the view belongs to.</p>
+        <p>The panel beside this one lists every view this <code>ComponentType</code> has, and marks
+            the one being used to render the page right now.</p>
 
         <h2>Next Step</h2>
-        <p>Let's try switching to a <code>UIFramework</code> that provides a
-            <code>ComponentView</code>
-            for
-            this <code>ComponentType</code></p>
+        <p>Next we will look at what happens when the library a framework depends on has more than
+            one version.</p>
         <ol>
             <li>Click <code>Edit</code> in the <code>Actionbar</code> at the top of the page.</li>
             <li>In the <code>Edit Page</code> dialog, click the <code>Styles</code> tab.</li>
-            <li>Select <code>Framework with View Override (Step 3)</code>, and the
+            <li>Select <code>Versioned Framework (Step 4) 1.0.0</code>, and the
                 <code>Default</code>
                 theme.
             </li>
